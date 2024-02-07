@@ -1,6 +1,6 @@
 import {ReactElement} from "react";
 
-function Researches(): ReactElement {
+function Measurements(): ReactElement {
     return (
         <>
             Researches
@@ -8,4 +8,4 @@ function Researches(): ReactElement {
     );
 }
 
-export default Researches;
+export default Measurements;

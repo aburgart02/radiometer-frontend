@@ -12,7 +12,7 @@ const Layout =({children} : PrivateRouteProps) : ReactElement => {
         <>
             <div className="navigation">
                 <ul>
-                    <li><NavLink to={AppRoutes.Researches}>Исследования</NavLink></li>
+                    <li><NavLink to={AppRoutes.Measurements}>Исследования</NavLink></li>
                     <li><NavLink to={AppRoutes.Patients}>Пациенты</NavLink></li>
                     <li><NavLink to={AppRoutes.Devices}>Устройства</NavLink></li>
                 </ul>
