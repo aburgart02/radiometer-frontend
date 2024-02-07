@@ -1,18 +1,11 @@
-version: '3.8'
+version: '3'
 
 services:
-  react-app:
-    container_name: reactapptest
-    build:
-      context: .
-      dockerfile: Dockerfile
+  radiometer-frontend:
+    image: cr.yandex/crpfcpvoap78esunmram/radiometer-frontend
     ports:
-      - "8080:80"
-      - "8081:443"
+      - "8081:3000"
     environment:
       - HTTPS=true
     volumes:
-      - ~/.aspnet/https:/https:ro
-    stdin_open: true
-    tty: true
-
+      - ./conf.d/https/:/https/
