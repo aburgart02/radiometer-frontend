@@ -1,11 +1,11 @@
 import {ReactElement} from "react";
 
-function Test(): ReactElement {
+function Patients(): ReactElement {
     return (
         <>
-            Hello, World!
+            Patients
         </>
     );
 }
 
-export default Test;
+export default Patients;
