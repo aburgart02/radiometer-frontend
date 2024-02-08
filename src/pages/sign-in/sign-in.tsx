@@ -1,6 +1,7 @@
 import {FormEvent, ReactElement, useRef} from 'react';
 import {loginAction} from '../../store/api-actions/api-actions';
 import {useAppDispatch} from '../../hooks/hooks';
+import './sign-in.css'
 
 function SignIn(): ReactElement {
     const loginRef = useRef<HTMLInputElement | null>(null);
@@ -17,19 +18,18 @@ function SignIn(): ReactElement {
     };
 
     return (
-        <div>
-            <form action="#" onSubmit={handleSubmit}>
-                <div>
-                    <div>
-                        <input ref={loginRef} placeholder="Логин" name="user-login" id="user-login"/>
-                    </div>
-                    <div>
-                        <input ref={passwordRef} type="password" placeholder="Пароль" name="user-password" id="user-password"/>
-                    </div>
+        <div className="login-container">
+            <h2>Авторизация</h2>
+            <form onSubmit={handleSubmit}>
+                <div className="input-group">
+                    <label htmlFor="login">Логин:</label>
+                    <input ref={loginRef} type="text" id="login" name="login" placeholder="Логин" required/>
                 </div>
-                <div>
-                    <button type="submit">Sign in</button>
+                <div className="input-group">
+                    <label htmlFor="password">Пароль:</label>
+                    <input ref={passwordRef} type="password" id="password" name="password" placeholder="Пароль" required/>
                 </div>
+                <button type="submit">Войти в аккаунт</button>
             </form>
         </div>
     );

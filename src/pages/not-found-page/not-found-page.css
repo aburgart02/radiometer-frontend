@@ -1,6 +1,28 @@
-.not-found-page {
-    color: red;
+.not-found-container {
     text-align: center;
-    font-weight: bold;
-    font-size: 20px;
+    margin-top: 20%;
+}
+
+.not-found-container h1 {
+    font-size: 72px;
+    color: #dc3545;
+}
+
+.not-found-container p {
+    font-size: 24px;
+    color: #333;
+}
+
+.back-link {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.back-link:hover {
+    background-color: #0056b3;
 }
