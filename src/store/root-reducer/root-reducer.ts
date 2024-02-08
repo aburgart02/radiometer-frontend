@@ -1,7 +1,11 @@
 import {combineReducers} from '@reduxjs/toolkit';
 import {NameSpace} from '../namespace';
-import {authData} from "../auth-data/auth-data";
+import {authData} from "../auth-data/auth-data-state";
+import {devices} from "../devices/devices";
+import {patients} from "../patients/patients";
 
 export const rootReducer = combineReducers({
-    [NameSpace.Account]: authData.reducer,
+    [NameSpace.AuthData]: authData.reducer,
+    [NameSpace.Devices]: devices.reducer,
+    [NameSpace.Patients]: patients.reducer
 });

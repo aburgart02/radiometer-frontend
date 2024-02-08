@@ -12,9 +12,11 @@ import SignIn from "../../pages/sign-in/sign-in";
 import {Navigate} from "react-router-dom";
 import HistoryRouter from "../history-route/history-route";
 import browserHistory from "../history-route/browser-history";
+import {useAppSelector} from "../../hooks/hooks";
+import {getAuthorizationStatus} from "../../store/auth-data/selectors";
 
 function App() {
-  const authorizationStatus = AuthorizationStatus.Auth;
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
 
   return (
       <HistoryRouter history={browserHistory}>
@@ -22,7 +24,9 @@ function App() {
               <Route
                   path={AppRoutes.SignIn}
                   element={
-                      <SignIn />
+                      authorizationStatus === AuthorizationStatus.Auth
+                          ? <Navigate to={AppRoutes.Main} />
+                          : <SignIn />
                   }
               />
               <Route

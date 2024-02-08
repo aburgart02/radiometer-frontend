@@ -1,4 +1,5 @@
 export type Auth = {
+    userId: number | undefined;
     login: string | undefined;
-    password: string | undefined;
+    role: string | undefined;
 };

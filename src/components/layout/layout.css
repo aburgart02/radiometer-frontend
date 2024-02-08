@@ -24,15 +24,16 @@ body {
     display: block;
     color: #fff;
     text-decoration: none;
+    font-size: 20px;
+    font-weight: bold;
 }
 
 .navigation ul li a:hover {
     background-color: #555;
 }
 
-
 .content {
-    width: 500px;
+    width: calc(100% - 200px);
     float: left;
     margin: 0;
     padding: 0;
