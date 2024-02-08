@@ -3,6 +3,7 @@ import {useAppSelector} from "../../hooks/hooks";
 import {getDevices} from "../../store/devices/selectors";
 import '../../common-styles/table.css'
 import '../../common-styles/pagination.css'
+import Pagination from "../../components/pagination/pagination";
 
 const DEVICE_ON_PAGE = 6;
 
@@ -43,10 +44,7 @@ function Devices(): ReactElement {
                 ))}
                 </tbody>
             </table>
-            <div className="pagination">
-                <button onClick={() => handlePreviousButtonClick()} type="button">Previous</button>
-                <button onClick={() => handleNextButtonClick()} type="button">Next</button>
-            </div>
+            <Pagination handlePreviousButtonClick={handlePreviousButtonClick} handleNextButtonClick={handleNextButtonClick}/>
         </>
     );
 }

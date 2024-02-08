@@ -4,6 +4,7 @@ import '../../common-styles/table.css'
 import '../../common-styles/pagination.css'
 import {getPatients} from "../../store/patients/selectors";
 import {Sex} from "../../const/sex";
+import Pagination from "../../components/pagination/pagination";
 
 const PATIENTS_ON_PAGE = 6;
 
@@ -60,10 +61,7 @@ function Patients(): ReactElement {
                 ))}
                 </tbody>
             </table>
-            <div className="pagination">
-                <button onClick={() => handlePreviousButtonClick()} type="button">Previous</button>
-                <button onClick={() => handleNextButtonClick()} type="button">Next</button>
-            </div>
+            <Pagination handlePreviousButtonClick={handlePreviousButtonClick} handleNextButtonClick={handleNextButtonClick}/>
         </>
     );
 }
