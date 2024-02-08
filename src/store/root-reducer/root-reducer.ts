@@ -1,6 +1,6 @@
 import {combineReducers} from '@reduxjs/toolkit';
 import {NameSpace} from '../namespace';
-import {authData} from "../auth-data/auth-data-state";
+import {authData} from "../auth-data/auth-data";
 import {devices} from "../devices/devices";
 import {patients} from "../patients/patients";
 
