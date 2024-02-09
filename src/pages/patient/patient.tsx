@@ -13,7 +13,7 @@ function Patient(): ReactElement {
     const params = useParams();
     const patientId = Number(params.id);
     const patients = useAppSelector(getPatients);
-    const patient = patients.filter((patient) => patient.Id === patientId)[0]
+    const patient = patients.filter((patient) => patient.Id === patientId)[0];
 
     return (
         <>

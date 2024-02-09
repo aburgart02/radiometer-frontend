@@ -87,3 +87,15 @@ export const postPatientAction = createAsyncThunk<void, Omit<Patient, 'Id'>, {
         dispatch(fetchPatientsAction());
     },
 );
+
+export const updatePatientAction = createAsyncThunk<void, Patient, {
+    dispatch: AppDispatch;
+    state: State;
+    extra: AxiosInstance;
+}>(
+    'patients/updatePatient',
+    async (patient, {dispatch, extra: api}) => {
+        await api.put<Patient>(ApiRoutes.UpdatePatient, patient);
+        dispatch(fetchPatientsAction());
+    },
+);

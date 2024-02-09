@@ -8,8 +8,9 @@ import Pagination from "../../components/pagination/pagination";
 import {Link, NavLink} from "react-router-dom";
 import {AppRoutes} from "../../const/app-routes";
 import {getSex} from "../../utils/get-sex";
+import {formatDate} from "../../utils/format-date";
 
-const PATIENTS_ON_PAGE = 6;
+const PATIENTS_ON_PAGE = 8;
 
 function Patients(): ReactElement {
     const patients = useAppSelector(getPatients);
@@ -39,20 +40,24 @@ function Patients(): ReactElement {
                 </tr>
                 </thead>
                 <tbody>
-                {patients.slice((pageNumber - 1) * PATIENTS_ON_PAGE, pageNumber * PATIENTS_ON_PAGE).map(patient => (
-                    <tr key={crypto.randomUUID()}>
-                        <td>{patient.Id}</td>
-                        <td>{patient.Name}</td>
-                        <td>{patient.Surname}</td>
-                        <td>{patient.Patronymic}</td>
-                        <td>{patient.BirthDate}</td>
-                        <td>{getSex(patient.Sex)}</td>
-                        <td>{patient.Notes}</td>
-                        <td>
-                            <li><NavLink to={AppRoutes.Patient(patient.Id)}>Подробнее</NavLink></li>
-                            <p>Редактировать</p>
-                        </td>
-                    </tr>
+                {patients
+                    .slice()
+                    .sort((a,b) => Number(a.Id) - Number(b.Id))
+                    .slice((pageNumber - 1) * PATIENTS_ON_PAGE, pageNumber * PATIENTS_ON_PAGE)
+                    .map(patient => (
+                        <tr key={crypto.randomUUID()}>
+                            <td>{patient.Id}</td>
+                            <td>{patient.Name}</td>
+                            <td>{patient.Surname}</td>
+                            <td>{patient.Patronymic}</td>
+                            <td>{formatDate(patient.BirthDate)}</td>
+                            <td>{getSex(patient.Sex)}</td>
+                            <td>{patient.Notes}</td>
+                            <td>
+                                <li><NavLink to={AppRoutes.Patient(patient.Id)}>Подробнее</NavLink></li>
+                                <li><NavLink to={AppRoutes.EditPatient(patient.Id)}>Редактировать</NavLink></li>
+                            </td>
+                        </tr>
                 ))}
                 </tbody>
             </table>

@@ -5,6 +5,7 @@ table {
 
 table li {
     list-style: none;
+    margin: 8px;
 }
 
 th, td {
