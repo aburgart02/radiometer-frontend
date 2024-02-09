@@ -1,0 +1,14 @@
+.patient-container {
+    display: inline-block;
+    max-width: 800px;
+    padding: 20px;
+}
+
+.patient-container span {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.patient-container p {
+    font-size: 18px;
+}

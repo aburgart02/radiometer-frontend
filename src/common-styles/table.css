@@ -3,6 +3,10 @@ table {
     border-collapse: collapse;
 }
 
+table li {
+    list-style: none;
+}
+
 th, td {
     border: 1px solid #ddd;
     padding: 8px;

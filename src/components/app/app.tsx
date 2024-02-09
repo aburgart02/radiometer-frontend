@@ -15,6 +15,7 @@ import browserHistory from "../history-route/browser-history";
 import {useAppSelector} from "../../hooks/hooks";
 import {getAuthorizationStatus} from "../../store/auth-data/selectors";
 import AddPatient from "../../pages/add-patient/add-patient";
+import Patient from "../../pages/patient/patient";
 
 function App() {
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
@@ -46,6 +47,16 @@ function App() {
                       <PrivateRoute authorizationStatus={authorizationStatus}>
                           <Layout>
                               <Measurements />
+                          </Layout>
+                      </PrivateRoute>
+                  }
+              />
+              <Route
+                  path={AppRoutes.Patient(':id')}
+                  element={
+                      <PrivateRoute authorizationStatus={authorizationStatus}>
+                          <Layout>
+                              <Patient />
                           </Layout>
                       </PrivateRoute>
                   }

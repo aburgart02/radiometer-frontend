@@ -4,10 +4,10 @@ import '../../common-styles/table.css'
 import '../../common-styles/pagination.css'
 import '../../common-styles/action-button.css'
 import {getPatients} from "../../store/patients/selectors";
-import {Sex} from "../../const/sex";
 import Pagination from "../../components/pagination/pagination";
-import {Link} from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
 import {AppRoutes} from "../../const/app-routes";
+import {getSex} from "../../utils/get-sex";
 
 const PATIENTS_ON_PAGE = 6;
 
@@ -22,14 +22,6 @@ function Patients(): ReactElement {
     const handleNextButtonClick = () => {
         setPageNumber(pageNumber === Math.ceil(patients.length / PATIENTS_ON_PAGE) ? pageNumber: pageNumber + 1);
     };
-
-    const getSex = (sex: number | undefined) => {
-        if (sex === Sex.Male)
-            return 'М';
-        if (sex === Sex.Female)
-            return 'Ж';
-        return '';
-    }
 
     return (
         <>
@@ -57,7 +49,7 @@ function Patients(): ReactElement {
                         <td>{getSex(patient.Sex)}</td>
                         <td>{patient.Notes}</td>
                         <td>
-                            <p>Подробнее</p>
+                            <li><NavLink to={AppRoutes.Patient(patient.Id)}>Подробнее</NavLink></li>
                             <p>Редактировать</p>
                         </td>
                     </tr>
