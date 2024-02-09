@@ -2,6 +2,7 @@ import {createSlice} from '@reduxjs/toolkit';
 import {checkAuthAction, loginAction} from '../api-actions/api-actions';
 import {NameSpace} from '../namespace';
 import {AuthorizationStatus} from "../../const/authorization-status";
+import {dropToken} from "../../api/token";
 
 type AuthDataState = {
     authorizationStatus: AuthorizationStatus;
@@ -20,7 +21,15 @@ const initialState: AuthDataState = {
 export const authData = createSlice({
     name: NameSpace.AuthData,
     initialState,
-    reducers: {},
+    reducers: {
+        logout: (state) => {
+            dropToken();
+            state.authorizationStatus = AuthorizationStatus.NoAuth;
+            state.userId = undefined;
+            state.login = undefined;
+            state.role = undefined;
+        },
+    },
     extraReducers: (builder) => {
         builder
             .addCase(checkAuthAction.fulfilled, (state) => {
@@ -40,3 +49,5 @@ export const authData = createSlice({
             })
     }
 });
+
+export const {logout} = authData.actions;

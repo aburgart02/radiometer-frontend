@@ -13,17 +13,16 @@ import {Auth} from "../../types/auth/auth";
 import {Device} from "../../types/device/device";
 import {Patient} from "../../types/patient/patient";
 
-export const checkAuthAction = createAsyncThunk<undefined, undefined, {
+export const checkAuthAction = createAsyncThunk<void, undefined, {
     dispatch: AppDispatch;
     state: State;
     extra: AxiosInstance;
 }>(
     'authData/checkAuth',
     async (_arg, {dispatch, extra: api}) => {
-        const {data} = await api.get(ApiRoutes.CheckAuth);
+        await api.get(ApiRoutes.CheckAuth);
         dispatch(fetchDevicesAction());
         dispatch(fetchPatientsAction());
-        return undefined;
     },
 );
 
