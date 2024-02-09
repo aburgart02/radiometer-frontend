@@ -1,5 +1,3 @@
-import {Measurement} from "../measurement/measurement";
-
 export type Patient = {
     Id: number;
     Name: string;
@@ -8,5 +6,4 @@ export type Patient = {
     BirthDate: string;
     Sex: number | undefined;
     Notes: string | undefined;
-    Measurements: Measurement[];
 };

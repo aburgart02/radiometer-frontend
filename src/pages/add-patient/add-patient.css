@@ -1,0 +1,44 @@
+.add-patient-container {
+    display: inline-block;
+    max-width: 800px;
+    padding: 20px;
+}
+
+.add-patient-container label {
+    font-weight: bold;
+}
+
+.input-field {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.date-picker {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+}
+
+.textarea-field {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.radio-list {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.radio-list input {
+    margin-right: 20px;
+}
+
+.radio-list div {
+    font-weight: bold;
+}

@@ -2,9 +2,12 @@ import React, {ReactElement} from "react";
 import {useAppSelector} from "../../hooks/hooks";
 import '../../common-styles/table.css'
 import '../../common-styles/pagination.css'
+import '../../common-styles/action-button.css'
 import {getPatients} from "../../store/patients/selectors";
 import {Sex} from "../../const/sex";
 import Pagination from "../../components/pagination/pagination";
+import {Link} from "react-router-dom";
+import {AppRoutes} from "../../const/app-routes";
 
 const PATIENTS_ON_PAGE = 6;
 
@@ -62,6 +65,7 @@ function Patients(): ReactElement {
                 </tbody>
             </table>
             <Pagination handlePreviousButtonClick={handlePreviousButtonClick} handleNextButtonClick={handleNextButtonClick}/>
+            <Link to={AppRoutes.AddPatient} className="action-button">Добавить</Link>
         </>
     );
 }

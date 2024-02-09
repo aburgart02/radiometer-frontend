@@ -1,0 +1,21 @@
+.action-button {
+    display: inherit;
+    padding: 10px 20px;
+    margin: 20px;
+    background-color: #3498db;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 140px;
+}
+
+.action-button:hover {
+    background-color: #2980b9;
+}
+
+.action-button:active {
+    background-color: #1f618d;
+}
