@@ -6,14 +6,12 @@ import {dropToken} from "../../api/token";
 
 type AuthDataState = {
     authorizationStatus: AuthorizationStatus;
-    userId: number | undefined;
     login: string | undefined;
     role: string | undefined;
 }
 
 const initialState: AuthDataState = {
     authorizationStatus: AuthorizationStatus.Unknown,
-    userId: undefined,
     login: undefined,
     role: undefined,
 };
@@ -25,22 +23,24 @@ export const authData = createSlice({
         logout: (state) => {
             dropToken();
             state.authorizationStatus = AuthorizationStatus.NoAuth;
-            state.userId = undefined;
             state.login = undefined;
             state.role = undefined;
         },
     },
     extraReducers: (builder) => {
         builder
-            .addCase(checkAuthAction.fulfilled, (state) => {
+            .addCase(checkAuthAction.fulfilled, (state, value) => {
                 state.authorizationStatus = AuthorizationStatus.Auth;
+                state.login = value.payload.login;
+                state.role = value.payload.role;
             })
             .addCase(checkAuthAction.rejected, (state) => {
                 state.authorizationStatus = AuthorizationStatus.NoAuth;
+                state.login = undefined;
+                state.role = undefined;
             })
             .addCase(loginAction.fulfilled, (state, value) => {
                 state.authorizationStatus = AuthorizationStatus.Auth;
-                state.userId = value.payload.userId;
                 state.login = value.payload.login;
                 state.role = value.payload.role;
             })

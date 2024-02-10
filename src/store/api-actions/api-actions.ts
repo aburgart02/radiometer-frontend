@@ -1,11 +1,10 @@
 import {AxiosInstance} from 'axios';
-import { jwtDecode } from 'jwt-decode'
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import {AppDispatch, State} from '../../types/state/state.js';
 import {
     redirectToRoute,
 } from './redirect-to-route';
-import {saveToken} from '../../api/token';
+import {getToken, saveToken} from '../../api/token';
 import {ApiRoutes} from '../../api/api-routes';
 import {AppRoutes} from "../../const/app-routes";
 import {Credentials} from "../../types/credentials/credentials";
@@ -13,18 +12,27 @@ import {Auth} from "../../types/auth/auth";
 import {Device} from "../../types/device/device";
 import {Patient} from "../../types/patient/patient";
 import {Log} from "../../types/log/log";
+import {Roles} from "../../const/roles";
+import {decodeToken} from "../../utils/decode-token";
 
-export const checkAuthAction = createAsyncThunk<void, undefined, {
+export const checkAuthAction = createAsyncThunk<Auth, undefined, {
     dispatch: AppDispatch;
     state: State;
     extra: AxiosInstance;
 }>(
     'authData/checkAuth',
     async (_arg, {dispatch, extra: api}) => {
+        const token = getToken();
+        const decodedToken = decodeToken(token);
         await api.get(ApiRoutes.CheckAuth);
         dispatch(fetchDevicesAction());
         dispatch(fetchPatientsAction());
-        dispatch(fetchLogsAction());
+        if (decodedToken.role === Roles.Admin)
+            dispatch(fetchLogsAction());
+        return {
+            login: decodedToken.login,
+            role: decodedToken.role
+        };
     },
 );
 
@@ -42,15 +50,15 @@ export const loginAction = createAsyncThunk<Auth, Credentials, {
         const {data}: any = await api.post<object>(ApiRoutes.Login, authData);
         const token = data['value']['access_token'];
         saveToken(token);
-        const decodedToken: any = jwtDecode(token);
+        const decodedToken = decodeToken(token);
         dispatch(fetchDevicesAction());
         dispatch(fetchPatientsAction());
-        dispatch(fetchLogsAction());
+        if (decodedToken.role === Roles.Admin)
+            dispatch(fetchLogsAction());
         dispatch(redirectToRoute(AppRoutes.Main));
         return {
-            userId: data['value']['userId'],
-            login: decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'],
-            role: decodedToken['http://schemas.microsoft.com/ws/2008/06/identity/claims/role']
+            login: decodedToken.login,
+            role: decodedToken.role
         };
     },
 );
