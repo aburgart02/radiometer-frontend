@@ -23,6 +23,7 @@ const Layout =({children} : PrivateRouteProps) : ReactElement => {
                     <li><NavLink to={AppRoutes.Measurements}>Исследования</NavLink></li>
                     <li><NavLink to={AppRoutes.Patients}>Пациенты</NavLink></li>
                     <li><NavLink to={AppRoutes.Devices}>Устройства</NavLink></li>
+                    <li><NavLink to={AppRoutes.Logs}>События</NavLink></li>
                     <li onClick={() => handleClick()}><NavLink to={AppRoutes.SignIn}>Выйти</NavLink></li>
                 </ul>
             </div>

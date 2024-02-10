@@ -7,5 +7,7 @@ export const AppRoutes = {
     AddPatient: '/add-patient',
     EditPatient: (id: number | string) => `/patients/edit/${id}`,
     Measurements: '/measurements',
+    Logs: '/logs',
+    Log: (id: number | string) => `/logs/${id}`,
     NotFound: '*'
 } as const;

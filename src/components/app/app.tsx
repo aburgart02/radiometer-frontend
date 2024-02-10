@@ -17,6 +17,7 @@ import {getAuthorizationStatus} from "../../store/auth-data/selectors";
 import AddPatient from "../../pages/add-patient/add-patient";
 import Patient from "../../pages/patient/patient";
 import EditPatient from "../../pages/edit-patient/edit-patient";
+import Logs from "../../pages/logs/logs";
 
 function App() {
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
@@ -98,6 +99,16 @@ function App() {
                       <PrivateRoute authorizationStatus={authorizationStatus}>
                           <Layout>
                               <Devices />
+                          </Layout>
+                      </PrivateRoute>
+                  }
+              />
+              <Route
+                  path={AppRoutes.Logs}
+                  element={
+                      <PrivateRoute authorizationStatus={authorizationStatus}>
+                          <Layout>
+                              <Logs />
                           </Layout>
                       </PrivateRoute>
                   }

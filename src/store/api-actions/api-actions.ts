@@ -12,6 +12,7 @@ import {Credentials} from "../../types/credentials/credentials";
 import {Auth} from "../../types/auth/auth";
 import {Device} from "../../types/device/device";
 import {Patient} from "../../types/patient/patient";
+import {Log} from "../../types/log/log";
 
 export const checkAuthAction = createAsyncThunk<void, undefined, {
     dispatch: AppDispatch;
@@ -23,6 +24,7 @@ export const checkAuthAction = createAsyncThunk<void, undefined, {
         await api.get(ApiRoutes.CheckAuth);
         dispatch(fetchDevicesAction());
         dispatch(fetchPatientsAction());
+        dispatch(fetchLogsAction());
     },
 );
 
@@ -43,6 +45,7 @@ export const loginAction = createAsyncThunk<Auth, Credentials, {
         const decodedToken: any = jwtDecode(token);
         dispatch(fetchDevicesAction());
         dispatch(fetchPatientsAction());
+        dispatch(fetchLogsAction());
         dispatch(redirectToRoute(AppRoutes.Main));
         return {
             userId: data['value']['userId'],
@@ -97,5 +100,17 @@ export const updatePatientAction = createAsyncThunk<void, Patient, {
     async (patient, {dispatch, extra: api}) => {
         await api.put<Patient>(ApiRoutes.UpdatePatient, patient);
         dispatch(fetchPatientsAction());
+    },
+);
+
+export const fetchLogsAction = createAsyncThunk<Log[], undefined, {
+    dispatch: AppDispatch;
+    state: State;
+    extra: AxiosInstance;
+}>(
+    'logs/fetchLogs',
+    async (_arg, {extra: api}) => {
+        const {data} = await api.get<Log[]>(ApiRoutes.Logs);
+        return data;
     },
 );

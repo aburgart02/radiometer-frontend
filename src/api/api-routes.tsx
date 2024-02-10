@@ -5,5 +5,6 @@ export const ApiRoutes = {
     Patients: '/patients',
     AddPatient: '/add-patient',
     UpdatePatient: '/update-patient',
+    Logs: '/logs',
     Measurements: '/measurements',
 } as const;
