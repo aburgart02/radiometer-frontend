@@ -8,6 +8,6 @@ export const AppRoutes = {
     EditPatient: (id: number | string) => `/patients/edit/${id}`,
     Measurements: '/measurements',
     Logs: '/logs',
-    Log: (id: number | string) => `/logs/${id}`,
+    Log: (id: string) => `/logs/${id}`,
     NotFound: '*'
 } as const;

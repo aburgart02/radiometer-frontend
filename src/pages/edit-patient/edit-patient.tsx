@@ -2,7 +2,7 @@ import '../../common-styles/patient-form.css'
 import '../../common-styles/action-button.css'
 import React, {ReactElement, useRef} from "react";
 import {useAppDispatch, useAppSelector} from "../../hooks/hooks";
-import {postPatientAction, updatePatientAction} from "../../store/api-actions/api-actions";
+import {updatePatientAction} from "../../store/api-actions/api-actions";
 import browserHistory from "../../components/history-route/browser-history";
 import {useParams} from "react-router-dom";
 import {getPatients} from "../../store/patients/selectors";
@@ -47,7 +47,7 @@ function EditPatient(): ReactElement {
 
     return (
         <>
-            <div className="add-patient-container">
+            <div className="patient-form-container">
                 <h2>Пациент</h2>
                 <p>
                     <label htmlFor="id">ID: {patient.Id}</label>

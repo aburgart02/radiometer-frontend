@@ -1,8 +1,6 @@
 import React, {ReactElement} from "react";
-import '../../common-styles/table.css'
-import '../../common-styles/pagination.css'
 import '../../common-styles/action-button.css'
-import './patient.css'
+import '../../common-styles/detailed-page.css'
 import {useParams} from "react-router-dom";
 import {useAppSelector} from "../../hooks/hooks";
 import {getPatients} from "../../store/patients/selectors";
@@ -17,7 +15,7 @@ function Patient(): ReactElement {
 
     return (
         <>
-            <div className="patient-container">
+            <div className="detailed-page-container">
                 <h2>Пациент</h2>
                 <p>
                     <span>Id: </span>{patient.Id}
