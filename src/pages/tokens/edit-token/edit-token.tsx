@@ -2,7 +2,7 @@ import '../../../common-styles/form.css'
 import '../../../common-styles/action-button.css'
 import React, {ReactElement, useRef} from "react";
 import {useAppDispatch, useAppSelector} from "../../../hooks/hooks";
-import {updateTokenAction} from "../../../store/api-actions/api-actions";
+import {deleteTokenAction, updateTokenAction} from "../../../store/api-actions/api-actions";
 import browserHistory from "../../../components/history-route/browser-history";
 import {useParams} from "react-router-dom";
 import {getTokens} from "../../../store/tokens/selectors";
@@ -19,7 +19,7 @@ function EditToken(): ReactElement {
 
     const dispatch = useAppDispatch();
 
-    const handleSubmit = () => {
+    const handleEditSubmit = () => {
         if (revokedRef.current !== null && revokedRef.current.value !== '')
         {
             dispatch(updateTokenAction({
@@ -31,6 +31,10 @@ function EditToken(): ReactElement {
                 Description: descriptionRef.current?.value
             }));
         }
+    };
+
+    const handleDeleteSubmit = () => {
+        dispatch(deleteTokenAction(tokenId));
     };
 
     return (
@@ -59,7 +63,12 @@ function EditToken(): ReactElement {
                     <span>Токен: </span>{token.Token}
                 </p>
             </div>
-            <button onClick={handleSubmit} className="action-button">Сохранить</button>
+            <button onClick={handleEditSubmit} className="action-button">Сохранить</button>
+            <button onClick={() => {
+                handleDeleteSubmit();
+                browserHistory.back();
+            }
+            } className="action-button">Удалить</button>
             <button type="button" className="action-button" onClick={() => {
                 browserHistory.back();
             }}

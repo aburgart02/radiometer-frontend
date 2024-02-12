@@ -9,5 +9,6 @@ export const ApiRoutes = {
     Tokens: '/tokens',
     AddToken: '/add-token',
     UpdateToken: '/update-token',
+    DeleteToken: '/delete-token',
     Measurements: '/measurements',
 } as const;

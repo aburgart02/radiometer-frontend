@@ -157,9 +157,21 @@ export const updateTokenAction = createAsyncThunk<void, Token, {
     state: State;
     extra: AxiosInstance;
 }>(
-    'patients/updatePatient',
+    'tokens/updateToken',
     async (token, {dispatch, extra: api}) => {
         await api.put<Token>(ApiRoutes.UpdateToken, token);
+        dispatch(fetchTokensAction());
+    },
+);
+
+export const deleteTokenAction = createAsyncThunk<void, number, {
+    dispatch: AppDispatch;
+    state: State;
+    extra: AxiosInstance;
+}>(
+    'tokens/deleteToken',
+    async (tokenId, {dispatch, extra: api}) => {
+        await api.post<Token>(ApiRoutes.DeleteToken, {Id: tokenId});
         dispatch(fetchTokensAction());
     },
 );
