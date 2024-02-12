@@ -1,14 +1,14 @@
 import React, {ReactElement} from "react";
-import {useAppSelector} from "../../hooks/hooks";
-import '../../common-styles/table.css'
-import '../../common-styles/pagination.css'
-import '../../common-styles/action-button.css'
-import {getPatients} from "../../store/patients/selectors";
-import Pagination from "../../components/pagination/pagination";
+import {useAppSelector} from "../../../hooks/hooks";
+import '../../../common-styles/table.css'
+import '../../../common-styles/pagination.css'
+import '../../../common-styles/action-button.css'
+import {getPatients} from "../../../store/patients/selectors";
+import Pagination from "../../../components/pagination/pagination";
 import {Link, NavLink} from "react-router-dom";
-import {AppRoutes} from "../../const/app-routes";
-import {getSex} from "../../utils/get-sex";
-import {formatDate} from "../../utils/format-date";
+import {AppRoutes} from "../../../const/app-routes";
+import {getSex} from "../../../utils/get-sex";
+import {formatDate} from "../../../utils/format-date";
 
 const PATIENTS_ON_PAGE = 8;
 

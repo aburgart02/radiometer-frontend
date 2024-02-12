@@ -1,9 +1,9 @@
-import '../../common-styles/patient-form.css'
-import '../../common-styles/action-button.css'
+import '../../../common-styles/form.css'
+import '../../../common-styles/action-button.css'
 import React, {ReactElement, useRef} from "react";
-import {useAppDispatch} from "../../hooks/hooks";
-import {postTokenAction} from "../../store/api-actions/api-actions";
-import browserHistory from "../../components/history-route/browser-history";
+import {useAppDispatch} from "../../../hooks/hooks";
+import {postTokenAction} from "../../../store/api-actions/api-actions";
+import browserHistory from "../../../components/history-route/browser-history";
 
 
 function AddToken(): ReactElement {
@@ -24,7 +24,7 @@ function AddToken(): ReactElement {
 
     return (
         <>
-            <div className="patient-form-container">
+            <div className="form-container">
                 <form>
                     <label htmlFor="expirationDate">Действителен до</label>
                     <input ref={expirationDateRef} type="date" id="expirationDate" name="expirationDate" className="date-picker"/>

@@ -1,26 +1,28 @@
 import React from 'react';
 import {Route, Routes} from 'react-router-dom';
-import Devices from "../../pages/devices/devices";
+import Devices from "../../pages/devices/devices/devices";
 import Layout from "../layout/layout";
-import Patients from "../../pages/patients/patients";
+import Patients from "../../pages/patients/patients/patients";
 import PrivateRoute from "../private-route/private-route";
 import {AuthorizationStatus} from "../../const/authorization-status";
 import {AppRoutes} from "../../const/app-routes";
 import NotFoundPage from "../../pages/not-found-page/not-found-page";
-import Measurements from "../../pages/measurements/measurements";
+import Measurements from "../../pages/measurements/measurements/measurements";
 import SignIn from "../../pages/sign-in/sign-in";
 import {Navigate} from "react-router-dom";
 import HistoryRouter from "../history-route/history-route";
 import browserHistory from "../history-route/browser-history";
 import {useAppSelector} from "../../hooks/hooks";
 import {getAuthorizationStatus} from "../../store/auth-data/selectors";
-import AddPatient from "../../pages/add-patient/add-patient";
-import Patient from "../../pages/patient/patient";
-import EditPatient from "../../pages/edit-patient/edit-patient";
-import Logs from "../../pages/logs/logs";
-import Log from "../../pages/log/log";
-import Tokens from "../../pages/tokens/tokens";
-import AddToken from "../../pages/add-token/add-token";
+import AddPatient from "../../pages/patients/add-patient/add-patient";
+import Patient from "../../pages/patients/patient/patient";
+import EditPatient from "../../pages/patients/edit-patient/edit-patient";
+import Logs from "../../pages/logs/logs/logs";
+import Log from "../../pages/logs/log/log";
+import Tokens from "../../pages/tokens/tokens/tokens";
+import AddToken from "../../pages/tokens/add-token/add-token";
+import Token from "../../pages/tokens/token/token";
+import EditToken from "../../pages/tokens/edit-token/edit-token";
 
 function App() {
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
@@ -127,6 +129,16 @@ function App() {
                   }
               />
               <Route
+                  path={AppRoutes.Token(':id')}
+                  element={
+                      <PrivateRoute authorizationStatus={authorizationStatus}>
+                          <Layout>
+                              <Token />
+                          </Layout>
+                      </PrivateRoute>
+                  }
+              />
+              <Route
                   path={AppRoutes.Tokens}
                   element={
                       <PrivateRoute authorizationStatus={authorizationStatus}>
@@ -142,6 +154,16 @@ function App() {
                       <PrivateRoute authorizationStatus={authorizationStatus}>
                           <Layout>
                               <AddToken />
+                          </Layout>
+                      </PrivateRoute>
+                  }
+              />
+              <Route
+                  path={AppRoutes.EditToken(':id')}
+                  element={
+                      <PrivateRoute authorizationStatus={authorizationStatus}>
+                          <Layout>
+                              <EditToken />
                           </Layout>
                       </PrivateRoute>
                   }

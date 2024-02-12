@@ -11,4 +11,5 @@
 
 .detailed-page-container p {
     font-size: 18px;
+    word-wrap: break-word;
 }

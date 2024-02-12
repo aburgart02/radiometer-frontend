@@ -1,12 +1,12 @@
 import React, {ReactElement} from "react";
-import {useAppSelector} from "../../hooks/hooks";
-import '../../common-styles/table.css'
-import '../../common-styles/pagination.css'
-import '../../common-styles/action-button.css'
-import Pagination from "../../components/pagination/pagination";
+import {useAppSelector} from "../../../hooks/hooks";
+import '../../../common-styles/table.css'
+import '../../../common-styles/pagination.css'
+import '../../../common-styles/action-button.css'
+import Pagination from "../../../components/pagination/pagination";
 import {NavLink} from "react-router-dom";
-import {AppRoutes} from "../../const/app-routes";
-import {getLogs} from "../../store/logs/selectors";
+import {AppRoutes} from "../../../const/app-routes";
+import {getLogs} from "../../../store/logs/selectors";
 
 const LOGS_ON_PAGE = 8;
 

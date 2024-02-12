@@ -1,12 +1,12 @@
 import React, {ReactElement} from "react";
-import {useAppSelector} from "../../hooks/hooks";
-import '../../common-styles/table.css'
-import '../../common-styles/pagination.css'
-import '../../common-styles/action-button.css'
-import Pagination from "../../components/pagination/pagination";
+import {useAppSelector} from "../../../hooks/hooks";
+import '../../../common-styles/table.css'
+import '../../../common-styles/pagination.css'
+import '../../../common-styles/action-button.css'
+import Pagination from "../../../components/pagination/pagination";
 import {Link, NavLink} from "react-router-dom";
-import {AppRoutes} from "../../const/app-routes";
-import {getTokens} from "../../store/tokens/selectors";
+import {AppRoutes} from "../../../const/app-routes";
+import {getTokens} from "../../../store/tokens/selectors";
 
 const TOKENS_ON_PAGE = 8;
 

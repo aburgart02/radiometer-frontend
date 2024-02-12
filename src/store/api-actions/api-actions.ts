@@ -151,3 +151,15 @@ export const postTokenAction = createAsyncThunk<void, Omit<Token, 'Id' | 'Token'
         dispatch(fetchTokensAction());
     },
 );
+
+export const updateTokenAction = createAsyncThunk<void, Token, {
+    dispatch: AppDispatch;
+    state: State;
+    extra: AxiosInstance;
+}>(
+    'patients/updatePatient',
+    async (token, {dispatch, extra: api}) => {
+        await api.put<Token>(ApiRoutes.UpdateToken, token);
+        dispatch(fetchTokensAction());
+    },
+);

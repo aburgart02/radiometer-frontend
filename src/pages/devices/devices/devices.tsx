@@ -1,9 +1,9 @@
 import React, {ReactElement} from "react";
-import {useAppSelector} from "../../hooks/hooks";
-import {getDevices} from "../../store/devices/selectors";
-import '../../common-styles/table.css'
-import '../../common-styles/pagination.css'
-import Pagination from "../../components/pagination/pagination";
+import {useAppSelector} from "../../../hooks/hooks";
+import {getDevices} from "../../../store/devices/selectors";
+import '../../../common-styles/table.css'
+import '../../../common-styles/pagination.css'
+import Pagination from "../../../components/pagination/pagination";
 
 const DEVICE_ON_PAGE = 6;
 

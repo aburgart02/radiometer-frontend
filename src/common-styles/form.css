@@ -1,11 +1,20 @@
-.patient-form-container {
+.form-container {
     display: inline-block;
     max-width: 800px;
     padding: 20px;
 }
 
-.patient-form-container label {
+.form-container span {
+    font-size: 18px;
     font-weight: bold;
+}
+
+.form-container label {
+    font-weight: bold;
+}
+
+.form-container p {
+    word-wrap: break-word;
 }
 
 .input-field {
@@ -41,4 +50,15 @@
 
 .radio-list div {
     font-weight: bold;
+}
+
+.checkbox-list {
+    margin-bottom: 10px;
+}
+
+.checkbox-list input {
+    color: red;
+    width: 20px;
+    height: 20px;
+    margin-left: 30px;
 }

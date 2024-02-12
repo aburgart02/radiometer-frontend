@@ -1,11 +1,11 @@
 import React, {ReactElement} from "react";
-import '../../common-styles/action-button.css'
-import '../../common-styles/detailed-page.css'
+import '../../../common-styles/action-button.css'
+import '../../../common-styles/detailed-page.css'
 import {useParams} from "react-router-dom";
-import {useAppSelector} from "../../hooks/hooks";
-import {getPatients} from "../../store/patients/selectors";
-import browserHistory from "../../components/history-route/browser-history";
-import {getSex} from "../../utils/get-sex";
+import {useAppSelector} from "../../../hooks/hooks";
+import {getPatients} from "../../../store/patients/selectors";
+import browserHistory from "../../../components/history-route/browser-history";
+import {getSex} from "../../../utils/get-sex";
 
 function Patient(): ReactElement {
     const params = useParams();

@@ -1,20 +1,12 @@
-import '../../common-styles/patient-form.css'
-import '../../common-styles/action-button.css'
+import '../../../common-styles/form.css'
+import '../../../common-styles/action-button.css'
 import React, {ReactElement, useRef} from "react";
-import {useAppDispatch, useAppSelector} from "../../hooks/hooks";
-import {updatePatientAction} from "../../store/api-actions/api-actions";
-import browserHistory from "../../components/history-route/browser-history";
-import {useParams} from "react-router-dom";
-import {getPatients} from "../../store/patients/selectors";
-import {formatDate} from "../../utils/format-date";
+import {useAppDispatch} from "../../../hooks/hooks";
+import {postPatientAction} from "../../../store/api-actions/api-actions";
+import browserHistory from "../../../components/history-route/browser-history";
 
 
-function EditPatient(): ReactElement {
-    const params = useParams();
-    const patientId = Number(params.id);
-    const patients = useAppSelector(getPatients);
-    const patient = patients.filter((patient) => patient.Id === patientId)[0];
-
+function AddPatient(): ReactElement {
     const nameRef = useRef<HTMLInputElement | null>(null);
     const surnameRef = useRef<HTMLInputElement | null>(null);
     const patronymicRef = useRef<HTMLInputElement | null>(null);
@@ -30,8 +22,7 @@ function EditPatient(): ReactElement {
             && birthDateRef.current !== null && nameRef.current.value !== ''
             && surnameRef.current.value !== '' && birthDateRef.current.value !== '')
         {
-            dispatch(updatePatientAction({
-                Id: patientId,
+            dispatch(postPatientAction({
                 Name: nameRef.current.value,
                 Surname: surnameRef.current?.value,
                 Patronymic: patronymicRef.current?.value,
@@ -47,38 +38,33 @@ function EditPatient(): ReactElement {
 
     return (
         <>
-            <div className="patient-form-container">
-                <h2>Пациент</h2>
-                <p>
-                    <label htmlFor="id">ID: {patient.Id}</label>
-                </p>
-
+            <div className="form-container">
                 <form>
                     <label htmlFor="name">Имя</label>
-                    <input defaultValue={patient.Name} ref={nameRef} type="text" id="name" name="name" className="input-field"/>
+                    <input ref={nameRef} type="text" id="name" name="name" className="input-field"/>
 
                     <label htmlFor="surname">Фамилия</label>
-                    <input defaultValue={patient.Surname} ref={surnameRef} type="text" id="surname" name="surname" className="input-field"/>
+                    <input ref={surnameRef} type="text" id="surname" name="surname" className="input-field"/>
 
                     <label htmlFor="patronymic">Отчество</label>
-                    <input defaultValue={patient.Patronymic} ref={patronymicRef} type="text" id="patronymic" name="patronymic" className="input-field"/>
+                    <input ref={patronymicRef} type="text" id="patronymic" name="patronymic" className="input-field"/>
 
                     <label htmlFor="birthdate">Дата рождения</label>
-                    <input defaultValue={formatDate(patient.BirthDate)} ref={birthDateRef} type="date" id="birthdate" name="birthdate" className="date-picker"/>
+                    <input ref={birthDateRef} type="date" id="birthdate" name="birthdate" className="date-picker"/>
 
                     <div className="radio-list">
                         <div>Пол</div>
                         <label htmlFor="male">Мужской</label>
-                        <input defaultChecked={patient.Sex === 0} ref={maleRef} type="radio" id="male" name="gender"/>
+                        <input ref={maleRef} type="radio" id="male" name="gender"/>
                         <label htmlFor="female">Женский</label>
-                        <input defaultChecked={patient.Sex === 1} ref={femaleRef} type="radio" id="female" name="gender"/>
+                        <input ref={femaleRef} type="radio" id="female" name="gender"/>
                     </div>
 
                     <label htmlFor="notes" className="label">Заметки</label>
-                    <textarea defaultValue={patient.Notes} ref={notesRef} id="notes" name="notes" className="textarea-field"/>
+                    <textarea ref={notesRef} id="notes" name="notes" className="textarea-field"/>
                 </form>
             </div>
-            <button onClick={handleSubmit} className="action-button">Сохранить</button>
+            <button onClick={handleSubmit} className="action-button">Добавить</button>
             <button type="button" className="action-button" onClick={() => {
                 browserHistory.back();
             }}
@@ -88,4 +74,4 @@ function EditPatient(): ReactElement {
     );
 }
 
-export default EditPatient;
+export default AddPatient;

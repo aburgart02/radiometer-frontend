@@ -1,10 +1,10 @@
 import React, {ReactElement} from "react";
-import '../../common-styles/action-button.css'
-import '../../common-styles/detailed-page.css'
+import '../../../common-styles/action-button.css'
+import '../../../common-styles/detailed-page.css'
 import {useParams} from "react-router-dom";
-import {useAppSelector} from "../../hooks/hooks";
-import browserHistory from "../../components/history-route/browser-history";
-import {getLogs} from "../../store/logs/selectors";
+import {useAppSelector} from "../../../hooks/hooks";
+import browserHistory from "../../../components/history-route/browser-history";
+import {getLogs} from "../../../store/logs/selectors";
 
 function Log(): ReactElement {
     const params = useParams();
