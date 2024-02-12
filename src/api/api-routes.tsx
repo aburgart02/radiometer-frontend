@@ -6,5 +6,7 @@ export const ApiRoutes = {
     AddPatient: '/add-patient',
     UpdatePatient: '/update-patient',
     Logs: '/logs',
+    Tokens: '/tokens',
+    AddToken: '/add-token',
     Measurements: '/measurements',
 } as const;

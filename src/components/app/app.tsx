@@ -19,6 +19,8 @@ import Patient from "../../pages/patient/patient";
 import EditPatient from "../../pages/edit-patient/edit-patient";
 import Logs from "../../pages/logs/logs";
 import Log from "../../pages/log/log";
+import Tokens from "../../pages/tokens/tokens";
+import AddToken from "../../pages/add-token/add-token";
 
 function App() {
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
@@ -120,6 +122,26 @@ function App() {
                       <PrivateRoute authorizationStatus={authorizationStatus}>
                           <Layout>
                               <Log />
+                          </Layout>
+                      </PrivateRoute>
+                  }
+              />
+              <Route
+                  path={AppRoutes.Tokens}
+                  element={
+                      <PrivateRoute authorizationStatus={authorizationStatus}>
+                          <Layout>
+                              <Tokens />
+                          </Layout>
+                      </PrivateRoute>
+                  }
+              />
+              <Route
+                  path={AppRoutes.AddToken}
+                  element={
+                      <PrivateRoute authorizationStatus={authorizationStatus}>
+                          <Layout>
+                              <AddToken />
                           </Layout>
                       </PrivateRoute>
                   }

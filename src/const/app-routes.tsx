@@ -9,5 +9,9 @@ export const AppRoutes = {
     Measurements: '/measurements',
     Logs: '/logs',
     Log: (id: string) => `/logs/${id}`,
+    Tokens: '/tokens',
+    Token: (id: number | string) => `/tokens/${id}`,
+    AddToken: '/add-token',
+    EditToken: (id: number | string) => `/tokens/edit/${id}`,
     NotFound: '*'
 } as const;

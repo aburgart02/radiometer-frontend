@@ -14,6 +14,7 @@ import {Patient} from "../../types/patient/patient";
 import {Log} from "../../types/log/log";
 import {Roles} from "../../const/roles";
 import {decodeToken} from "../../utils/decode-token";
+import {Token} from "../../types/token/token";
 
 export const checkAuthAction = createAsyncThunk<Auth, undefined, {
     dispatch: AppDispatch;
@@ -27,8 +28,10 @@ export const checkAuthAction = createAsyncThunk<Auth, undefined, {
         await api.get(ApiRoutes.CheckAuth);
         dispatch(fetchDevicesAction());
         dispatch(fetchPatientsAction());
-        if (decodedToken.role === Roles.Admin)
+        if (decodedToken.role === Roles.Admin) {
             dispatch(fetchLogsAction());
+            dispatch(fetchTokensAction());
+        }
         return {
             login: decodedToken.login,
             role: decodedToken.role
@@ -53,8 +56,10 @@ export const loginAction = createAsyncThunk<Auth, Credentials, {
         const decodedToken = decodeToken(token);
         dispatch(fetchDevicesAction());
         dispatch(fetchPatientsAction());
-        if (decodedToken.role === Roles.Admin)
+        if (decodedToken.role === Roles.Admin) {
             dispatch(fetchLogsAction());
+            dispatch(fetchTokensAction());
+        }
         dispatch(redirectToRoute(AppRoutes.Main));
         return {
             login: decodedToken.login,
@@ -120,5 +125,29 @@ export const fetchLogsAction = createAsyncThunk<Log[], undefined, {
     async (_arg, {extra: api}) => {
         const {data} = await api.get<Log[]>(ApiRoutes.Logs);
         return data;
+    },
+);
+
+export const fetchTokensAction = createAsyncThunk<Token[], undefined, {
+    dispatch: AppDispatch;
+    state: State;
+    extra: AxiosInstance;
+}>(
+    'tokens/fetchTokens',
+    async (_arg, {extra: api}) => {
+        const {data} = await api.get<Token[]>(ApiRoutes.Tokens);
+        return data;
+    },
+);
+
+export const postTokenAction = createAsyncThunk<void, Omit<Token, 'Id' | 'Token' | 'EmissionDate' | 'Revoked'>, {
+    dispatch: AppDispatch;
+    state: State;
+    extra: AxiosInstance;
+}>(
+    'tokens/postToken',
+    async (token, {dispatch, extra: api}) => {
+        await api.post<Token>(ApiRoutes.AddToken, token);
+        dispatch(fetchTokensAction());
     },
 );
