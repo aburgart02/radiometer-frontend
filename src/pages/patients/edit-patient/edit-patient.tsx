@@ -2,7 +2,7 @@ import '../../../common-styles/form.css'
 import '../../../common-styles/action-button.css'
 import React, {ReactElement, useRef} from "react";
 import {useAppDispatch, useAppSelector} from "../../../hooks/hooks";
-import {updatePatientAction} from "../../../store/api-actions/api-actions";
+import {deletePatientAction, deleteTokenAction, updatePatientAction} from "../../../store/api-actions/api-actions";
 import browserHistory from "../../../components/history-route/browser-history";
 import {useParams} from "react-router-dom";
 import {getPatients} from "../../../store/patients/selectors";
@@ -45,6 +45,10 @@ function EditPatient(): ReactElement {
         }
     };
 
+    const handleDeleteSubmit = () => {
+        dispatch(deletePatientAction(patientId));
+    };
+
     return (
         <>
             <div className="form-container">
@@ -79,6 +83,10 @@ function EditPatient(): ReactElement {
                 </form>
             </div>
             <button onClick={handleSubmit} className="action-button">Сохранить</button>
+            <button onClick={() => {
+                handleDeleteSubmit();
+                browserHistory.back();
+            }} className="action-button">Удалить</button>
             <button type="button" className="action-button" onClick={() => {
                 browserHistory.back();
             }}

@@ -116,6 +116,18 @@ export const updatePatientAction = createAsyncThunk<void, Patient, {
     },
 );
 
+export const deletePatientAction = createAsyncThunk<void, number, {
+    dispatch: AppDispatch;
+    state: State;
+    extra: AxiosInstance;
+}>(
+    'patients/deletePatient',
+    async (patientId, {dispatch, extra: api}) => {
+        await api.post<Patient>(ApiRoutes.DeletePatient, {Id: patientId});
+        dispatch(fetchPatientsAction());
+    },
+);
+
 export const fetchLogsAction = createAsyncThunk<Log[], undefined, {
     dispatch: AppDispatch;
     state: State;
