@@ -67,7 +67,8 @@ function EditToken(): ReactElement {
             <button onClick={() => {
                 handleDeleteSubmit();
                 browserHistory.back();
-            }} className="action-button">Удалить</button>
+            }} className="action-button">Удалить
+            </button>
             <button type="button" className="action-button" onClick={() => {
                 browserHistory.back();
             }}

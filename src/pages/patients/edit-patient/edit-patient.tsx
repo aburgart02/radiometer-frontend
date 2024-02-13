@@ -2,7 +2,7 @@ import '../../../common-styles/form.css'
 import '../../../common-styles/action-button.css'
 import React, {ReactElement, useRef} from "react";
 import {useAppDispatch, useAppSelector} from "../../../hooks/hooks";
-import {deletePatientAction, deleteTokenAction, updatePatientAction} from "../../../store/api-actions/api-actions";
+import {deletePatientAction, updatePatientAction} from "../../../store/api-actions/api-actions";
 import browserHistory from "../../../components/history-route/browser-history";
 import {useParams} from "react-router-dom";
 import {getPatients} from "../../../store/patients/selectors";
@@ -86,7 +86,8 @@ function EditPatient(): ReactElement {
             <button onClick={() => {
                 handleDeleteSubmit();
                 browserHistory.back();
-            }} className="action-button">Удалить</button>
+            }} className="action-button">Удалить
+            </button>
             <button type="button" className="action-button" onClick={() => {
                 browserHistory.back();
             }}
