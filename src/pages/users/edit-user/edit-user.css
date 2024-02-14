@@ -1,0 +1,15 @@
+.password-container {
+    display: flex;
+    align-items: center;
+}
+
+.password-container label {
+    font-weight: bold;
+}
+
+.password-input-field {
+    margin-left: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}

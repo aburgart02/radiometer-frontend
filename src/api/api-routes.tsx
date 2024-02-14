@@ -9,6 +9,7 @@ export const ApiRoutes = {
     Users: '/users',
     AddUser: '/add-user',
     UpdateUser: '/update-user',
+    UpdateUserPassword: '/update-user-password',
     DeleteUser: '/delete-user',
     Logs: '/logs',
     Tokens: '/tokens',

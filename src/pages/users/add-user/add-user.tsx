@@ -69,17 +69,17 @@ function AddUser(): ReactElement {
                     <div className="radio-list">
                         <div>Пол</div>
                         <label htmlFor="male">Мужской</label>
-                        <input ref={maleRef} type="radio" id="male" name="male"/>
+                        <input ref={maleRef} type="radio" id="male" name="sex"/>
                         <label htmlFor="female">Женский</label>
-                        <input ref={femaleRef} type="radio" id="female" name="female"/>
+                        <input ref={femaleRef} type="radio" id="female" name="sex"/>
                     </div>
 
                     <div className="radio-list">
                         <div>Роль</div>
                         <label htmlFor="researcher">Исследователь</label>
-                        <input ref={researcherRef} type="radio" id="researcher" name="researcher"/>
+                        <input ref={researcherRef} type="radio" id="researcher" name="role"/>
                         <label htmlFor="admin">Админ</label>
-                        <input ref={adminRef} type="radio" id="admin" name="admin"/>
+                        <input ref={adminRef} type="radio" id="admin" name="role"/>
                     </div>
 
                     <label htmlFor="password">Пароль</label>

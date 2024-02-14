@@ -55,9 +55,9 @@ function AddPatient(): ReactElement {
                     <div className="radio-list">
                         <div>Пол</div>
                         <label htmlFor="male">Мужской</label>
-                        <input ref={maleRef} type="radio" id="male" name="male"/>
+                        <input ref={maleRef} type="radio" id="male" name="sex"/>
                         <label htmlFor="female">Женский</label>
-                        <input ref={femaleRef} type="radio" id="female" name="female"/>
+                        <input ref={femaleRef} type="radio" id="female" name="sex"/>
                     </div>
 
                     <label htmlFor="notes" className="label">Заметки</label>

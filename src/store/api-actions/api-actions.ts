@@ -148,9 +148,45 @@ export const postUserAction = createAsyncThunk<void, Omit<User, 'Id' | 'Revoked'
     state: State;
     extra: AxiosInstance;
 }>(
-    'patients/postPatient',
+    'users/postUser',
     async (user, {dispatch, extra: api}) => {
         await api.post<User>(ApiRoutes.AddUser, user);
+        dispatch(fetchUsersAction());
+    },
+);
+
+export const updateUserAction = createAsyncThunk<void, Omit<User, 'Password'>, {
+    dispatch: AppDispatch;
+    state: State;
+    extra: AxiosInstance;
+}>(
+    'users/updateUsers',
+    async (user, {dispatch, extra: api}) => {
+        await api.put<User>(ApiRoutes.UpdateUser, user);
+        dispatch(fetchUsersAction());
+    },
+);
+
+export const updateUserPasswordAction = createAsyncThunk<void, { Id: number, Password: string } , {
+    dispatch: AppDispatch;
+    state: State;
+    extra: AxiosInstance;
+}>(
+    'users/updateUserPassword',
+    async (user, {dispatch, extra: api}) => {
+        await api.post<User>(ApiRoutes.UpdateUserPassword, user);
+        dispatch(fetchUsersAction());
+    },
+);
+
+export const deleteUserAction = createAsyncThunk<void, number, {
+    dispatch: AppDispatch;
+    state: State;
+    extra: AxiosInstance;
+}>(
+    'users/deleteUser',
+    async (userId, {dispatch, extra: api}) => {
+        await api.post<User>(ApiRoutes.DeleteUser, {Id: userId});
         dispatch(fetchUsersAction());
     },
 );

@@ -26,7 +26,7 @@ function EditToken(): ReactElement {
                 Id: tokenId,
                 EmissionDate: token.EmissionDate,
                 ExpirationDate: token.ExpirationDate,
-                Revoked:  revokedRef.current?.checked,
+                Revoked:  revokedRef.current.checked,
                 Token: token.Token,
                 Description: descriptionRef.current?.value
             }));
@@ -50,12 +50,11 @@ function EditToken(): ReactElement {
                 <p>
                     <span>Действителен до: </span>{token.ExpirationDate?.replace(/[TZ_]/g, ' ')}
                 </p>
+                <div className="checkbox-list">
+                    <label htmlFor="revoked">Отозван</label>
+                    <input defaultChecked={token.Revoked} ref={revokedRef} type="checkbox" id="revoked" name="revoked"/>
+                </div>
                 <form>
-                    <div className="checkbox-list">
-                        <label htmlFor="male">Отозван</label>
-                        <input defaultChecked={token.Revoked} ref={revokedRef} type="checkbox" id="revoked" name="revoked"/>
-                    </div>
-
                     <label htmlFor="description" className="label">Описание</label>
                     <textarea defaultValue={token.Description} ref={descriptionRef} id="description" name="description" className="textarea-field"/>
                 </form>
