@@ -2,27 +2,35 @@ import '../../../common-styles/form.css'
 import '../../../common-styles/action-button.css'
 import React, {ReactElement, useRef} from "react";
 import {useAppDispatch} from "../../../hooks/hooks";
-import {postPatientAction} from "../../../store/api-actions/api-actions";
+import {postUserAction} from "../../../store/api-actions/api-actions";
 import browserHistory from "../../../components/history-route/browser-history";
+import {Roles} from "../../../const/roles";
 
 
-function AddPatient(): ReactElement {
+function AddUser(): ReactElement {
+    const loginRef = useRef<HTMLInputElement | null>(null);
     const nameRef = useRef<HTMLInputElement | null>(null);
     const surnameRef = useRef<HTMLInputElement | null>(null);
     const patronymicRef = useRef<HTMLInputElement | null>(null);
     const birthDateRef = useRef<HTMLInputElement | null>(null);
     const maleRef = useRef<HTMLInputElement | null>(null);
     const femaleRef = useRef<HTMLInputElement | null>(null);
+    const researcherRef = useRef<HTMLInputElement | null>(null);
+    const adminRef = useRef<HTMLInputElement | null>(null);
+    const passwordRef = useRef<HTMLInputElement | null>(null);
     const notesRef = useRef<HTMLTextAreaElement | null>(null);
 
     const dispatch = useAppDispatch();
 
     const handleSubmit = () => {
-        if (nameRef.current !== null && surnameRef.current !== null
-            && birthDateRef.current !== null && nameRef.current.value !== ''
-            && surnameRef.current.value !== '' && birthDateRef.current.value !== '')
+        if (loginRef.current !== null && nameRef.current !== null && surnameRef.current !== null
+            && researcherRef.current != null && adminRef.current != null && passwordRef.current !== null
+            && loginRef.current.value !== '' && nameRef.current.value !== ''
+            && surnameRef.current.value !== '' && passwordRef.current.value !== ''
+            && (researcherRef.current.checked || adminRef.current.checked))
         {
-            dispatch(postPatientAction({
+            dispatch(postUserAction({
+                Login: loginRef.current.value,
                 Name: nameRef.current.value,
                 Surname: surnameRef.current.value,
                 Patronymic: patronymicRef.current?.value,
@@ -31,6 +39,9 @@ function AddPatient(): ReactElement {
                     ? undefined
                     : maleRef.current?.checked
                         ? 0 : 1,
+                Role: researcherRef.current.checked
+                        ? Roles.Researcher : Roles.Admin,
+                Password: passwordRef.current.value,
                 Notes: notesRef.current?.value
             }));
         }
@@ -40,6 +51,9 @@ function AddPatient(): ReactElement {
         <>
             <div className="form-container">
                 <form>
+                    <label htmlFor="login">Логин</label>
+                    <input ref={loginRef} type="text" id="login" name="login" className="input-field"/>
+
                     <label htmlFor="name">Имя</label>
                     <input ref={nameRef} type="text" id="name" name="name" className="input-field"/>
 
@@ -60,6 +74,17 @@ function AddPatient(): ReactElement {
                         <input ref={femaleRef} type="radio" id="female" name="female"/>
                     </div>
 
+                    <div className="radio-list">
+                        <div>Роль</div>
+                        <label htmlFor="researcher">Исследователь</label>
+                        <input ref={researcherRef} type="radio" id="researcher" name="researcher"/>
+                        <label htmlFor="admin">Админ</label>
+                        <input ref={adminRef} type="radio" id="admin" name="admin"/>
+                    </div>
+
+                    <label htmlFor="password">Пароль</label>
+                    <input ref={passwordRef} type="text" id="password" name="password" className="input-field"/>
+
                     <label htmlFor="notes" className="label">Заметки</label>
                     <textarea ref={notesRef} id="notes" name="notes" className="textarea-field"/>
                 </form>
@@ -74,4 +99,4 @@ function AddPatient(): ReactElement {
     );
 }
 
-export default AddPatient;
+export default AddUser;

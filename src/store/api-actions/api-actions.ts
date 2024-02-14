@@ -143,6 +143,18 @@ export const fetchUsersAction = createAsyncThunk<User[], undefined, {
     },
 );
 
+export const postUserAction = createAsyncThunk<void, Omit<User, 'Id' | 'Revoked'>, {
+    dispatch: AppDispatch;
+    state: State;
+    extra: AxiosInstance;
+}>(
+    'patients/postPatient',
+    async (user, {dispatch, extra: api}) => {
+        await api.post<User>(ApiRoutes.AddUser, user);
+        dispatch(fetchUsersAction());
+    },
+);
+
 export const fetchLogsAction = createAsyncThunk<Log[], undefined, {
     dispatch: AppDispatch;
     state: State;

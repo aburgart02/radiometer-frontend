@@ -7,6 +7,7 @@ export type User = {
     Sex: number | undefined;
     Notes: string | undefined;
     Login: string;
+    Password: string;
     Role: string;
     Revoked: boolean;
 };

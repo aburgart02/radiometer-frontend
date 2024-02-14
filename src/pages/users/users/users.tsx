@@ -38,7 +38,7 @@ function Users(): ReactElement {
                     <th>Пол</th>
                     <th>Заметки</th>
                     <th>Роль</th>
-                    <th>Отозван</th>
+                    <th>Статус</th>
                     <th/>
                 </tr>
                 </thead>
@@ -58,7 +58,7 @@ function Users(): ReactElement {
                             <td>{getSex(user.Sex)}</td>
                             <td>{user.Notes}</td>
                             <td>{user.Role}</td>
-                            <td>{user.Revoked ? 'Да' : 'Нет'}</td>
+                            <td>{user.Revoked ? 'Заблокирован' : 'Не заблокирован'}</td>
                             <td>
                                 <li><NavLink to={AppRoutes.User(user.Id)}>Подробнее</NavLink></li>
                                 <li><NavLink to={AppRoutes.EditUser(user.Id)}>Редактировать</NavLink></li>

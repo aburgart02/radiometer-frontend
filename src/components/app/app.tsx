@@ -24,6 +24,8 @@ import AddToken from "../../pages/tokens/add-token/add-token";
 import Token from "../../pages/tokens/token/token";
 import EditToken from "../../pages/tokens/edit-token/edit-token";
 import Users from "../../pages/users/users/users";
+import User from "../../pages/users/user/user";
+import AddUser from "../../pages/users/add-user/add-user";
 
 function App() {
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
@@ -119,6 +121,26 @@ function App() {
                       <PrivateRoute authorizationStatus={authorizationStatus}>
                           <Layout>
                               <Users />
+                          </Layout>
+                      </PrivateRoute>
+                  }
+              />
+              <Route
+                  path={AppRoutes.User(':id')}
+                  element={
+                      <PrivateRoute authorizationStatus={authorizationStatus}>
+                          <Layout>
+                              <User />
+                          </Layout>
+                      </PrivateRoute>
+                  }
+              />
+              <Route
+                  path={AppRoutes.AddUser}
+                  element={
+                      <PrivateRoute authorizationStatus={authorizationStatus}>
+                          <Layout>
+                              <AddUser />
                           </Layout>
                       </PrivateRoute>
                   }

@@ -73,9 +73,9 @@ function EditPatient(): ReactElement {
                     <div className="radio-list">
                         <div>Пол</div>
                         <label htmlFor="male">Мужской</label>
-                        <input defaultChecked={patient.Sex === 0} ref={maleRef} type="radio" id="male" name="gender"/>
+                        <input defaultChecked={patient.Sex === 0} ref={maleRef} type="radio" id="male" name="male"/>
                         <label htmlFor="female">Женский</label>
-                        <input defaultChecked={patient.Sex === 1} ref={femaleRef} type="radio" id="female" name="gender"/>
+                        <input defaultChecked={patient.Sex === 1} ref={femaleRef} type="radio" id="female" name="female"/>
                     </div>
 
                     <label htmlFor="notes" className="label">Заметки</label>
