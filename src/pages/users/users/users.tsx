@@ -3,17 +3,17 @@ import {useAppSelector} from "../../../hooks/hooks";
 import '../../../common-styles/table.css'
 import '../../../common-styles/pagination.css'
 import '../../../common-styles/action-button.css'
-import {getPatients} from "../../../store/patients/selectors";
 import Pagination from "../../../components/pagination/pagination";
 import {Link, NavLink} from "react-router-dom";
 import {AppRoutes} from "../../../const/app-routes";
 import {getSex} from "../../../utils/get-sex";
 import {formatDate} from "../../../utils/format-date";
+import {getUsers} from "../../../store/users/selectors";
 
-const PATIENTS_ON_PAGE = 8;
+const USERS_ON_PAGE = 8;
 
-function Patients(): ReactElement {
-    const patients = useAppSelector(getPatients);
+function Users(): ReactElement {
+    const users = useAppSelector(getUsers);
     const [pageNumber, setPageNumber] = React.useState(1);
 
     const handlePreviousButtonClick = () => {
@@ -21,7 +21,7 @@ function Patients(): ReactElement {
     };
 
     const handleNextButtonClick = () => {
-        setPageNumber(pageNumber === Math.ceil(patients.length / PATIENTS_ON_PAGE) ? pageNumber: pageNumber + 1);
+        setPageNumber(pageNumber === Math.ceil(users.length / USERS_ON_PAGE) ? pageNumber: pageNumber + 1);
     };
 
     return (
@@ -30,41 +30,47 @@ function Patients(): ReactElement {
                 <thead>
                 <tr>
                     <th>Id</th>
+                    <th>Логин</th>
                     <th>Имя</th>
                     <th>Фамилия</th>
                     <th>Отчество</th>
                     <th>Дата рождения</th>
                     <th>Пол</th>
                     <th>Заметки</th>
+                    <th>Роль</th>
+                    <th>Отозван</th>
                     <th/>
                 </tr>
                 </thead>
                 <tbody>
-                {patients
+                {users
                     .slice()
                     .sort((a,b) => Number(a.Id) - Number(b.Id))
-                    .slice((pageNumber - 1) * PATIENTS_ON_PAGE, pageNumber * PATIENTS_ON_PAGE)
-                    .map(patient => (
+                    .slice((pageNumber - 1) * USERS_ON_PAGE, pageNumber * USERS_ON_PAGE)
+                    .map(user => (
                         <tr key={crypto.randomUUID()}>
-                            <td>{patient.Id}</td>
-                            <td>{patient.Name}</td>
-                            <td>{patient.Surname}</td>
-                            <td>{patient.Patronymic}</td>
-                            <td>{formatDate(patient.BirthDate)}</td>
-                            <td>{getSex(patient.Sex)}</td>
-                            <td>{patient.Notes}</td>
+                            <td>{user.Login}</td>
+                            <td>{user.Id}</td>
+                            <td>{user.Name}</td>
+                            <td>{user.Surname}</td>
+                            <td>{user.Patronymic}</td>
+                            <td>{user.BirthDate && formatDate(user.BirthDate)}</td>
+                            <td>{getSex(user.Sex)}</td>
+                            <td>{user.Notes}</td>
+                            <td>{user.Role}</td>
+                            <td>{user.Revoked ? 'Да' : 'Нет'}</td>
                             <td>
-                                <li><NavLink to={AppRoutes.Patient(patient.Id)}>Подробнее</NavLink></li>
-                                <li><NavLink to={AppRoutes.EditPatient(patient.Id)}>Редактировать</NavLink></li>
+                                <li><NavLink to={AppRoutes.User(user.Id)}>Подробнее</NavLink></li>
+                                <li><NavLink to={AppRoutes.EditUser(user.Id)}>Редактировать</NavLink></li>
                             </td>
                         </tr>
-                ))}
+                    ))}
                 </tbody>
             </table>
             <Pagination handlePreviousButtonClick={handlePreviousButtonClick} handleNextButtonClick={handleNextButtonClick}/>
-            <Link to={AppRoutes.AddPatient} className="action-button">Добавить</Link>
+            <Link to={AppRoutes.AddUser} className="action-button">Добавить</Link>
         </>
     );
 }
 
-export default Patients;
+export default Users;

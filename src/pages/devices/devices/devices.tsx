@@ -24,7 +24,7 @@ function Devices(): ReactElement {
             <table>
                 <thead>
                 <tr>
-                    <th>ID</th>
+                    <th>Id</th>
                     <th>Имя</th>
                     <th>Описание</th>
                     <th/>

@@ -1,8 +1,8 @@
 export enum NameSpace {
     Devices = 'DEVICES',
     Patients = 'PATIENTS',
-    Users = 'USERS',
     AuthData = 'AUTH-DATA',
+    Users = 'USERS',
     Logs = 'LOGS',
     Tokens = 'TOKENS'
 }

@@ -23,6 +23,7 @@ import Tokens from "../../pages/tokens/tokens/tokens";
 import AddToken from "../../pages/tokens/add-token/add-token";
 import Token from "../../pages/tokens/token/token";
 import EditToken from "../../pages/tokens/edit-token/edit-token";
+import Users from "../../pages/users/users/users";
 
 function App() {
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
@@ -48,6 +49,7 @@ function App() {
                       </PrivateRoute>
                   }
               />
+
               <Route
                   path={AppRoutes.Measurements}
                   element={
@@ -58,22 +60,23 @@ function App() {
                       </PrivateRoute>
                   }
               />
-              <Route
-                  path={AppRoutes.Patient(':id')}
-                  element={
-                      <PrivateRoute authorizationStatus={authorizationStatus}>
-                          <Layout>
-                              <Patient />
-                          </Layout>
-                      </PrivateRoute>
-                  }
-              />
+
               <Route
                   path={AppRoutes.Patients}
                   element={
                       <PrivateRoute authorizationStatus={authorizationStatus}>
                           <Layout>
                               <Patients />
+                          </Layout>
+                      </PrivateRoute>
+                  }
+              />
+              <Route
+                  path={AppRoutes.Patient(':id')}
+                  element={
+                      <PrivateRoute authorizationStatus={authorizationStatus}>
+                          <Layout>
+                              <Patient />
                           </Layout>
                       </PrivateRoute>
                   }
@@ -98,6 +101,7 @@ function App() {
                       </PrivateRoute>
                   }
               />
+
               <Route
                   path={AppRoutes.Devices}
                   element={
@@ -108,6 +112,18 @@ function App() {
                       </PrivateRoute>
                   }
               />
+
+              <Route
+                  path={AppRoutes.Users}
+                  element={
+                      <PrivateRoute authorizationStatus={authorizationStatus}>
+                          <Layout>
+                              <Users />
+                          </Layout>
+                      </PrivateRoute>
+                  }
+              />
+
               <Route
                   path={AppRoutes.Logs}
                   element={
@@ -128,22 +144,23 @@ function App() {
                       </PrivateRoute>
                   }
               />
-              <Route
-                  path={AppRoutes.Token(':id')}
-                  element={
-                      <PrivateRoute authorizationStatus={authorizationStatus}>
-                          <Layout>
-                              <Token />
-                          </Layout>
-                      </PrivateRoute>
-                  }
-              />
+
               <Route
                   path={AppRoutes.Tokens}
                   element={
                       <PrivateRoute authorizationStatus={authorizationStatus}>
                           <Layout>
                               <Tokens />
+                          </Layout>
+                      </PrivateRoute>
+                  }
+              />
+              <Route
+                  path={AppRoutes.Token(':id')}
+                  element={
+                      <PrivateRoute authorizationStatus={authorizationStatus}>
+                          <Layout>
+                              <Token />
                           </Layout>
                       </PrivateRoute>
                   }
@@ -168,6 +185,7 @@ function App() {
                       </PrivateRoute>
                   }
               />
+
               <Route
                   path={AppRoutes.NotFound}
                   element={

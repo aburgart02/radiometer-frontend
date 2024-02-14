@@ -27,7 +27,7 @@ function Tokens(): ReactElement {
             <table>
                 <thead>
                 <tr>
-                    <th>ID</th>
+                    <th>Id</th>
                     <th>Описание</th>
                     <th>Дата выпуска</th>
                     <th>Действителен до</th>

@@ -15,6 +15,7 @@ import {Log} from "../../types/log/log";
 import {Roles} from "../../const/roles";
 import {decodeToken} from "../../utils/decode-token";
 import {Token} from "../../types/token/token";
+import {User} from "../../types/user/user";
 
 export const checkAuthAction = createAsyncThunk<Auth, undefined, {
     dispatch: AppDispatch;
@@ -29,6 +30,7 @@ export const checkAuthAction = createAsyncThunk<Auth, undefined, {
         dispatch(fetchDevicesAction());
         dispatch(fetchPatientsAction());
         if (decodedToken.role === Roles.Admin) {
+            dispatch(fetchUsersAction());
             dispatch(fetchLogsAction());
             dispatch(fetchTokensAction());
         }
@@ -57,6 +59,7 @@ export const loginAction = createAsyncThunk<Auth, Credentials, {
         dispatch(fetchDevicesAction());
         dispatch(fetchPatientsAction());
         if (decodedToken.role === Roles.Admin) {
+            dispatch(fetchUsersAction());
             dispatch(fetchLogsAction());
             dispatch(fetchTokensAction());
         }
@@ -125,6 +128,18 @@ export const deletePatientAction = createAsyncThunk<void, number, {
     async (patientId, {dispatch, extra: api}) => {
         await api.post<Patient>(ApiRoutes.DeletePatient, {Id: patientId});
         dispatch(fetchPatientsAction());
+    },
+);
+
+export const fetchUsersAction = createAsyncThunk<User[], undefined, {
+    dispatch: AppDispatch;
+    state: State;
+    extra: AxiosInstance;
+}>(
+    'users/fetchUsers',
+    async (_arg, {extra: api}) => {
+        const {data} = await api.get<User[]>(ApiRoutes.Users);
+        return data;
     },
 );
 
