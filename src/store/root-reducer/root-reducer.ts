@@ -6,10 +6,12 @@ import {patients} from "../patients/patients";
 import {logs} from "../logs/logs";
 import {tokens} from "../tokens/tokens";
 import {users} from "../users/users";
+import {calibrations} from "../calibrations/calibrations";
 
 export const rootReducer = combineReducers({
     [NameSpace.AuthData]: authData.reducer,
     [NameSpace.Devices]: devices.reducer,
+    [NameSpace.Calibrations]: calibrations.reducer,
     [NameSpace.Patients]: patients.reducer,
     [NameSpace.Users]: users.reducer,
     [NameSpace.Logs]: logs.reducer,

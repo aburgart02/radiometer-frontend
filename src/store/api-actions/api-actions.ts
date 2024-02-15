@@ -16,6 +16,7 @@ import {Roles} from "../../const/roles";
 import {decodeToken} from "../../utils/decode-token";
 import {Token} from "../../types/token/token";
 import {User} from "../../types/user/user";
+import {Calibration} from "../../types/calibration/calibration";
 
 export const checkAuthAction = createAsyncThunk<Auth, undefined, {
     dispatch: AppDispatch;
@@ -28,6 +29,7 @@ export const checkAuthAction = createAsyncThunk<Auth, undefined, {
         const decodedToken = decodeToken(token);
         await api.get(ApiRoutes.CheckAuth);
         dispatch(fetchDevicesAction());
+        dispatch(fetchCalibrationsAction());
         dispatch(fetchPatientsAction());
         if (decodedToken.role === Roles.Admin) {
             dispatch(fetchUsersAction());
@@ -57,6 +59,7 @@ export const loginAction = createAsyncThunk<Auth, Credentials, {
         saveToken(token);
         const decodedToken = decodeToken(token);
         dispatch(fetchDevicesAction());
+        dispatch(fetchCalibrationsAction());
         dispatch(fetchPatientsAction());
         if (decodedToken.role === Roles.Admin) {
             dispatch(fetchUsersAction());
@@ -92,6 +95,18 @@ export const postDeviceAction = createAsyncThunk<void, Omit<Device, 'Id'>, {
     async (device, {dispatch, extra: api}) => {
         await api.post<Device>(ApiRoutes.AddDevice, device);
         dispatch(fetchDevicesAction());
+    },
+);
+
+export const fetchCalibrationsAction = createAsyncThunk<Calibration[], undefined, {
+    dispatch: AppDispatch;
+    state: State;
+    extra: AxiosInstance;
+}>(
+    'calibrations/fetchCalibrations',
+    async (_arg, {extra: api}) => {
+        const {data} = await api.get<Calibration[]>(ApiRoutes.Calibrations);
+        return data;
     },
 );
 

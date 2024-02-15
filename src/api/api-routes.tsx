@@ -5,6 +5,7 @@ export const ApiRoutes = {
     AddDevice: '/add-device',
     UpdateDevice: '/update-device',
     DeleteDevice: '/delete-device',
+    Calibrations: '/calibrations',
     Patients: '/patients',
     AddPatient: '/add-patient',
     UpdatePatient: '/update-patient',

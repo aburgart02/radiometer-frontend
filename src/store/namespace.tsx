@@ -1,5 +1,6 @@
 export enum NameSpace {
     Devices = 'DEVICES',
+    Calibrations = 'CALIBRATIONS',
     Patients = 'PATIENTS',
     AuthData = 'AUTH-DATA',
     Users = 'USERS',
