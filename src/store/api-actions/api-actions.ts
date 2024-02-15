@@ -98,6 +98,30 @@ export const postDeviceAction = createAsyncThunk<void, Omit<Device, 'Id'>, {
     },
 );
 
+export const updateDeviceAction = createAsyncThunk<void, Device, {
+    dispatch: AppDispatch;
+    state: State;
+    extra: AxiosInstance;
+}>(
+    'devices/updateDevice',
+    async (device, {dispatch, extra: api}) => {
+        await api.put<Device>(ApiRoutes.UpdateDevice, device);
+        dispatch(fetchDevicesAction());
+    },
+);
+
+export const deleteDeviceAction = createAsyncThunk<void, number, {
+    dispatch: AppDispatch;
+    state: State;
+    extra: AxiosInstance;
+}>(
+    'devices/deleteDevice',
+    async (deviceId, {dispatch, extra: api}) => {
+        await api.post<Device>(ApiRoutes.DeleteDevice, {Id: deviceId});
+        dispatch(fetchDevicesAction());
+    },
+);
+
 export const fetchCalibrationsAction = createAsyncThunk<Calibration[], undefined, {
     dispatch: AppDispatch;
     state: State;

@@ -29,6 +29,7 @@ import AddUser from "../../pages/users/add-user/add-user";
 import EditUser from "../../pages/users/edit-user/edit-user";
 import Device from "../../pages/devices/device/device";
 import AddDevice from "../../pages/devices/add-device/add-device";
+import EditDevice from "../../pages/devices/edit-device/edit-device";
 
 function App() {
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
@@ -133,6 +134,16 @@ function App() {
                       <PrivateRoute authorizationStatus={authorizationStatus}>
                           <Layout>
                               <AddDevice />
+                          </Layout>
+                      </PrivateRoute>
+                  }
+              />
+              <Route
+                  path={AppRoutes.EditDevice(':id')}
+                  element={
+                      <PrivateRoute authorizationStatus={authorizationStatus}>
+                          <Layout>
+                              <EditDevice />
                           </Layout>
                       </PrivateRoute>
                   }
