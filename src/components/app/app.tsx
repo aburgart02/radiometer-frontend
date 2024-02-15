@@ -27,6 +27,8 @@ import Users from "../../pages/users/users/users";
 import User from "../../pages/users/user/user";
 import AddUser from "../../pages/users/add-user/add-user";
 import EditUser from "../../pages/users/edit-user/edit-user";
+import Device from "../../pages/devices/device/device";
+import AddDevice from "../../pages/devices/add-device/add-device";
 
 function App() {
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
@@ -111,6 +113,26 @@ function App() {
                       <PrivateRoute authorizationStatus={authorizationStatus}>
                           <Layout>
                               <Devices />
+                          </Layout>
+                      </PrivateRoute>
+                  }
+              />
+              <Route
+                  path={AppRoutes.Device(':id')}
+                  element={
+                      <PrivateRoute authorizationStatus={authorizationStatus}>
+                          <Layout>
+                              <Device />
+                          </Layout>
+                      </PrivateRoute>
+                  }
+              />
+              <Route
+                  path={AppRoutes.AddDevice}
+                  element={
+                      <PrivateRoute authorizationStatus={authorizationStatus}>
+                          <Layout>
+                              <AddDevice />
                           </Layout>
                       </PrivateRoute>
                   }

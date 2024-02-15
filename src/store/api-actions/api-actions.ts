@@ -83,6 +83,18 @@ export const fetchDevicesAction = createAsyncThunk<Device[], undefined, {
     },
 );
 
+export const postDeviceAction = createAsyncThunk<void, Omit<Device, 'Id'>, {
+    dispatch: AppDispatch;
+    state: State;
+    extra: AxiosInstance;
+}>(
+    'devices/postDevice',
+    async (device, {dispatch, extra: api}) => {
+        await api.post<Device>(ApiRoutes.AddDevice, device);
+        dispatch(fetchDevicesAction());
+    },
+);
+
 export const fetchPatientsAction = createAsyncThunk<Patient[], undefined, {
     dispatch: AppDispatch;
     state: State;
