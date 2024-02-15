@@ -1,7 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {NameSpace} from '../namespace';
 import {Patient} from "../../types/patient/patient";
-import {fetchPatientsAction} from "../api-actions/api-actions";
+import {fetchPatientsAction} from "../api-actions/patients-action/patients-actions";
 
 type PatientsState = {
     patients: Patient[];

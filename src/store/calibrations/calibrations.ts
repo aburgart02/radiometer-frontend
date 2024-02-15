@@ -1,7 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {NameSpace} from '../namespace';
-import {fetchCalibrationsAction} from "../api-actions/api-actions";
 import {Calibration} from "../../types/calibration/calibration";
+import {fetchCalibrationsAction} from "../api-actions/calibrations-actions/calibrations-actions";
 
 type CalibrationsState = {
     calibrations: Calibration[];

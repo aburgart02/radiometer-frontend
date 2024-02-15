@@ -1,5 +1,5 @@
 import {FormEvent, ReactElement, useRef} from 'react';
-import {loginAction} from '../../store/api-actions/api-actions';
+import {loginAction} from '../../store/api-actions/auth-actions/auth-actions';
 import {useAppDispatch} from '../../hooks/hooks';
 import './sign-in.css'
 

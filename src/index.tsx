@@ -4,7 +4,7 @@ import App from './components/app/app';
 import {Provider} from "react-redux";
 import {ToastContainer} from "react-toastify";
 import {store} from "./store";
-import {checkAuthAction} from "./store/api-actions/api-actions";
+import {checkAuthAction} from "./store/api-actions/auth-actions/auth-actions";
 
 store.dispatch(checkAuthAction());
 

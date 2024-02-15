@@ -2,10 +2,10 @@ import '../../../common-styles/form.css'
 import '../../../common-styles/action-button.css'
 import React, {ReactElement, useRef} from "react";
 import {useAppDispatch, useAppSelector} from "../../../hooks/hooks";
-import {deleteTokenAction, updateTokenAction} from "../../../store/api-actions/api-actions";
 import browserHistory from "../../../components/history-route/browser-history";
 import {useParams} from "react-router-dom";
 import {getTokens} from "../../../store/tokens/selectors";
+import {deleteTokenAction, updateTokenAction} from "../../../store/api-actions/tokens-actions/tokens-actions";
 
 
 function EditToken(): ReactElement {

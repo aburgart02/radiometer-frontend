@@ -1,7 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {NameSpace} from '../namespace';
-import {fetchLogsAction} from "../api-actions/api-actions";
 import {Log} from "../../types/log/log";
+import {fetchLogsAction} from "../api-actions/logs-actions/logs-actions";
 
 type LogsState = {
     logs: Log[];

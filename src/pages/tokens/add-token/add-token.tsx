@@ -2,8 +2,8 @@ import '../../../common-styles/form.css'
 import '../../../common-styles/action-button.css'
 import React, {ReactElement, useRef} from "react";
 import {useAppDispatch} from "../../../hooks/hooks";
-import {postTokenAction} from "../../../store/api-actions/api-actions";
 import browserHistory from "../../../components/history-route/browser-history";
+import {postTokenAction} from "../../../store/api-actions/tokens-actions/tokens-actions";
 
 
 function AddToken(): ReactElement {

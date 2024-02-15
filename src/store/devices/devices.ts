@@ -1,7 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {NameSpace} from '../namespace';
 import {Device} from "../../types/device/device";
-import {fetchDevicesAction} from "../api-actions/api-actions";
+import {fetchDevicesAction} from "../api-actions/devices-actions/devices-actions";
 
 type DevicesState = {
     devices: Device[];

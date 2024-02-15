@@ -2,9 +2,9 @@ import '../../../common-styles/form.css'
 import '../../../common-styles/action-button.css'
 import React, {ReactElement, useRef} from "react";
 import {useAppDispatch} from "../../../hooks/hooks";
-import {postUserAction} from "../../../store/api-actions/api-actions";
 import browserHistory from "../../../components/history-route/browser-history";
 import {Roles} from "../../../const/roles";
+import {postUserAction} from "../../../store/api-actions/users-action/users-actions";
 
 
 function AddUser(): ReactElement {

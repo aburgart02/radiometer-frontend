@@ -2,8 +2,8 @@ import '../../../common-styles/form.css'
 import '../../../common-styles/action-button.css'
 import React, {ReactElement, useRef} from "react";
 import {useAppDispatch} from "../../../hooks/hooks";
-import {postPatientAction} from "../../../store/api-actions/api-actions";
 import browserHistory from "../../../components/history-route/browser-history";
+import {postPatientAction} from "../../../store/api-actions/patients-action/patients-actions";
 
 
 function AddPatient(): ReactElement {

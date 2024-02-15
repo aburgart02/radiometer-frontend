@@ -1,7 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {NameSpace} from '../namespace';
 import {User} from "../../types/user/user";
-import {fetchUsersAction} from "../api-actions/api-actions";
+import {fetchUsersAction} from "../api-actions/users-action/users-actions";
 
 type UsersState = {
     users: User[];

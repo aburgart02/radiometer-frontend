@@ -2,13 +2,10 @@ import '../../../common-styles/form.css'
 import '../../../common-styles/action-button.css'
 import React, {ReactElement, useRef} from "react";
 import {useAppDispatch, useAppSelector} from "../../../hooks/hooks";
-import {
-    deleteDeviceAction,
-    updateDeviceAction
-} from "../../../store/api-actions/api-actions";
 import browserHistory from "../../../components/history-route/browser-history";
 import {useParams} from "react-router-dom";
 import {getDevices} from "../../../store/devices/selectors";
+import {deleteDeviceAction, updateDeviceAction} from "../../../store/api-actions/devices-actions/devices-actions";
 
 
 function EditDevice(): ReactElement {

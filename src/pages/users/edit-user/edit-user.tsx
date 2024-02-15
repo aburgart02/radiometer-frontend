@@ -3,15 +3,16 @@ import '../../../common-styles/action-button.css'
 import './edit-user.css'
 import React, {ReactElement, useRef} from "react";
 import {useAppDispatch, useAppSelector} from "../../../hooks/hooks";
-import {
-    deleteUserAction,
-    updateUserAction, updateUserPasswordAction
-} from "../../../store/api-actions/api-actions";
 import browserHistory from "../../../components/history-route/browser-history";
 import {useParams} from "react-router-dom";
 import {formatDate} from "../../../utils/format-date";
 import {getUsers} from "../../../store/users/selectors";
 import {Roles} from "../../../const/roles";
+import {
+    deleteUserAction,
+    updateUserAction,
+    updateUserPasswordAction
+} from "../../../store/api-actions/users-action/users-actions";
 
 
 function EditUser(): ReactElement {

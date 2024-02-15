@@ -1,7 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {NameSpace} from '../namespace';
-import {fetchTokensAction} from "../api-actions/api-actions";
 import {Token} from "../../types/token/token";
+import {fetchTokensAction} from "../api-actions/tokens-actions/tokens-actions";
 
 type TokensState = {
     tokens: Token[];
