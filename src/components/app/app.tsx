@@ -30,6 +30,7 @@ import EditUser from "../../pages/users/edit-user/edit-user";
 import Device from "../../pages/devices/device/device";
 import AddDevice from "../../pages/devices/add-device/add-device";
 import EditDevice from "../../pages/devices/edit-device/edit-device";
+import AddCalibration from "../../pages/calibrations/add-calibration/add-calibration";
 
 function App() {
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
@@ -144,6 +145,17 @@ function App() {
                       <PrivateRoute authorizationStatus={authorizationStatus}>
                           <Layout>
                               <EditDevice />
+                          </Layout>
+                      </PrivateRoute>
+                  }
+              />
+
+              <Route
+                  path={AppRoutes.AddCalibration(':id')}
+                  element={
+                      <PrivateRoute authorizationStatus={authorizationStatus}>
+                          <Layout>
+                              <AddCalibration />
                           </Layout>
                       </PrivateRoute>
                   }

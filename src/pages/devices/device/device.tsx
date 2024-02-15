@@ -1,7 +1,7 @@
 import React, {ReactElement} from "react";
 import '../../../common-styles/action-button.css'
 import '../../../common-styles/detailed-page.css'
-import {NavLink, useParams} from "react-router-dom";
+import {useParams} from "react-router-dom";
 import {useAppSelector} from "../../../hooks/hooks";
 import browserHistory from "../../../components/history-route/browser-history";
 import {getDevices} from "../../../store/devices/selectors";
@@ -48,37 +48,34 @@ function Device(): ReactElement {
             </div>
             {
                 deviceCalibrations.length > 0 &&
-                <table>
-                    <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Название</th>
-                        <th>Дата</th>
-                        <th>Описание</th>
-                        <th/>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {deviceCalibrations
-                        .slice()
-                        .sort((a,b) => a.Id - b.Id)
-                        .slice((pageNumber - 1) * CALIBRATION_ON_PAGE, pageNumber * CALIBRATION_ON_PAGE)
-                        .map(calibration => (
-                            <tr key={crypto.randomUUID()}>
-                                <td>{calibration.Id}</td>
-                                <td>{calibration.Name}</td>
-                                <td>{formatDate(calibration.Date)}</td>
-                                <td>{calibration.Description}</td>
-                                <td>
-                                    <li><NavLink to={'/'}>Подробнее</NavLink></li>
-                                    <li><NavLink to={'/'}>Редактировать</NavLink></li>
-                                </td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
+                <>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Название</th>
+                            <th>Дата</th>
+                            <th>Описание</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {deviceCalibrations
+                            .slice()
+                            .sort((a,b) => a.Id - b.Id)
+                            .slice((pageNumber - 1) * CALIBRATION_ON_PAGE, pageNumber * CALIBRATION_ON_PAGE)
+                            .map(calibration => (
+                                <tr key={crypto.randomUUID()}>
+                                    <td>{calibration.Id}</td>
+                                    <td>{calibration.Name}</td>
+                                    <td>{formatDate(calibration.Date)}</td>
+                                    <td>{calibration.Description}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                    <Pagination handlePreviousButtonClick={handlePreviousButtonClick} handleNextButtonClick={handleNextButtonClick}/>
+                </>
             }
-            <Pagination handlePreviousButtonClick={handlePreviousButtonClick} handleNextButtonClick={handleNextButtonClick}/>
             <button type="button" className="action-button" onClick={() => {
                 browserHistory.back();
             }}
