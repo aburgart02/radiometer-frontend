@@ -7,6 +7,7 @@ export const AppRoutes = {
     EditDevice: (id: number | string) => `/devices/edit/${id}`,
     Calibration: (id: number | string) => `/calibrations/${id}`,
     AddCalibration: (id: number | string) => `/calibrations/add/${id}`,
+    EditCalibration: (id: number | string) => `/calibrations/edit/${id}`,
     Patients: '/patients',
     Patient: (id: number | string) => `/patients/${id}`,
     AddPatient: '/add-patient',

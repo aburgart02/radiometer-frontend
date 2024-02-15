@@ -18,7 +18,7 @@ function EditDevice(): ReactElement {
     const params = useParams();
     const deviceId = Number(params.id);
     const devices = useAppSelector(getDevices);
-    const device = devices.filter((patient) => patient.Id === deviceId)[0];
+    const device = devices.filter((device) => device.Id === deviceId)[0];
     const calibrations = useAppSelector(getCalibrations);
     const deviceCalibrations = calibrations.filter(x => x.DeviceId === deviceId);
 
@@ -94,7 +94,7 @@ function EditDevice(): ReactElement {
                                     <td>{calibration.Description}</td>
                                     <td>
                                         <li><NavLink to={AppRoutes.Calibration(calibration.Id)}>Подробнее</NavLink></li>
-                                        <li><NavLink to={'/'}>Редактировать</NavLink></li>
+                                        <li><NavLink to={AppRoutes.EditCalibration(calibration.Id)}>Редактировать</NavLink></li>
                                     </td>
                                 </tr>
                             ))}

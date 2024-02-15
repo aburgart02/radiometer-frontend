@@ -12,7 +12,7 @@ function EditToken(): ReactElement {
     const params = useParams();
     const tokenId = Number(params.id);
     const tokens = useAppSelector(getTokens);
-    const token = tokens.filter((patient) => patient.Id === tokenId)[0];
+    const token = tokens.filter((token) => token.Id === tokenId)[0];
 
     const revokedRef = useRef<HTMLInputElement | null>(null);
     const descriptionRef = useRef<HTMLTextAreaElement | null>(null);

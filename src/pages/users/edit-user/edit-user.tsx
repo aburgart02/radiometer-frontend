@@ -19,7 +19,7 @@ function EditUser(): ReactElement {
     const params = useParams();
     const userId = Number(params.id);
     const users = useAppSelector(getUsers);
-    const user = users.filter((patient) => patient.Id === userId)[0];
+    const user = users.filter((user) => user.Id === userId)[0];
 
     const loginRef = useRef<HTMLInputElement | null>(null);
     const nameRef = useRef<HTMLInputElement | null>(null);

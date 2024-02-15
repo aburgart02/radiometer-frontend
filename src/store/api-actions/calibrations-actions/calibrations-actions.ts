@@ -36,3 +36,27 @@ export const postCalibrationAction = createAsyncThunk<void, Omit<Calibration, 'I
         dispatch(fetchCalibrationsAction());
     },
 );
+
+export const updateCalibrationAction = createAsyncThunk<void, Omit<Calibration, 'Date' | 'Data' | 'DeviceId'>, {
+    dispatch: AppDispatch;
+    state: State;
+    extra: AxiosInstance;
+}>(
+    'calibrations/updateCalibration',
+    async (calibration, {dispatch, extra: api}) => {
+        await api.put<Calibration>(ApiRoutes.UpdateCalibration, calibration);
+        dispatch(fetchCalibrationsAction());
+    },
+);
+
+export const deleteCalibrationAction = createAsyncThunk<void, number, {
+    dispatch: AppDispatch;
+    state: State;
+    extra: AxiosInstance;
+}>(
+    'calibrations/deleteCalibration',
+    async (calibrationId, {dispatch, extra: api}) => {
+        await api.post<Calibration>(ApiRoutes.DeleteCalibration, {Id: calibrationId});
+        dispatch(fetchCalibrationsAction());
+    },
+);
