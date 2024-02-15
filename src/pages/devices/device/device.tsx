@@ -1,13 +1,14 @@
 import React, {ReactElement} from "react";
 import '../../../common-styles/action-button.css'
 import '../../../common-styles/detailed-page.css'
-import {useParams} from "react-router-dom";
+import {NavLink, useParams} from "react-router-dom";
 import {useAppSelector} from "../../../hooks/hooks";
 import browserHistory from "../../../components/history-route/browser-history";
 import {getDevices} from "../../../store/devices/selectors";
 import {getCalibrations} from "../../../store/calibrations/selectors";
 import {formatDate} from "../../../utils/format-date";
 import Pagination from "../../../components/pagination/pagination";
+import {AppRoutes} from "../../../const/app-routes";
 
 const CALIBRATION_ON_PAGE = 4;
 
@@ -56,6 +57,7 @@ function Device(): ReactElement {
                             <th>Название</th>
                             <th>Дата</th>
                             <th>Описание</th>
+                            <th/>
                         </tr>
                         </thead>
                         <tbody>
@@ -69,6 +71,9 @@ function Device(): ReactElement {
                                     <td>{calibration.Name}</td>
                                     <td>{formatDate(calibration.Date)}</td>
                                     <td>{calibration.Description}</td>
+                                    <td>
+                                        <li><NavLink to={AppRoutes.Calibration(calibration.Id)}>Подробнее</NavLink></li>
+                                    </td>
                                 </tr>
                             ))}
                         </tbody>

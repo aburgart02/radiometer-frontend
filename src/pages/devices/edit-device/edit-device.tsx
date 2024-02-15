@@ -93,7 +93,7 @@ function EditDevice(): ReactElement {
                                     <td>{formatDate(calibration.Date)}</td>
                                     <td>{calibration.Description}</td>
                                     <td>
-                                        <li><NavLink to={'/'}>Подробнее</NavLink></li>
+                                        <li><NavLink to={AppRoutes.Calibration(calibration.Id)}>Подробнее</NavLink></li>
                                         <li><NavLink to={'/'}>Редактировать</NavLink></li>
                                     </td>
                                 </tr>

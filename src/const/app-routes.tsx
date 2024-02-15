@@ -5,6 +5,7 @@ export const AppRoutes = {
     Device: (id: number | string) => `/devices/${id}`,
     AddDevice: '/add-device',
     EditDevice: (id: number | string) => `/devices/edit/${id}`,
+    Calibration: (id: number | string) => `/calibrations/${id}`,
     AddCalibration: (id: number | string) => `/calibrations/add/${id}`,
     Patients: '/patients',
     Patient: (id: number | string) => `/patients/${id}`,
