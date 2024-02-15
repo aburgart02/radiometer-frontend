@@ -6,6 +6,7 @@ import {useAppDispatch} from "../../../hooks/hooks";
 import browserHistory from "../../../components/history-route/browser-history";
 import {useParams} from "react-router-dom";
 import {postCalibrationAction} from "../../../store/api-actions/calibrations-actions/calibrations-actions";
+import {validateCalibration} from "../../../utils/validate-calibration";
 
 
 function AddCalibration(): ReactElement {
@@ -30,7 +31,27 @@ function AddCalibration(): ReactElement {
     };
 
     const uploadFile = (evt: any) => {
-        setFile(evt.target.files[0]);
+        const reader = new FileReader();
+        const file = evt.target.files[0];
+
+        reader.onload = function (e) {
+            if (e.target && e.target.result) {
+                try {
+                    const jsonData = JSON.parse(e.target.result.toString());
+                    if (validateCalibration(jsonData)) {
+                        setFile(file);
+                    }
+                    else {
+                        setFile(undefined);
+                    }
+                } catch (error) {
+                    console.error('Error parsing JSON file:', error);
+                    setFile(undefined);
+                }
+            }
+        };
+
+        reader.readAsText(file);
     }
 
     return (
