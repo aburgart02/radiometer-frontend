@@ -14,9 +14,10 @@ import {decodeToken} from "../../../utils/decode-token";
 import {fetchDevicesAction} from "../devices-actions/devices-actions";
 import {fetchCalibrationsAction} from "../calibrations-actions/calibrations-actions";
 import {fetchPatientsAction} from "../patients-action/patients-actions";
-import {fetchUsersAction} from "../users-action/users-actions";
+import {fetchUsersAction, fetchUsersDataAction} from "../users-action/users-actions";
 import {fetchLogsAction} from "../logs-actions/logs-actions";
 import {fetchTokensAction} from "../tokens-actions/tokens-actions";
+import {fetchMeasurementsAction} from "../measurements-actions/measurement-actions";
 
 export const checkAuthAction = createAsyncThunk<Auth, undefined, {
     dispatch: AppDispatch;
@@ -31,10 +32,14 @@ export const checkAuthAction = createAsyncThunk<Auth, undefined, {
         dispatch(fetchDevicesAction());
         dispatch(fetchCalibrationsAction());
         dispatch(fetchPatientsAction());
+        dispatch(fetchMeasurementsAction());
         if (decodedToken.role === Roles.Admin) {
-            dispatch(fetchUsersAction());
+            dispatch(fetchUsersDataAction());
             dispatch(fetchLogsAction());
             dispatch(fetchTokensAction());
+        }
+        else {
+            dispatch(fetchUsersAction());
         }
         return {
             login: decodedToken.login,
@@ -61,10 +66,14 @@ export const loginAction = createAsyncThunk<Auth, Credentials, {
         dispatch(fetchDevicesAction());
         dispatch(fetchCalibrationsAction());
         dispatch(fetchPatientsAction());
+        dispatch(fetchMeasurementsAction());
         if (decodedToken.role === Roles.Admin) {
-            dispatch(fetchUsersAction());
+            dispatch(fetchUsersDataAction());
             dispatch(fetchLogsAction());
             dispatch(fetchTokensAction());
+        }
+        else {
+            dispatch(fetchUsersAction());
         }
         dispatch(redirectToRoute(AppRoutes.Main));
         return {

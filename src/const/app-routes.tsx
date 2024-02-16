@@ -1,6 +1,9 @@
 export const AppRoutes = {
     Main: '/',
     SignIn: '/login',
+    Measurements: '/measurements',
+    Measurement: (id: number | string) => `/measurements/${id}`,
+    AddMeasurement: 'add-measurement',
     Devices: '/devices',
     Device: (id: number | string) => `/devices/${id}`,
     AddDevice: '/add-device',
@@ -12,7 +15,6 @@ export const AppRoutes = {
     Patient: (id: number | string) => `/patients/${id}`,
     AddPatient: '/add-patient',
     EditPatient: (id: number | string) => `/patients/edit/${id}`,
-    Measurements: '/measurements',
     Users: '/users',
     User: (id: number | string) => `/users/${id}`,
     AddUser: '/add-user',

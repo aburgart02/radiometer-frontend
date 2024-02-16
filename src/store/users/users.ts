@@ -1,7 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {NameSpace} from '../namespace';
 import {User} from "../../types/user/user";
-import {fetchUsersAction} from "../api-actions/users-action/users-actions";
+import {fetchUsersAction, fetchUsersDataAction} from "../api-actions/users-action/users-actions";
 
 type UsersState = {
     users: User[];
@@ -25,8 +25,20 @@ export const users = createSlice({
             .addCase(fetchUsersAction.fulfilled, (state, value) => {
                 state.isLoaded = true;
                 state.users = value.payload;
+                console.log(state.users)
             })
             .addCase(fetchUsersAction.rejected, (state) => {
+                state.isLoaded = false;
+            })
+            .addCase(fetchUsersDataAction.pending, (state) => {
+                state.isLoaded = false;
+            })
+            .addCase(fetchUsersDataAction.fulfilled, (state, value) => {
+                state.isLoaded = true;
+                state.users = value.payload;
+                console.log(state.users)
+            })
+            .addCase(fetchUsersDataAction.rejected, (state) => {
                 state.isLoaded = false;
             });
     }

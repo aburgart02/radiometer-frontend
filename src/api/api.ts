@@ -17,7 +17,7 @@ const StatusCodeMapping: Record<number, boolean> = {
 
 const shouldDisplayError = (response: AxiosResponse) => StatusCodeMapping[response.status];
 
-const BACKEND_URL = 'https://localhost:7209/';
+export const BACKEND_URL = 'https://localhost:7209/';
 const REQUEST_TIMEOUT = 5000;
 
 export const createAPI = (): AxiosInstance => {

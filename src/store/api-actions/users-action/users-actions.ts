@@ -16,6 +16,18 @@ export const fetchUsersAction = createAsyncThunk<User[], undefined, {
     },
 );
 
+export const fetchUsersDataAction = createAsyncThunk<User[], undefined, {
+    dispatch: AppDispatch;
+    state: State;
+    extra: AxiosInstance;
+}>(
+    'users/fetchUsersData',
+    async (_arg, {extra: api}) => {
+        const {data} = await api.get<User[]>(ApiRoutes.UsersData);
+        return data;
+    },
+);
+
 export const postUserAction = createAsyncThunk<void, Omit<User, 'Id' | 'Revoked'>, {
     dispatch: AppDispatch;
     state: State;

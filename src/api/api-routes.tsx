@@ -1,6 +1,7 @@
 export const ApiRoutes = {
     Login: '/login',
     CheckAuth: '/checkAuth',
+    Measurements: '/measurements',
     Devices: '/devices',
     AddDevice: '/add-device',
     UpdateDevice: '/update-device',
@@ -14,6 +15,7 @@ export const ApiRoutes = {
     UpdatePatient: '/update-patient',
     DeletePatient: '/delete-patient',
     Users: '/users',
+    UsersData: '/users-data',
     AddUser: '/add-user',
     UpdateUser: '/update-user',
     UpdateUserPassword: '/update-user-password',
@@ -23,5 +25,4 @@ export const ApiRoutes = {
     AddToken: '/add-token',
     UpdateToken: '/update-token',
     DeleteToken: '/delete-token',
-    Measurements: '/measurements',
 } as const;
