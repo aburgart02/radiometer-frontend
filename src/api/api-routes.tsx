@@ -2,6 +2,7 @@ export const ApiRoutes = {
     Login: '/login',
     CheckAuth: '/checkAuth',
     Measurements: '/measurements',
+    AddMeasurement: '/add-measurement',
     Devices: '/devices',
     AddDevice: '/add-device',
     UpdateDevice: '/update-device',

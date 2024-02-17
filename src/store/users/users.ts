@@ -25,7 +25,6 @@ export const users = createSlice({
             .addCase(fetchUsersAction.fulfilled, (state, value) => {
                 state.isLoaded = true;
                 state.users = value.payload;
-                console.log(state.users)
             })
             .addCase(fetchUsersAction.rejected, (state) => {
                 state.isLoaded = false;
@@ -36,7 +35,6 @@ export const users = createSlice({
             .addCase(fetchUsersDataAction.fulfilled, (state, value) => {
                 state.isLoaded = true;
                 state.users = value.payload;
-                console.log(state.users)
             })
             .addCase(fetchUsersDataAction.rejected, (state) => {
                 state.isLoaded = false;

@@ -3,7 +3,7 @@ export const AppRoutes = {
     SignIn: '/login',
     Measurements: '/measurements',
     Measurement: (id: number | string) => `/measurements/${id}`,
-    AddMeasurement: 'add-measurement',
+    AddMeasurement: '/add-measurement',
     Devices: '/devices',
     Device: (id: number | string) => `/devices/${id}`,
     AddDevice: '/add-device',

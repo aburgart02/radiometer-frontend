@@ -34,6 +34,7 @@ import AddCalibration from "../../pages/calibrations/add-calibration/add-calibra
 import Calibration from "../../pages/calibrations/calibration/calibration";
 import EditCalibration from "../../pages/calibrations/edit-calibration/edit-calibration";
 import Measurement from "../../pages/measurements/measurement/measurement";
+import AddMeasurement from "../../pages/measurements/add-measurement/add-measurement";
 
 function App() {
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
@@ -76,6 +77,16 @@ function App() {
                       <PrivateRoute authorizationStatus={authorizationStatus}>
                           <Layout>
                               <Measurement />
+                          </Layout>
+                      </PrivateRoute>
+                  }
+              />
+              <Route
+                  path={AppRoutes.AddMeasurement}
+                  element={
+                      <PrivateRoute authorizationStatus={authorizationStatus}>
+                          <Layout>
+                              <AddMeasurement />
                           </Layout>
                       </PrivateRoute>
                   }

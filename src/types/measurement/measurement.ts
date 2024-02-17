@@ -5,4 +5,5 @@ export type Measurement = {
     UserId: number;
     PatientId: number;
     DeviceId: number;
+    Data: string;
 };
