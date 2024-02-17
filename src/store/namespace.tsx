@@ -1,4 +1,5 @@
 export enum NameSpace {
+    Data = 'DATA',
     Measurements = 'MEASUREMENTS',
     Devices = 'DEVICES',
     Calibrations = 'CALIBRATIONS',

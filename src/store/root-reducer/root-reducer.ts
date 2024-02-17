@@ -8,8 +8,10 @@ import {tokens} from "../tokens/tokens";
 import {users} from "../users/users";
 import {calibrations} from "../calibrations/calibrations";
 import {measurements} from "../measurements/measurements";
+import {data} from "../data/data";
 
 export const rootReducer = combineReducers({
+    [NameSpace.Data]: data.reducer,
     [NameSpace.AuthData]: authData.reducer,
     [NameSpace.Measurements]: measurements.reducer,
     [NameSpace.Devices]: devices.reducer,

@@ -35,6 +35,9 @@ import Calibration from "../../pages/calibrations/calibration/calibration";
 import EditCalibration from "../../pages/calibrations/edit-calibration/edit-calibration";
 import Measurement from "../../pages/measurements/measurement/measurement";
 import AddMeasurement from "../../pages/measurements/add-measurement/add-measurement";
+import SelectPatient from "../../pages/patients/select-patient/select-patient";
+import SelectDevice from "../../pages/devices/select-device/select-device";
+import SelectUser from "../../pages/users/select-user/select-user";
 
 function App() {
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
@@ -132,6 +135,16 @@ function App() {
                       </PrivateRoute>
                   }
               />
+              <Route
+                  path={AppRoutes.SelectPatient}
+                  element={
+                      <PrivateRoute authorizationStatus={authorizationStatus}>
+                          <Layout>
+                              <SelectPatient />
+                          </Layout>
+                      </PrivateRoute>
+                  }
+              />
 
               <Route
                   path={AppRoutes.Devices}
@@ -169,6 +182,16 @@ function App() {
                       <PrivateRoute authorizationStatus={authorizationStatus}>
                           <Layout>
                               <EditDevice />
+                          </Layout>
+                      </PrivateRoute>
+                  }
+              />
+              <Route
+                  path={AppRoutes.SelectDevice}
+                  element={
+                      <PrivateRoute authorizationStatus={authorizationStatus}>
+                          <Layout>
+                              <SelectDevice />
                           </Layout>
                       </PrivateRoute>
                   }
@@ -241,6 +264,16 @@ function App() {
                       <PrivateRoute authorizationStatus={authorizationStatus}>
                           <Layout>
                               <EditUser />
+                          </Layout>
+                      </PrivateRoute>
+                  }
+              />
+              <Route
+                  path={AppRoutes.SelectUser}
+                  element={
+                      <PrivateRoute authorizationStatus={authorizationStatus}>
+                          <Layout>
+                              <SelectUser />
                           </Layout>
                       </PrivateRoute>
                   }

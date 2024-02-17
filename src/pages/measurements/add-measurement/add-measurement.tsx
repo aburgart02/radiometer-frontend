@@ -2,9 +2,16 @@ import '../../../common-styles/form.css'
 import '../../../common-styles/action-button.css'
 import '../../../common-styles/file-selection.css'
 import React, {ReactElement, useRef} from "react";
-import {useAppDispatch} from "../../../hooks/hooks";
+import {useAppDispatch, useAppSelector} from "../../../hooks/hooks";
 import browserHistory from "../../../components/history-route/browser-history";
 import {postMeasurementAction} from "../../../store/api-actions/measurements-actions/measurement-actions";
+import {getDeviceId, getPatientId, getUserId} from "../../../store/data/selectors";
+import {getDevices} from "../../../store/devices/selectors";
+import {getUsers} from "../../../store/users/selectors";
+import {getPatients} from "../../../store/patients/selectors";
+import {getFullName} from "../../../utils/get-full-name";
+import {Link} from "react-router-dom";
+import {AppRoutes} from "../../../const/app-routes";
 
 
 function AddMeasurement(): ReactElement {
@@ -13,19 +20,32 @@ function AddMeasurement(): ReactElement {
     const timeRef = useRef<HTMLInputElement | null>(null);
     const descriptionRef = useRef<HTMLTextAreaElement | null>(null);
 
+    const deviceId = useAppSelector(getDeviceId);
+    const userId = useAppSelector(getUserId);
+    const patientId = useAppSelector(getPatientId);
+
+    const devices = useAppSelector(getDevices);
+    const users = useAppSelector(getUsers);
+    const patients = useAppSelector(getPatients);
+
+    const device = devices.filter((device) => device.Id === deviceId)[0];
+    const user = users.filter((user) => user.Id === userId)[0];
+    const patient = patients.filter((patient) => patient.Id === patientId)[0];
+
     const dispatch = useAppDispatch();
 
     const handleSubmit = () => {
         if (dateRef.current !== null && dateRef.current.value !== ''
             && timeRef.current !== null && timeRef.current.value !== ''
+            && deviceId !== undefined && userId !== undefined && patientId !== undefined
             && file)
         {
             dispatch(postMeasurementAction({
                  Time: `${dateRef.current.value} ${timeRef.current.value}`,
                  Description: descriptionRef.current?.value,
-                 DeviceId: 1,
-                 UserId: 1,
-                 PatientId: 1,
+                 DeviceId: deviceId,
+                 UserId: userId,
+                 PatientId: patientId,
                  Data: file
             }));
         }
@@ -49,6 +69,18 @@ function AddMeasurement(): ReactElement {
                     <label htmlFor="description" className="label">Описание</label>
                     <textarea ref={descriptionRef} id="description" name="description" className="textarea-field"/>
                 </form>
+                <p>
+                    <span>Прибор: </span>{device && device.Name}
+                    <Link to={AppRoutes.SelectDevice} className="action-button">Выбрать прибор</Link>
+                </p>
+                <p>
+                    <span>Исследователь: </span>{user && getFullName(user)}
+                    <Link to={AppRoutes.SelectUser} className="action-button">Выбрать исследователя</Link>
+                </p>
+                <p>
+                    <span>Пациент: </span>{patient && getFullName(patient)}
+                    <Link to={AppRoutes.SelectPatient} className="action-button">Выбрать пациента</Link>
+                </p>
             </div>
             <div className="file-selection">
                 <input type="file"
