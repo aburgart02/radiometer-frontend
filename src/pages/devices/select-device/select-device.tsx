@@ -1,8 +1,9 @@
-import React, {ReactElement} from "react";
+import React, {ReactElement, useState} from "react";
 import {useAppDispatch, useAppSelector} from "../../../hooks/hooks";
 import {getDevices} from "../../../store/devices/selectors";
 import '../../../common-styles/table.css'
 import '../../../common-styles/pagination.css'
+import '../../../common-styles/search.css'
 import Pagination from "../../../components/pagination/pagination";
 import {Link} from "react-router-dom";
 import {AppRoutes} from "../../../const/app-routes";
@@ -12,6 +13,7 @@ import {setDeviceId} from "../../../store/data/data";
 const DEVICE_ON_PAGE = 8;
 
 function SelectDevice(): ReactElement {
+    const [searchValue, setSearchValue] = useState('');
     const devices = useAppSelector(getDevices);
     const [pageNumber, setPageNumber] = React.useState(1);
     const dispatch = useAppDispatch();
@@ -30,6 +32,14 @@ function SelectDevice(): ReactElement {
 
     return (
         <>
+            <div className="search-container">
+                <input
+                    type="text"
+                    placeholder="Введите название устройства"
+                    value={searchValue}
+                    onChange={(e) => setSearchValue(e.target.value)}
+                />
+            </div>
             <table>
                 <thead>
                 <tr>
@@ -41,7 +51,8 @@ function SelectDevice(): ReactElement {
                 </thead>
                 <tbody>
                 {devices
-                    .slice()
+                    .filter(device =>
+                        device.Name.toLowerCase().includes(searchValue.toLowerCase()))
                     .sort((a,b) => a.Id - b.Id)
                     .slice((pageNumber - 1) * DEVICE_ON_PAGE, pageNumber * DEVICE_ON_PAGE)
                     .map(device => (

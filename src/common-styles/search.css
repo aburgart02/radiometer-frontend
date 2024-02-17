@@ -1,0 +1,21 @@
+.search-container {
+    width: 100%;
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.search-container:focus {
+    outline: none;
+    border-color: #007bff;
+}
+
+.search-container::placeholder {
+    color: #999;
+}
+
+.search-container input {
+    font-size: 20px;
+    width: 800px;
+}

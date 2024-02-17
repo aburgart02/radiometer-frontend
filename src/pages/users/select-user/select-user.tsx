@@ -1,18 +1,21 @@
-import React, {ReactElement} from "react";
+import React, {ReactElement, useState} from "react";
 import {useAppDispatch, useAppSelector} from "../../../hooks/hooks";
 import '../../../common-styles/table.css'
 import '../../../common-styles/pagination.css'
 import '../../../common-styles/action-button.css'
+import '../../../common-styles/search.css'
 import Pagination from "../../../components/pagination/pagination";
 import {getUsers} from "../../../store/users/selectors";
 import browserHistory from "../../../components/history-route/browser-history";
 import {setUserId} from "../../../store/data/data";
 import {AppRoutes} from "../../../const/app-routes";
 import {Link} from "react-router-dom";
+import {getFullName} from "../../../utils/get-full-name";
 
 const USERS_ON_PAGE = 8;
 
 function Users(): ReactElement {
+    const [searchValue, setSearchValue] = useState('');
     const users = useAppSelector(getUsers);
     const [pageNumber, setPageNumber] = React.useState(1);
     const dispatch = useAppDispatch();
@@ -31,6 +34,14 @@ function Users(): ReactElement {
 
     return (
         <>
+            <div className="search-container">
+                <input
+                    type="text"
+                    placeholder="Введите ФИО"
+                    value={searchValue}
+                    onChange={(e) => setSearchValue(e.target.value)}
+                />
+            </div>
             <table>
                 <thead>
                 <tr>
@@ -43,7 +54,8 @@ function Users(): ReactElement {
                 </thead>
                 <tbody>
                 {users
-                    .slice()
+                    .filter(user =>
+                        getFullName(user).toLowerCase().includes(searchValue.toLowerCase()))
                     .sort((a,b) => Number(a.Id) - Number(b.Id))
                     .slice((pageNumber - 1) * USERS_ON_PAGE, pageNumber * USERS_ON_PAGE)
                     .map(user => (
