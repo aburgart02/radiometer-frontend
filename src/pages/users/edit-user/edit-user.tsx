@@ -117,7 +117,7 @@ function EditUser(): ReactElement {
                     </div>
 
                     <div className="checkbox-list">
-                        <label htmlFor="revoked">Статус</label>
+                        <label htmlFor="revoked">Заблокирован</label>
                         <input defaultChecked={user.Revoked} ref={revokedRef} type="checkbox" id="revoked" name="revoked"/>
                     </div>
 

@@ -11,6 +11,7 @@ import {setUserId} from "../../../store/data/data";
 import {AppRoutes} from "../../../const/app-routes";
 import {Link} from "react-router-dom";
 import {getFullName} from "../../../utils/get-full-name";
+import {formatDate} from "../../../utils/format-date";
 
 const USERS_ON_PAGE = 8;
 
@@ -49,6 +50,7 @@ function Users(): ReactElement {
                     <th>Имя</th>
                     <th>Фамилия</th>
                     <th>Отчество</th>
+                    <th>Дата рождения</th>
                     <th/>
                 </tr>
                 </thead>
@@ -64,6 +66,7 @@ function Users(): ReactElement {
                             <td>{user.Name}</td>
                             <td>{user.Surname}</td>
                             <td>{user.Patronymic}</td>
+                            <td>{user.BirthDate && formatDate(user.BirthDate)}</td>
                             <td>
                                 <button onClick={() => {
                                     handleSelectButtonClick(user.Id)
