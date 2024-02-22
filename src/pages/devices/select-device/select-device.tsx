@@ -4,17 +4,20 @@ import {getDevices} from "../../../store/devices/selectors";
 import '../../../common-styles/table.css'
 import '../../../common-styles/pagination.css'
 import '../../../common-styles/search.css'
+import '../../../common-styles/select-buttons.css'
 import Pagination from "../../../components/pagination/pagination";
 import {Link} from "react-router-dom";
 import {AppRoutes} from "../../../const/app-routes";
 import browserHistory from "../../../components/history-route/browser-history";
 import {setDeviceId} from "../../../store/data/data";
+import {getDeviceId} from "../../../store/data/selectors";
 
 const DEVICE_ON_PAGE = 8;
 
 function SelectDevice(): ReactElement {
     const [searchValue, setSearchValue] = useState('');
     const devices = useAppSelector(getDevices);
+    const deviceId = useAppSelector(getDeviceId);
     const [pageNumber, setPageNumber] = React.useState(1);
     const dispatch = useAppDispatch();
 
@@ -61,7 +64,7 @@ function SelectDevice(): ReactElement {
                             <td>{device.Name}</td>
                             <td>{device.Description}</td>
                             <td>
-                                <button onClick={() => {
+                                <button className={deviceId === device.Id ? 'selected-button' : 'unselected-button'} onClick={() => {
                                     handleSelectButtonClick(device.Id)
                                 }
                                 }>Выбрать</button>

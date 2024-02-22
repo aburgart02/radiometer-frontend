@@ -1,0 +1,9 @@
+.selected-button {
+    background-color: #3498db;
+    border-radius: 4px;
+}
+
+.unselected-button {
+    background-color: lightgray;
+    border-radius: 4px;
+}

@@ -4,6 +4,7 @@ import '../../../common-styles/table.css'
 import '../../../common-styles/pagination.css'
 import '../../../common-styles/action-button.css'
 import '../../../common-styles/search.css'
+import '../../../common-styles/select-buttons.css'
 import Pagination from "../../../components/pagination/pagination";
 import {getUsers} from "../../../store/users/selectors";
 import browserHistory from "../../../components/history-route/browser-history";
@@ -12,12 +13,14 @@ import {AppRoutes} from "../../../const/app-routes";
 import {Link} from "react-router-dom";
 import {getFullName} from "../../../utils/get-full-name";
 import {formatDate} from "../../../utils/format-date";
+import {getUserId} from "../../../store/data/selectors";
 
 const USERS_ON_PAGE = 8;
 
 function Users(): ReactElement {
     const [searchValue, setSearchValue] = useState('');
     const users = useAppSelector(getUsers);
+    const userId = useAppSelector(getUserId);
     const [pageNumber, setPageNumber] = React.useState(1);
     const dispatch = useAppDispatch();
 
@@ -68,7 +71,7 @@ function Users(): ReactElement {
                             <td>{user.Patronymic}</td>
                             <td>{user.BirthDate && formatDate(user.BirthDate)}</td>
                             <td>
-                                <button onClick={() => {
+                                <button className={userId === user.Id ? 'selected-button' : 'unselected-button'} onClick={() => {
                                     handleSelectButtonClick(user.Id)
                                 }
                                 }>Выбрать</button>

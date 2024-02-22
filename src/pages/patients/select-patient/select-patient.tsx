@@ -4,6 +4,7 @@ import '../../../common-styles/table.css'
 import '../../../common-styles/pagination.css'
 import '../../../common-styles/action-button.css'
 import '../../../common-styles/search.css'
+import '../../../common-styles/select-buttons.css'
 import {getPatients} from "../../../store/patients/selectors";
 import Pagination from "../../../components/pagination/pagination";
 import {getSex} from "../../../utils/get-sex";
@@ -13,12 +14,14 @@ import browserHistory from "../../../components/history-route/browser-history";
 import {AppRoutes} from "../../../const/app-routes";
 import {Link} from "react-router-dom";
 import {getFullName} from "../../../utils/get-full-name";
+import {getPatientId} from "../../../store/data/selectors";
 
 const PATIENTS_ON_PAGE = 8;
 
 function SelectPatient(): ReactElement {
     const [searchValue, setSearchValue] = useState('');
     const patients = useAppSelector(getPatients);
+    const patientId = useAppSelector(getPatientId);
     const [pageNumber, setPageNumber] = React.useState(1);
     const dispatch = useAppDispatch();
 
@@ -73,7 +76,7 @@ function SelectPatient(): ReactElement {
                             <td>{getSex(patient.Sex)}</td>
                             <td>{patient.Notes}</td>
                             <td>
-                                <button onClick={() => {
+                                <button className={patientId === patient.Id ? 'selected-button' : 'unselected-button'} onClick={() => {
                                         handleSelectButtonClick(patient.Id)
                                     }
                                 }>Выбрать</button>
