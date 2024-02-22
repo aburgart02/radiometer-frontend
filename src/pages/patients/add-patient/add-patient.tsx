@@ -39,6 +39,8 @@ function AddPatient(): ReactElement {
     return (
         <>
             <div className="form-container">
+                <h2>Добавление пациента</h2>
+                <br/>
                 <form>
                     <label htmlFor="name">Имя</label>
                     <input ref={nameRef} type="text" id="name" name="name" className="input-field"/>

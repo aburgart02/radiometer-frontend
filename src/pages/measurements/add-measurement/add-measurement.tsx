@@ -59,6 +59,8 @@ function AddMeasurement(): ReactElement {
     return (
         <>
             <div className="form-container">
+                <h2>Добавление исследования</h2>
+                <br/>
                 <form>
                     <label htmlFor="date">Дата</label>
                     <input ref={dateRef} type="date" id="birthdate" name="birthdate" className="date-picker"/>

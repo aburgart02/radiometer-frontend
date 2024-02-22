@@ -25,6 +25,8 @@ function AddToken(): ReactElement {
     return (
         <>
             <div className="form-container">
+                <h2>Добавление токена</h2>
+                <br/>
                 <form>
                     <label htmlFor="expirationDate">Действителен до</label>
                     <input ref={expirationDateRef} type="date" id="expirationDate" name="expirationDate" className="date-picker"/>

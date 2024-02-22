@@ -57,6 +57,8 @@ function AddCalibration(): ReactElement {
     return (
         <>
             <div className="form-container">
+                <h2>Добавление калибровки</h2>
+                <br/>
                 <form>
                     <label htmlFor="name">Название</label>
                     <input ref={nameRef} type="text" id="name" name="name" className="input-field"/>

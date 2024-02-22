@@ -50,6 +50,8 @@ function AddUser(): ReactElement {
     return (
         <>
             <div className="form-container">
+                <h2>Добавление пользователя</h2>
+                <br/>
                 <form>
                     <label htmlFor="login">Логин</label>
                     <input ref={loginRef} type="text" id="login" name="login" className="input-field"/>

@@ -25,6 +25,8 @@ function AddDevice(): ReactElement {
     return (
         <>
             <div className="form-container">
+                <h2>Добавление устройства</h2>
+                <br/>
                 <form>
                     <label htmlFor="name">Название</label>
                     <input ref={nameRef} type="text" id="name" name="name" className="input-field"/>
