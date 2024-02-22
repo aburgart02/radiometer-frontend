@@ -1,6 +1,5 @@
-import axios, {AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse} from 'axios';
+import axios, {AxiosError, AxiosInstance, AxiosRequestConfig} from 'axios';
 import {getToken} from './token';
-import {StatusCodes} from 'http-status-codes';
 import {toast} from 'react-toastify';
 
 type ErrorMessage = {
@@ -9,13 +8,11 @@ type ErrorMessage = {
     details: { property: string } & { value: string } & { messages: string[] }[];
 }
 
-const StatusCodeMapping: Record<number, boolean> = {
-    [StatusCodes.BAD_REQUEST]: true,
-    [StatusCodes.UNAUTHORIZED]: true,
-    [StatusCodes.NOT_FOUND]: true
+const ErrorTypes = {
+    ECONNREFUSED: 0,
+    BAD_REQUEST: 400,
+    UNAUTHORIZED: 401,
 } as const;
-
-const shouldDisplayError = (response: AxiosResponse) => StatusCodeMapping[response.status];
 
 export const BACKEND_URL = 'https://localhost:7209/';
 const REQUEST_TIMEOUT = 5000;
@@ -41,17 +38,17 @@ export const createAPI = (): AxiosInstance => {
     api.interceptors.response.use(
         (response) => response,
         (error: AxiosError<ErrorMessage>) => {
-            if (error.response && shouldDisplayError(error.response)) {
-                const errorMessage : ErrorMessage = error.response.data;
-
-                if (errorMessage.errorType === 'VALIDATION_ERROR') {
-                    toast.error(errorMessage.details[0].messages[0]);
-                } else if (errorMessage.errorType !== 'COMMON_ERROR') {
-                    toast.warn(errorMessage.message);
+            if (error.response) {
+                if (error.response.status === ErrorTypes.UNAUTHORIZED) {
+                    toast.error('Не удалось пройти авторизацию');
+                }
+                if (error.response.status === ErrorTypes.BAD_REQUEST) {
+                    toast.error('Отправлен неверный запрос');
+                }
+                if (error.response.status === ErrorTypes.ECONNREFUSED) {
+                    toast.error('Не удалось установить соединение с сервером');
                 }
             }
-
-            throw error;
         }
     );
 
