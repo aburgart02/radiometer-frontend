@@ -40,10 +40,10 @@ export const createAPI = (): AxiosInstance => {
         (error: AxiosError<ErrorMessage>) => {
             if (error.response) {
                 if (error.response.status === ErrorTypes.UNAUTHORIZED) {
-                    toast.error('Не удалось пройти авторизацию');
+                    toast.error(`Ошибка ${ErrorTypes.UNAUTHORIZED}. Не удалось пройти авторизацию`);
                 }
                 if (error.response.status === ErrorTypes.BAD_REQUEST) {
-                    toast.error('Отправлен неверный запрос');
+                    toast.error(`Ошибка ${ErrorTypes.BAD_REQUEST}. ${error.response.data}`);
                 }
                 if (error.response.status === ErrorTypes.ECONNREFUSED) {
                     toast.error('Не удалось установить соединение с сервером');
