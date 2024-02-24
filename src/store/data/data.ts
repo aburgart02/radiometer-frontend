@@ -5,12 +5,14 @@ type DataState = {
     deviceId: number | undefined;
     patientId: number | undefined;
     userId: number | undefined;
+    locale: string;
 }
 
 const initialState: DataState = {
     deviceId: undefined,
     patientId: undefined,
-    userId: undefined
+    userId: undefined,
+    locale: 'ru-RU',
 };
 
 export const data = createSlice({
@@ -26,7 +28,10 @@ export const data = createSlice({
         setUserId: (state, value: PayloadAction<number>) => {
             state.userId = value.payload;
         },
+        setLocale: (state, value: PayloadAction<string>) => {
+            state.locale = value.payload;
+        },
     },
 });
 
-export const {setDeviceId, setPatientId, setUserId} = data.actions;
+export const {setDeviceId, setPatientId, setUserId, setLocale} = data.actions;

@@ -38,317 +38,328 @@ import AddMeasurement from "../../pages/measurements/add-measurement/add-measure
 import SelectPatient from "../../pages/patients/select-patient/select-patient";
 import SelectDevice from "../../pages/devices/select-device/select-device";
 import SelectUser from "../../pages/users/select-user/select-user";
+import {IntlProvider} from "react-intl";
+import {LOCALES} from "../../lang/locales";
+import {messages} from "../../lang/messages";
+import {getLocale} from "../../store/data/selectors";
 
 function App() {
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
+  const locale = useAppSelector(getLocale);
 
   return (
-      <HistoryRouter history={browserHistory}>
-          <Routes>
-              <Route
-                  path={AppRoutes.SignIn}
-                  element={
-                      authorizationStatus === AuthorizationStatus.Auth
-                          ? <Navigate to={AppRoutes.Main} />
-                          : <SignIn />
-                  }
-              />
-              <Route
-                  path={AppRoutes.Main}
-                  element={
-                      <PrivateRoute authorizationStatus={authorizationStatus}>
-                          <Layout>
-                              <></>
-                          </Layout>
-                      </PrivateRoute>
-                  }
-              />
+      <IntlProvider
+          messages={messages[locale]}
+          locale={locale}
+          defaultLocale={LOCALES.RUSSIAN}
+      >
+          <HistoryRouter history={browserHistory}>
+              <Routes>
+                  <Route
+                      path={AppRoutes.SignIn}
+                      element={
+                          authorizationStatus === AuthorizationStatus.Auth
+                              ? <Navigate to={AppRoutes.Main} />
+                              : <SignIn />
+                      }
+                  />
+                  <Route
+                      path={AppRoutes.Main}
+                      element={
+                          <PrivateRoute authorizationStatus={authorizationStatus}>
+                              <Layout>
+                                  <></>
+                              </Layout>
+                          </PrivateRoute>
+                      }
+                  />
 
-              <Route
-                  path={AppRoutes.Measurements}
-                  element={
-                      <PrivateRoute authorizationStatus={authorizationStatus}>
-                          <Layout>
-                              <Measurements />
-                          </Layout>
-                      </PrivateRoute>
-                  }
-              />
-              <Route
-                  path={AppRoutes.Measurement(':id')}
-                  element={
-                      <PrivateRoute authorizationStatus={authorizationStatus}>
-                          <Layout>
-                              <Measurement />
-                          </Layout>
-                      </PrivateRoute>
-                  }
-              />
-              <Route
-                  path={AppRoutes.AddMeasurement}
-                  element={
-                      <PrivateRoute authorizationStatus={authorizationStatus}>
-                          <Layout>
-                              <AddMeasurement />
-                          </Layout>
-                      </PrivateRoute>
-                  }
-              />
+                  <Route
+                      path={AppRoutes.Measurements}
+                      element={
+                          <PrivateRoute authorizationStatus={authorizationStatus}>
+                              <Layout>
+                                  <Measurements />
+                              </Layout>
+                          </PrivateRoute>
+                      }
+                  />
+                  <Route
+                      path={AppRoutes.Measurement(':id')}
+                      element={
+                          <PrivateRoute authorizationStatus={authorizationStatus}>
+                              <Layout>
+                                  <Measurement />
+                              </Layout>
+                          </PrivateRoute>
+                      }
+                  />
+                  <Route
+                      path={AppRoutes.AddMeasurement}
+                      element={
+                          <PrivateRoute authorizationStatus={authorizationStatus}>
+                              <Layout>
+                                  <AddMeasurement />
+                              </Layout>
+                          </PrivateRoute>
+                      }
+                  />
 
-              <Route
-                  path={AppRoutes.Patients}
-                  element={
-                      <PrivateRoute authorizationStatus={authorizationStatus}>
-                          <Layout>
-                              <Patients />
-                          </Layout>
-                      </PrivateRoute>
-                  }
-              />
-              <Route
-                  path={AppRoutes.Patient(':id')}
-                  element={
-                      <PrivateRoute authorizationStatus={authorizationStatus}>
-                          <Layout>
-                              <Patient />
-                          </Layout>
-                      </PrivateRoute>
-                  }
-              />
-              <Route
-                  path={AppRoutes.AddPatient}
-                  element={
-                      <PrivateRoute authorizationStatus={authorizationStatus}>
-                          <Layout>
-                              <AddPatient />
-                          </Layout>
-                      </PrivateRoute>
-                  }
-              />
-              <Route
-                  path={AppRoutes.EditPatient(':id')}
-                  element={
-                      <PrivateRoute authorizationStatus={authorizationStatus}>
-                          <Layout>
-                              <EditPatient />
-                          </Layout>
-                      </PrivateRoute>
-                  }
-              />
-              <Route
-                  path={AppRoutes.SelectPatient}
-                  element={
-                      <PrivateRoute authorizationStatus={authorizationStatus}>
-                          <Layout>
-                              <SelectPatient />
-                          </Layout>
-                      </PrivateRoute>
-                  }
-              />
+                  <Route
+                      path={AppRoutes.Patients}
+                      element={
+                          <PrivateRoute authorizationStatus={authorizationStatus}>
+                              <Layout>
+                                  <Patients />
+                              </Layout>
+                          </PrivateRoute>
+                      }
+                  />
+                  <Route
+                      path={AppRoutes.Patient(':id')}
+                      element={
+                          <PrivateRoute authorizationStatus={authorizationStatus}>
+                              <Layout>
+                                  <Patient />
+                              </Layout>
+                          </PrivateRoute>
+                      }
+                  />
+                  <Route
+                      path={AppRoutes.AddPatient}
+                      element={
+                          <PrivateRoute authorizationStatus={authorizationStatus}>
+                              <Layout>
+                                  <AddPatient />
+                              </Layout>
+                          </PrivateRoute>
+                      }
+                  />
+                  <Route
+                      path={AppRoutes.EditPatient(':id')}
+                      element={
+                          <PrivateRoute authorizationStatus={authorizationStatus}>
+                              <Layout>
+                                  <EditPatient />
+                              </Layout>
+                          </PrivateRoute>
+                      }
+                  />
+                  <Route
+                      path={AppRoutes.SelectPatient}
+                      element={
+                          <PrivateRoute authorizationStatus={authorizationStatus}>
+                              <Layout>
+                                  <SelectPatient />
+                              </Layout>
+                          </PrivateRoute>
+                      }
+                  />
 
-              <Route
-                  path={AppRoutes.Devices}
-                  element={
-                      <PrivateRoute authorizationStatus={authorizationStatus}>
-                          <Layout>
-                              <Devices />
-                          </Layout>
-                      </PrivateRoute>
-                  }
-              />
-              <Route
-                  path={AppRoutes.Device(':id')}
-                  element={
-                      <PrivateRoute authorizationStatus={authorizationStatus}>
-                          <Layout>
-                              <Device />
-                          </Layout>
-                      </PrivateRoute>
-                  }
-              />
-              <Route
-                  path={AppRoutes.AddDevice}
-                  element={
-                      <PrivateRoute authorizationStatus={authorizationStatus}>
-                          <Layout>
-                              <AddDevice />
-                          </Layout>
-                      </PrivateRoute>
-                  }
-              />
-              <Route
-                  path={AppRoutes.EditDevice(':id')}
-                  element={
-                      <PrivateRoute authorizationStatus={authorizationStatus}>
-                          <Layout>
-                              <EditDevice />
-                          </Layout>
-                      </PrivateRoute>
-                  }
-              />
-              <Route
-                  path={AppRoutes.SelectDevice}
-                  element={
-                      <PrivateRoute authorizationStatus={authorizationStatus}>
-                          <Layout>
-                              <SelectDevice />
-                          </Layout>
-                      </PrivateRoute>
-                  }
-              />
+                  <Route
+                      path={AppRoutes.Devices}
+                      element={
+                          <PrivateRoute authorizationStatus={authorizationStatus}>
+                              <Layout>
+                                  <Devices />
+                              </Layout>
+                          </PrivateRoute>
+                      }
+                  />
+                  <Route
+                      path={AppRoutes.Device(':id')}
+                      element={
+                          <PrivateRoute authorizationStatus={authorizationStatus}>
+                              <Layout>
+                                  <Device />
+                              </Layout>
+                          </PrivateRoute>
+                      }
+                  />
+                  <Route
+                      path={AppRoutes.AddDevice}
+                      element={
+                          <PrivateRoute authorizationStatus={authorizationStatus}>
+                              <Layout>
+                                  <AddDevice />
+                              </Layout>
+                          </PrivateRoute>
+                      }
+                  />
+                  <Route
+                      path={AppRoutes.EditDevice(':id')}
+                      element={
+                          <PrivateRoute authorizationStatus={authorizationStatus}>
+                              <Layout>
+                                  <EditDevice />
+                              </Layout>
+                          </PrivateRoute>
+                      }
+                  />
+                  <Route
+                      path={AppRoutes.SelectDevice}
+                      element={
+                          <PrivateRoute authorizationStatus={authorizationStatus}>
+                              <Layout>
+                                  <SelectDevice />
+                              </Layout>
+                          </PrivateRoute>
+                      }
+                  />
 
-              <Route
-                  path={AppRoutes.Calibration(':id')}
-                  element={
-                      <PrivateRoute authorizationStatus={authorizationStatus}>
-                          <Layout>
-                              <Calibration />
-                          </Layout>
-                      </PrivateRoute>
-                  }
-              />
-              <Route
-                  path={AppRoutes.AddCalibration(':id')}
-                  element={
-                      <PrivateRoute authorizationStatus={authorizationStatus}>
-                          <Layout>
-                              <AddCalibration />
-                          </Layout>
-                      </PrivateRoute>
-                  }
-              />
-              <Route
-                  path={AppRoutes.EditCalibration(':id')}
-                  element={
-                      <PrivateRoute authorizationStatus={authorizationStatus}>
-                          <Layout>
-                              <EditCalibration />
-                          </Layout>
-                      </PrivateRoute>
-                  }
-              />
+                  <Route
+                      path={AppRoutes.Calibration(':id')}
+                      element={
+                          <PrivateRoute authorizationStatus={authorizationStatus}>
+                              <Layout>
+                                  <Calibration />
+                              </Layout>
+                          </PrivateRoute>
+                      }
+                  />
+                  <Route
+                      path={AppRoutes.AddCalibration(':id')}
+                      element={
+                          <PrivateRoute authorizationStatus={authorizationStatus}>
+                              <Layout>
+                                  <AddCalibration />
+                              </Layout>
+                          </PrivateRoute>
+                      }
+                  />
+                  <Route
+                      path={AppRoutes.EditCalibration(':id')}
+                      element={
+                          <PrivateRoute authorizationStatus={authorizationStatus}>
+                              <Layout>
+                                  <EditCalibration />
+                              </Layout>
+                          </PrivateRoute>
+                      }
+                  />
 
-              <Route
-                  path={AppRoutes.Users}
-                  element={
-                      <PrivateRoute authorizationStatus={authorizationStatus}>
-                          <Layout>
-                              <Users />
-                          </Layout>
-                      </PrivateRoute>
-                  }
-              />
-              <Route
-                  path={AppRoutes.User(':id')}
-                  element={
-                      <PrivateRoute authorizationStatus={authorizationStatus}>
-                          <Layout>
-                              <User />
-                          </Layout>
-                      </PrivateRoute>
-                  }
-              />
-              <Route
-                  path={AppRoutes.AddUser}
-                  element={
-                      <PrivateRoute authorizationStatus={authorizationStatus}>
-                          <Layout>
-                              <AddUser />
-                          </Layout>
-                      </PrivateRoute>
-                  }
-              />
-              <Route
-                  path={AppRoutes.EditUser(':id')}
-                  element={
-                      <PrivateRoute authorizationStatus={authorizationStatus}>
-                          <Layout>
-                              <EditUser />
-                          </Layout>
-                      </PrivateRoute>
-                  }
-              />
-              <Route
-                  path={AppRoutes.SelectUser}
-                  element={
-                      <PrivateRoute authorizationStatus={authorizationStatus}>
-                          <Layout>
-                              <SelectUser />
-                          </Layout>
-                      </PrivateRoute>
-                  }
-              />
+                  <Route
+                      path={AppRoutes.Users}
+                      element={
+                          <PrivateRoute authorizationStatus={authorizationStatus}>
+                              <Layout>
+                                  <Users />
+                              </Layout>
+                          </PrivateRoute>
+                      }
+                  />
+                  <Route
+                      path={AppRoutes.User(':id')}
+                      element={
+                          <PrivateRoute authorizationStatus={authorizationStatus}>
+                              <Layout>
+                                  <User />
+                              </Layout>
+                          </PrivateRoute>
+                      }
+                  />
+                  <Route
+                      path={AppRoutes.AddUser}
+                      element={
+                          <PrivateRoute authorizationStatus={authorizationStatus}>
+                              <Layout>
+                                  <AddUser />
+                              </Layout>
+                          </PrivateRoute>
+                      }
+                  />
+                  <Route
+                      path={AppRoutes.EditUser(':id')}
+                      element={
+                          <PrivateRoute authorizationStatus={authorizationStatus}>
+                              <Layout>
+                                  <EditUser />
+                              </Layout>
+                          </PrivateRoute>
+                      }
+                  />
+                  <Route
+                      path={AppRoutes.SelectUser}
+                      element={
+                          <PrivateRoute authorizationStatus={authorizationStatus}>
+                              <Layout>
+                                  <SelectUser />
+                              </Layout>
+                          </PrivateRoute>
+                      }
+                  />
 
-              <Route
-                  path={AppRoutes.Logs}
-                  element={
-                      <PrivateRoute authorizationStatus={authorizationStatus}>
-                          <Layout>
-                              <Logs />
-                          </Layout>
-                      </PrivateRoute>
-                  }
-              />
-              <Route
-                  path={AppRoutes.Log(':id')}
-                  element={
-                      <PrivateRoute authorizationStatus={authorizationStatus}>
-                          <Layout>
-                              <Log />
-                          </Layout>
-                      </PrivateRoute>
-                  }
-              />
+                  <Route
+                      path={AppRoutes.Logs}
+                      element={
+                          <PrivateRoute authorizationStatus={authorizationStatus}>
+                              <Layout>
+                                  <Logs />
+                              </Layout>
+                          </PrivateRoute>
+                      }
+                  />
+                  <Route
+                      path={AppRoutes.Log(':id')}
+                      element={
+                          <PrivateRoute authorizationStatus={authorizationStatus}>
+                              <Layout>
+                                  <Log />
+                              </Layout>
+                          </PrivateRoute>
+                      }
+                  />
 
-              <Route
-                  path={AppRoutes.Tokens}
-                  element={
-                      <PrivateRoute authorizationStatus={authorizationStatus}>
-                          <Layout>
-                              <Tokens />
-                          </Layout>
-                      </PrivateRoute>
-                  }
-              />
-              <Route
-                  path={AppRoutes.Token(':id')}
-                  element={
-                      <PrivateRoute authorizationStatus={authorizationStatus}>
-                          <Layout>
-                              <Token />
-                          </Layout>
-                      </PrivateRoute>
-                  }
-              />
-              <Route
-                  path={AppRoutes.AddToken}
-                  element={
-                      <PrivateRoute authorizationStatus={authorizationStatus}>
-                          <Layout>
-                              <AddToken />
-                          </Layout>
-                      </PrivateRoute>
-                  }
-              />
-              <Route
-                  path={AppRoutes.EditToken(':id')}
-                  element={
-                      <PrivateRoute authorizationStatus={authorizationStatus}>
-                          <Layout>
-                              <EditToken />
-                          </Layout>
-                      </PrivateRoute>
-                  }
-              />
+                  <Route
+                      path={AppRoutes.Tokens}
+                      element={
+                          <PrivateRoute authorizationStatus={authorizationStatus}>
+                              <Layout>
+                                  <Tokens />
+                              </Layout>
+                          </PrivateRoute>
+                      }
+                  />
+                  <Route
+                      path={AppRoutes.Token(':id')}
+                      element={
+                          <PrivateRoute authorizationStatus={authorizationStatus}>
+                              <Layout>
+                                  <Token />
+                              </Layout>
+                          </PrivateRoute>
+                      }
+                  />
+                  <Route
+                      path={AppRoutes.AddToken}
+                      element={
+                          <PrivateRoute authorizationStatus={authorizationStatus}>
+                              <Layout>
+                                  <AddToken />
+                              </Layout>
+                          </PrivateRoute>
+                      }
+                  />
+                  <Route
+                      path={AppRoutes.EditToken(':id')}
+                      element={
+                          <PrivateRoute authorizationStatus={authorizationStatus}>
+                              <Layout>
+                                  <EditToken />
+                              </Layout>
+                          </PrivateRoute>
+                      }
+                  />
 
-              <Route
-                  path={AppRoutes.NotFound}
-                  element={
-                      <NotFoundPage />
-                  }
-              />
-          </Routes>
-      </HistoryRouter>
+                  <Route
+                      path={AppRoutes.NotFound}
+                      element={
+                          <NotFoundPage />
+                      }
+                  />
+              </Routes>
+          </HistoryRouter>
+      </IntlProvider>
   );
 }
 
