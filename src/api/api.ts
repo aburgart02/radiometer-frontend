@@ -1,6 +1,7 @@
 import axios, {AxiosError, AxiosInstance, AxiosRequestConfig} from 'axios';
 import {getToken} from './token';
 import {toast} from 'react-toastify';
+import {LOCALES} from "../lang/locales";
 
 type ErrorMessage = {
     errorType: string;
@@ -39,14 +40,28 @@ export const createAPI = (): AxiosInstance => {
         (response) => response,
         (error: AxiosError<ErrorMessage>) => {
             if (error.response) {
-                if (error.response.status === ErrorTypes.UNAUTHORIZED) {
-                    toast.error(`Error ${ErrorTypes.UNAUTHORIZED}. Authorization failed`);
+                const locale = localStorage.getItem('LOCALE') || LOCALES.RUSSIAN;
+                if (locale === LOCALES.RUSSIAN) {
+                    if (error.response.status === ErrorTypes.UNAUTHORIZED) {
+                        toast.error(`Ошибка ${ErrorTypes.UNAUTHORIZED}. Не удалось пройти авторизацию`);
+                    }
+                    if (error.response.status === ErrorTypes.BAD_REQUEST) {
+                        toast.error(`Ошибка ${ErrorTypes.BAD_REQUEST}. ${error.response.data}`);
+                    }
+                    if (error.response.status === ErrorTypes.ECONNREFUSED) {
+                        toast.error('Не удалось установить соединение с сервером');
+                    }
                 }
-                if (error.response.status === ErrorTypes.BAD_REQUEST) {
-                    toast.error(`Error ${ErrorTypes.BAD_REQUEST}. ${error.response.data}`);
-                }
-                if (error.response.status === ErrorTypes.ECONNREFUSED) {
-                    toast.error('The connection to the server could not be established');
+                if (locale === LOCALES.ENGLISH) {
+                    if (error.response.status === ErrorTypes.UNAUTHORIZED) {
+                        toast.error(`Error ${ErrorTypes.UNAUTHORIZED}. Authorization failed`);
+                    }
+                    if (error.response.status === ErrorTypes.BAD_REQUEST) {
+                        toast.error(`Error ${ErrorTypes.BAD_REQUEST}. ${error.response.data}`);
+                    }
+                    if (error.response.status === ErrorTypes.ECONNREFUSED) {
+                        toast.error('The connection to the server could not be established');
+                    }
                 }
             }
         }
