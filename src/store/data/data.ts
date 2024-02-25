@@ -12,7 +12,7 @@ const initialState: DataState = {
     deviceId: undefined,
     patientId: undefined,
     userId: undefined,
-    locale: 'ru-RU',
+    locale: localStorage.getItem('LOCALE') || 'ru-RU',
 };
 
 export const data = createSlice({
@@ -30,6 +30,7 @@ export const data = createSlice({
         },
         setLocale: (state, value: PayloadAction<string>) => {
             state.locale = value.payload;
+            localStorage.setItem('LOCALE', state.locale)
         },
     },
 });

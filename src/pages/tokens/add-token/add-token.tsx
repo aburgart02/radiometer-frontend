@@ -1,15 +1,18 @@
 import '../../../common-styles/form.css'
 import '../../../common-styles/action-button.css'
 import React, {ReactElement, useRef} from "react";
-import {useAppDispatch} from "../../../hooks/hooks";
+import {useAppDispatch, useAppSelector} from "../../../hooks/hooks";
 import browserHistory from "../../../components/history-route/browser-history";
 import {postTokenAction} from "../../../store/api-actions/tokens-actions/tokens-actions";
+import {getLocale} from "../../../store/data/selectors";
+import {showFormError} from "../../../utils/show_form_error";
 
 
 function AddToken(): ReactElement {
     const expirationDateRef = useRef<HTMLInputElement | null>(null);
     const descriptionRef = useRef<HTMLTextAreaElement | null>(null);
 
+    const locale = useAppSelector(getLocale);
     const dispatch = useAppDispatch();
 
     const handleSubmit = () => {
@@ -19,6 +22,9 @@ function AddToken(): ReactElement {
                 ExpirationDate: expirationDateRef.current?.value,
                 Description: descriptionRef.current?.value
             }));
+        }
+        else {
+            showFormError(locale);
         }
     };
 

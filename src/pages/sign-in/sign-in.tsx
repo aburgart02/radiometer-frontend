@@ -1,7 +1,8 @@
-import {FormEvent, ReactElement, useRef} from 'react';
+import React, {FormEvent, ReactElement, useRef} from 'react';
 import {loginAction} from '../../store/api-actions/auth-actions/auth-actions';
 import {useAppDispatch} from '../../hooks/hooks';
 import './sign-in.css'
+import {FormattedMessage} from "react-intl";
 
 function SignIn(): ReactElement {
     const loginRef = useRef<HTMLInputElement | null>(null);
@@ -19,17 +20,17 @@ function SignIn(): ReactElement {
 
     return (
         <div className="login-container">
-            <h2>Авторизация</h2>
+            <h2><FormattedMessage id="authorization"/></h2>
             <form onSubmit={handleSubmit}>
                 <div className="input-group">
-                    <label htmlFor="login">Логин:</label>
+                    <label htmlFor="login"><FormattedMessage id="login"/>:</label>
                     <input ref={loginRef} type="text" id="login" name="login" placeholder="Логин" required/>
                 </div>
                 <div className="input-group">
-                    <label htmlFor="password">Пароль:</label>
+                    <label htmlFor="password"><FormattedMessage id="password"/>:</label>
                     <input ref={passwordRef} type="password" id="password" name="password" placeholder="Пароль" required/>
                 </div>
-                <button type="submit">Войти в аккаунт</button>
+                <button type="submit"><FormattedMessage id="log_in"/></button>
             </form>
         </div>
     );

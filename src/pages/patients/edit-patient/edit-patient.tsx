@@ -7,6 +7,8 @@ import {useParams} from "react-router-dom";
 import {getPatients} from "../../../store/patients/selectors";
 import {formatDate} from "../../../utils/format-date";
 import {deletePatientAction, updatePatientAction} from "../../../store/api-actions/patients-action/patients-actions";
+import {getLocale} from "../../../store/data/selectors";
+import {showFormError} from "../../../utils/show_form_error";
 
 
 function EditPatient(): ReactElement {
@@ -23,6 +25,7 @@ function EditPatient(): ReactElement {
     const femaleRef = useRef<HTMLInputElement | null>(null);
     const notesRef = useRef<HTMLTextAreaElement | null>(null);
 
+    const locale = useAppSelector(getLocale);
     const dispatch = useAppDispatch();
 
     const handleSubmit = () => {
@@ -43,6 +46,9 @@ function EditPatient(): ReactElement {
                 Notes: notesRef.current?.value
             }));
         }
+        else {
+            showFormError(locale);
+        }
     };
 
     const handleDeleteSubmit = () => {
@@ -52,7 +58,7 @@ function EditPatient(): ReactElement {
     return (
         <>
             <div className="form-container">
-                <h2>Пациент</h2>
+                <h2>Редактирование пациента</h2>
                 <p>
                     <span>Id: </span>{patient.Id}
                 </p>

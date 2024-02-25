@@ -10,6 +10,8 @@ import {getCalibrations} from "../../../store/calibrations/selectors";
 import {formatDate} from "../../../utils/format-date";
 import Pagination from "../../../components/pagination/pagination";
 import {AppRoutes} from "../../../const/app-routes";
+import {getLocale} from "../../../store/data/selectors";
+import {showFormError} from "../../../utils/show_form_error";
 
 const CALIBRATION_ON_PAGE = 4;
 
@@ -25,6 +27,7 @@ function EditDevice(): ReactElement {
     const nameRef = useRef<HTMLInputElement | null>(null);
     const descriptionRef = useRef<HTMLTextAreaElement | null>(null);
 
+    const locale = useAppSelector(getLocale);
     const dispatch = useAppDispatch();
 
     const handleSubmit = () => {
@@ -35,6 +38,9 @@ function EditDevice(): ReactElement {
                 Name: nameRef.current.value,
                 Description: descriptionRef.current?.value
             }));
+        }
+        else {
+            showFormError(locale);
         }
     };
 
@@ -53,7 +59,7 @@ function EditDevice(): ReactElement {
     return (
         <>
             <div className="form-container">
-                <h2>Устройство</h2>
+                <h2>Редактирование устройства</h2>
                 <p>
                     <span>Id: </span>{device.Id}
                 </p>

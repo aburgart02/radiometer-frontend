@@ -1,9 +1,11 @@
 import '../../../common-styles/form.css'
 import '../../../common-styles/action-button.css'
 import React, {ReactElement, useRef} from "react";
-import {useAppDispatch} from "../../../hooks/hooks";
+import {useAppDispatch, useAppSelector} from "../../../hooks/hooks";
 import browserHistory from "../../../components/history-route/browser-history";
 import {postPatientAction} from "../../../store/api-actions/patients-action/patients-actions";
+import {getLocale} from "../../../store/data/selectors";
+import {showFormError} from "../../../utils/show_form_error";
 
 
 function AddPatient(): ReactElement {
@@ -15,6 +17,7 @@ function AddPatient(): ReactElement {
     const femaleRef = useRef<HTMLInputElement | null>(null);
     const notesRef = useRef<HTMLTextAreaElement | null>(null);
 
+    const locale = useAppSelector(getLocale);
     const dispatch = useAppDispatch();
 
     const handleSubmit = () => {
@@ -33,6 +36,9 @@ function AddPatient(): ReactElement {
                         ? 0 : 1,
                 Notes: notesRef.current?.value
             }));
+        }
+        else {
+            showFormError(locale);
         }
     };
 

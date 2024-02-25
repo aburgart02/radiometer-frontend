@@ -5,13 +5,14 @@ import React, {ReactElement, useRef} from "react";
 import {useAppDispatch, useAppSelector} from "../../../hooks/hooks";
 import browserHistory from "../../../components/history-route/browser-history";
 import {postMeasurementAction} from "../../../store/api-actions/measurements-actions/measurement-actions";
-import {getDeviceId, getPatientId, getUserId} from "../../../store/data/selectors";
+import {getDeviceId, getLocale, getPatientId, getUserId} from "../../../store/data/selectors";
 import {getDevices} from "../../../store/devices/selectors";
 import {getUsers} from "../../../store/users/selectors";
 import {getPatients} from "../../../store/patients/selectors";
 import {getFullName} from "../../../utils/get-full-name";
 import {Link} from "react-router-dom";
 import {AppRoutes} from "../../../const/app-routes";
+import {showFormError} from "../../../utils/show_form_error";
 
 
 function AddMeasurement(): ReactElement {
@@ -32,6 +33,7 @@ function AddMeasurement(): ReactElement {
     const user = users.filter((user) => user.Id === userId)[0];
     const patient = patients.filter((patient) => patient.Id === patientId)[0];
 
+    const locale = useAppSelector(getLocale);
     const dispatch = useAppDispatch();
 
     const handleSubmit = () => {
@@ -48,6 +50,9 @@ function AddMeasurement(): ReactElement {
                  PatientId: patientId,
                  Data: file
             }));
+        }
+        else {
+            showFormError(locale);
         }
     };
 

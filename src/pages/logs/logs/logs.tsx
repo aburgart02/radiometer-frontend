@@ -7,6 +7,7 @@ import Pagination from "../../../components/pagination/pagination";
 import {NavLink} from "react-router-dom";
 import {AppRoutes} from "../../../const/app-routes";
 import {getLogs} from "../../../store/logs/selectors";
+import {FormattedMessage} from "react-intl";
 
 const LOGS_ON_PAGE = 8;
 
@@ -27,10 +28,10 @@ function Logs(): ReactElement {
             <table>
                 <thead>
                 <tr>
-                    <th>Дата/Время</th>
-                    <th>Источник</th>
-                    <th>Тип</th>
-                    <th>Сообщение</th>
+                    <th><FormattedMessage id="time"/></th>
+                    <th><FormattedMessage id="source"/></th>
+                    <th><FormattedMessage id="type"/></th>
+                    <th><FormattedMessage id="message"/></th>
                     <th/>
                 </tr>
                 </thead>
@@ -44,7 +45,7 @@ function Logs(): ReactElement {
                             <td>{log.Type}</td>
                             <td>{log.Body}</td>
                             <td>
-                                <li><NavLink to={AppRoutes.Log(log.Time)}>Подробнее</NavLink></li>
+                                <li><NavLink to={AppRoutes.Log(log.Time)}><FormattedMessage id="more_detailed"/></NavLink></li>
                             </td>
                         </tr>
                     ))}

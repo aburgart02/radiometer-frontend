@@ -6,6 +6,8 @@ import browserHistory from "../../../components/history-route/browser-history";
 import {useParams} from "react-router-dom";
 import {getTokens} from "../../../store/tokens/selectors";
 import {deleteTokenAction, updateTokenAction} from "../../../store/api-actions/tokens-actions/tokens-actions";
+import {getLocale} from "../../../store/data/selectors";
+import {showFormError} from "../../../utils/show_form_error";
 
 
 function EditToken(): ReactElement {
@@ -17,6 +19,7 @@ function EditToken(): ReactElement {
     const revokedRef = useRef<HTMLInputElement | null>(null);
     const descriptionRef = useRef<HTMLTextAreaElement | null>(null);
 
+    const locale = useAppSelector(getLocale);
     const dispatch = useAppDispatch();
 
     const handleEditSubmit = () => {
@@ -31,6 +34,9 @@ function EditToken(): ReactElement {
                 Description: descriptionRef.current?.value
             }));
         }
+        else {
+            showFormError(locale);
+        }
     };
 
     const handleDeleteSubmit = () => {
@@ -40,7 +46,7 @@ function EditToken(): ReactElement {
     return (
         <>
             <div className="form-container">
-                <h2>Токен</h2>
+                <h2>Редактирование токена</h2>
                 <p>
                     <span>Id: </span>{token.Id}
                 </p>

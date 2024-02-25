@@ -9,6 +9,8 @@ import {
     deleteCalibrationAction,
     updateCalibrationAction
 } from "../../../store/api-actions/calibrations-actions/calibrations-actions";
+import {getLocale} from "../../../store/data/selectors";
+import {showFormError} from "../../../utils/show_form_error";
 
 
 function EditCalibration(): ReactElement {
@@ -20,6 +22,7 @@ function EditCalibration(): ReactElement {
     const nameRef = useRef<HTMLInputElement | null>(null);
     const descriptionRef = useRef<HTMLTextAreaElement | null>(null);
 
+    const locale = useAppSelector(getLocale);
     const dispatch = useAppDispatch();
 
     const handleSubmit = () => {
@@ -31,6 +34,9 @@ function EditCalibration(): ReactElement {
                 Description: descriptionRef.current?.value
             }));
         }
+        else {
+            showFormError(locale);
+        }
     };
 
     const handleDeleteSubmit = () => {
@@ -40,7 +46,7 @@ function EditCalibration(): ReactElement {
     return (
         <>
             <div className="form-container">
-                <h2>Калибровка</h2>
+                <h2>Редактирование калибровки</h2>
                 <p>
                     <span>Id: </span>{calibration.Id}
                 </p>

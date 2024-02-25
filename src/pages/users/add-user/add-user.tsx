@@ -1,10 +1,12 @@
 import '../../../common-styles/form.css'
 import '../../../common-styles/action-button.css'
 import React, {ReactElement, useRef} from "react";
-import {useAppDispatch} from "../../../hooks/hooks";
+import {useAppDispatch, useAppSelector} from "../../../hooks/hooks";
 import browserHistory from "../../../components/history-route/browser-history";
 import {Roles} from "../../../const/roles";
 import {postUserAction} from "../../../store/api-actions/users-action/users-actions";
+import {getLocale} from "../../../store/data/selectors";
+import {showFormError} from "../../../utils/show_form_error";
 
 
 function AddUser(): ReactElement {
@@ -20,6 +22,7 @@ function AddUser(): ReactElement {
     const passwordRef = useRef<HTMLInputElement | null>(null);
     const notesRef = useRef<HTMLTextAreaElement | null>(null);
 
+    const locale = useAppSelector(getLocale);
     const dispatch = useAppDispatch();
 
     const handleSubmit = () => {
@@ -44,6 +47,9 @@ function AddUser(): ReactElement {
                 Password: passwordRef.current.value,
                 Notes: notesRef.current?.value
             }));
+        }
+        else {
+            showFormError(locale);
         }
     };
 

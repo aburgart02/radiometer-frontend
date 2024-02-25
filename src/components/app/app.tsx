@@ -46,6 +46,7 @@ import {getLocale} from "../../store/data/selectors";
 function App() {
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
   const locale = useAppSelector(getLocale);
+  console.log(locale)
 
   return (
       <IntlProvider

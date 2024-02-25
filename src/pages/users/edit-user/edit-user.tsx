@@ -13,6 +13,8 @@ import {
     updateUserAction,
     updateUserPasswordAction
 } from "../../../store/api-actions/users-action/users-actions";
+import {getLocale} from "../../../store/data/selectors";
+import {showFormError} from "../../../utils/show_form_error";
 
 
 function EditUser(): ReactElement {
@@ -34,6 +36,7 @@ function EditUser(): ReactElement {
     const notesRef = useRef<HTMLTextAreaElement | null>(null);
     const passwordRef = useRef<HTMLInputElement | null>(null);
 
+    const locale = useAppSelector(getLocale);
     const dispatch = useAppDispatch();
 
     const handleSubmit = () => {
@@ -60,6 +63,9 @@ function EditUser(): ReactElement {
                 Notes: notesRef.current?.value
             }));
         }
+        else {
+            showFormError(locale);
+        }
     };
 
     const handleDeleteSubmit = () => {
@@ -79,7 +85,7 @@ function EditUser(): ReactElement {
     return (
         <>
             <div className="form-container">
-                <h2>Пользователь</h2>
+                <h2>Редактирование пользователя</h2>
                 <p>
                     <span>Id: </span>{user.Id}
                 </p>

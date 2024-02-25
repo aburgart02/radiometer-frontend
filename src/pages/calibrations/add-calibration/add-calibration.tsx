@@ -2,11 +2,13 @@ import '../../../common-styles/form.css'
 import '../../../common-styles/action-button.css'
 import '../../../common-styles/file-selection.css'
 import React, {ReactElement, useRef} from "react";
-import {useAppDispatch} from "../../../hooks/hooks";
+import {useAppDispatch, useAppSelector} from "../../../hooks/hooks";
 import browserHistory from "../../../components/history-route/browser-history";
 import {useParams} from "react-router-dom";
 import {postCalibrationAction} from "../../../store/api-actions/calibrations-actions/calibrations-actions";
 import {validateCalibration} from "../../../utils/validate-calibration";
+import {showFormError} from "../../../utils/show_form_error";
+import {getLocale} from "../../../store/data/selectors";
 
 
 function AddCalibration(): ReactElement {
@@ -16,6 +18,7 @@ function AddCalibration(): ReactElement {
     const nameRef = useRef<HTMLInputElement | null>(null);
     const descriptionRef = useRef<HTMLTextAreaElement | null>(null);
 
+    const locale = useAppSelector(getLocale);
     const dispatch = useAppDispatch();
 
     const handleSubmit = () => {
@@ -27,6 +30,9 @@ function AddCalibration(): ReactElement {
                 DeviceId: deviceId,
                 Data: file
             }));
+        }
+        else {
+            showFormError(locale);
         }
     };
 
