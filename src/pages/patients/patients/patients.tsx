@@ -9,6 +9,7 @@ import {Link, NavLink} from "react-router-dom";
 import {AppRoutes} from "../../../const/app-routes";
 import {getSex} from "../../../utils/get-sex";
 import {formatDate} from "../../../utils/format-date";
+import {FormattedMessage} from "react-intl";
 
 const PATIENTS_ON_PAGE = 8;
 
@@ -29,13 +30,13 @@ function Patients(): ReactElement {
             <table>
                 <thead>
                 <tr>
-                    <th>Id</th>
-                    <th>Имя</th>
-                    <th>Фамилия</th>
-                    <th>Отчество</th>
-                    <th>Дата рождения</th>
-                    <th>Пол</th>
-                    <th>Заметки</th>
+                    <th><FormattedMessage id="id"/></th>
+                    <th><FormattedMessage id="name"/></th>
+                    <th><FormattedMessage id="surname"/></th>
+                    <th><FormattedMessage id="patronymic"/></th>
+                    <th><FormattedMessage id="birthdate"/></th>
+                    <th><FormattedMessage id="sex"/></th>
+                    <th><FormattedMessage id="notes"/></th>
                     <th/>
                 </tr>
                 </thead>
@@ -54,15 +55,15 @@ function Patients(): ReactElement {
                             <td>{getSex(patient.Sex)}</td>
                             <td>{patient.Notes}</td>
                             <td>
-                                <li><NavLink to={AppRoutes.Patient(patient.Id)}>Подробнее</NavLink></li>
-                                <li><NavLink to={AppRoutes.EditPatient(patient.Id)}>Редактировать</NavLink></li>
+                                <li><NavLink to={AppRoutes.Patient(patient.Id)}><FormattedMessage id="more_detailed"/></NavLink></li>
+                                <li><NavLink to={AppRoutes.EditPatient(patient.Id)}><FormattedMessage id="edit"/></NavLink></li>
                             </td>
                         </tr>
                 ))}
                 </tbody>
             </table>
             <Pagination handlePreviousButtonClick={handlePreviousButtonClick} handleNextButtonClick={handleNextButtonClick}/>
-            <Link to={AppRoutes.AddPatient} className="action-button">Добавить</Link>
+            <Link to={AppRoutes.AddPatient} className="action-button"><FormattedMessage id="add"/></Link>
         </>
     );
 }

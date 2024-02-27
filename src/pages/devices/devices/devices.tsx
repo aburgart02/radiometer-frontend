@@ -6,6 +6,7 @@ import '../../../common-styles/pagination.css'
 import Pagination from "../../../components/pagination/pagination";
 import {Link, NavLink} from "react-router-dom";
 import {AppRoutes} from "../../../const/app-routes";
+import {FormattedMessage} from "react-intl";
 
 const DEVICE_ON_PAGE = 8;
 
@@ -26,9 +27,9 @@ function Devices(): ReactElement {
             <table>
                 <thead>
                 <tr>
-                    <th>Id</th>
-                    <th>Имя</th>
-                    <th>Описание</th>
+                    <th><FormattedMessage id="id"/></th>
+                    <th><FormattedMessage id="title"/></th>
+                    <th><FormattedMessage id="description"/></th>
                     <th/>
                 </tr>
                 </thead>
@@ -43,15 +44,15 @@ function Devices(): ReactElement {
                             <td>{device.Name}</td>
                             <td>{device.Description}</td>
                             <td>
-                                <li><NavLink to={AppRoutes.Device(device.Id)}>Подробнее</NavLink></li>
-                                <li><NavLink to={AppRoutes.EditDevice(device.Id)}>Редактировать</NavLink></li>
+                                <li><NavLink to={AppRoutes.Device(device.Id)}><FormattedMessage id="more_detailed"/></NavLink></li>
+                                <li><NavLink to={AppRoutes.EditDevice(device.Id)}><FormattedMessage id="edit"/></NavLink></li>
                             </td>
                         </tr>
                 ))}
                 </tbody>
             </table>
             <Pagination handlePreviousButtonClick={handlePreviousButtonClick} handleNextButtonClick={handleNextButtonClick}/>
-            <Link to={AppRoutes.AddDevice} className="action-button">Добавить</Link>
+            <Link to={AppRoutes.AddDevice} className="action-button"><FormattedMessage id="add"/></Link>
         </>
     );
 }

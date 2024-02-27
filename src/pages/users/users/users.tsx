@@ -9,6 +9,7 @@ import {AppRoutes} from "../../../const/app-routes";
 import {getSex} from "../../../utils/get-sex";
 import {formatDate} from "../../../utils/format-date";
 import {getUsers} from "../../../store/users/selectors";
+import {FormattedMessage} from "react-intl";
 
 const USERS_ON_PAGE = 8;
 
@@ -29,16 +30,16 @@ function Users(): ReactElement {
             <table>
                 <thead>
                 <tr>
-                    <th>Id</th>
-                    <th>Логин</th>
-                    <th>Имя</th>
-                    <th>Фамилия</th>
-                    <th>Отчество</th>
-                    <th>Дата рождения</th>
-                    <th>Пол</th>
-                    <th>Заметки</th>
-                    <th>Роль</th>
-                    <th>Статус</th>
+                    <th><FormattedMessage id="id"/></th>
+                    <th><FormattedMessage id="login"/></th>
+                    <th><FormattedMessage id="name"/></th>
+                    <th><FormattedMessage id="surname"/></th>
+                    <th><FormattedMessage id="patronymic"/></th>
+                    <th><FormattedMessage id="birthdate"/></th>
+                    <th><FormattedMessage id="sex"/></th>
+                    <th><FormattedMessage id="notes"/></th>
+                    <th><FormattedMessage id="role"/></th>
+                    <th><FormattedMessage id="status"/></th>
                     <th/>
                 </tr>
                 </thead>
@@ -58,17 +59,17 @@ function Users(): ReactElement {
                             <td>{getSex(user.Sex)}</td>
                             <td>{user.Notes}</td>
                             <td>{user.Role}</td>
-                            <td>{user.Revoked ? 'Заблокирован' : 'Не заблокирован'}</td>
+                            <td>{user.Revoked ? <FormattedMessage id="blocked"/> : <FormattedMessage id="not_blocked"/>}</td>
                             <td>
-                                <li><NavLink to={AppRoutes.User(user.Id)}>Подробнее</NavLink></li>
-                                <li><NavLink to={AppRoutes.EditUser(user.Id)}>Редактировать</NavLink></li>
+                                <li><NavLink to={AppRoutes.User(user.Id)}><FormattedMessage id="more_detailed"/></NavLink></li>
+                                <li><NavLink to={AppRoutes.EditUser(user.Id)}><FormattedMessage id="edit"/></NavLink></li>
                             </td>
                         </tr>
                     ))}
                 </tbody>
             </table>
             <Pagination handlePreviousButtonClick={handlePreviousButtonClick} handleNextButtonClick={handleNextButtonClick}/>
-            <Link to={AppRoutes.AddUser} className="action-button">Добавить</Link>
+            <Link to={AppRoutes.AddUser} className="action-button"><FormattedMessage id="add"/></Link>
         </>
     );
 }

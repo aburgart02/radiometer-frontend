@@ -11,6 +11,7 @@ import {getPatients} from "../../../store/patients/selectors";
 import {getFullName} from "../../../utils/get-full-name";
 import {BACKEND_URL} from "../../../api/api";
 import {getToken} from "../../../api/token";
+import {FormattedMessage} from "react-intl";
 
 function Measurement(): ReactElement {
     const params = useParams();
@@ -48,31 +49,31 @@ function Measurement(): ReactElement {
     return (
         <>
             <div className="detailed-page-container">
-                <h2>Исследование</h2>
+                <h2><FormattedMessage id="research"/></h2>
                 <p>
-                    <span>Id: </span>{measurement.Id}
+                    <span><FormattedMessage id="id"/>: </span>{measurement.Id}
                 </p>
                 <p>
-                    <span>Время: </span>{measurement.Time.replace(/[TZ_]/g, ' ')}
+                    <span><FormattedMessage id="time"/>: </span>{measurement.Time.replace(/[TZ_]/g, ' ')}
                 </p>
                 <p>
-                    <span>Описание: </span>{measurement.Description}
+                    <span><FormattedMessage id="description"/>: </span>{measurement.Description}
                 </p>
                 <p>
-                    <span>Прибор: </span>{devices.filter((device) => device.Id === measurement.DeviceId)[0].Name}
+                    <span><FormattedMessage id="device"/>: </span>{devices.filter((device) => device.Id === measurement.DeviceId)[0].Name}
                 </p>
                 <p>
-                    <span>Исследователь: </span>{getFullName(users.filter((user) => user.Id === measurement.UserId)[0])}
+                    <span><FormattedMessage id="researcher"/>: </span>{getFullName(users.filter((user) => user.Id === measurement.UserId)[0])}
                 </p>
                 <p>
-                    <span>Пациент: </span>{getFullName(patients.filter((patient) => patient.Id === measurement.PatientId)[0])}
+                    <span><FormattedMessage id="patient"/>: </span>{getFullName(patients.filter((patient) => patient.Id === measurement.PatientId)[0])}
                 </p>
             </div>
-            <button type="button" className="action-button" onClick={handleDownloadCalibration}>Скачать</button>
+            <button type="button" className="action-button" onClick={handleDownloadCalibration}><FormattedMessage id="download"/></button>
             <button type="button" className="action-button" onClick={() => {
                 browserHistory.back();
             }}
-            >Вернуться
+            ><FormattedMessage id="go_back"/>
             </button>
         </>
     );

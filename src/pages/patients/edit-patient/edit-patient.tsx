@@ -9,6 +9,7 @@ import {formatDate} from "../../../utils/format-date";
 import {deletePatientAction, updatePatientAction} from "../../../store/api-actions/patients-action/patients-actions";
 import {getLocale} from "../../../store/data/selectors";
 import {showFormError} from "../../../utils/show_form_error";
+import {FormattedMessage} from "react-intl";
 
 
 function EditPatient(): ReactElement {
@@ -58,46 +59,46 @@ function EditPatient(): ReactElement {
     return (
         <>
             <div className="form-container">
-                <h2>Редактирование пациента</h2>
+                <h2><FormattedMessage id="patient_editing"/></h2>
                 <p>
-                    <span>Id: </span>{patient.Id}
+                    <span><FormattedMessage id="id"/>: </span>{patient.Id}
                 </p>
 
                 <form>
-                    <label htmlFor="name">Имя</label>
+                    <label htmlFor="name"><FormattedMessage id="name"/></label>
                     <input defaultValue={patient.Name} ref={nameRef} type="text" id="name" name="name" className="input-field"/>
 
-                    <label htmlFor="surname">Фамилия</label>
+                    <label htmlFor="surname"><FormattedMessage id="surname"/></label>
                     <input defaultValue={patient.Surname} ref={surnameRef} type="text" id="surname" name="surname" className="input-field"/>
 
-                    <label htmlFor="patronymic">Отчество</label>
+                    <label htmlFor="patronymic"><FormattedMessage id="patronymic"/></label>
                     <input defaultValue={patient.Patronymic} ref={patronymicRef} type="text" id="patronymic" name="patronymic" className="input-field"/>
 
-                    <label htmlFor="birthdate">Дата рождения</label>
+                    <label htmlFor="birthdate"><FormattedMessage id="birthdate"/></label>
                     <input defaultValue={formatDate(patient.BirthDate)} ref={birthDateRef} type="date" id="birthdate" name="birthdate" className="date-picker"/>
 
                     <div className="radio-list">
-                        <div>Пол</div>
-                        <label htmlFor="male">Мужской</label>
+                        <div><FormattedMessage id="sex"/></div>
+                        <label htmlFor="male"><FormattedMessage id="male"/></label>
                         <input defaultChecked={patient.Sex === 0} ref={maleRef} type="radio" id="male" name="sex"/>
-                        <label htmlFor="female">Женский</label>
+                        <label htmlFor="female"><FormattedMessage id="female"/></label>
                         <input defaultChecked={patient.Sex === 1} ref={femaleRef} type="radio" id="female" name="sex"/>
                     </div>
 
-                    <label htmlFor="notes" className="label">Заметки</label>
+                    <label htmlFor="notes" className="label"><FormattedMessage id="notes"/></label>
                     <textarea defaultValue={patient.Notes} ref={notesRef} id="notes" name="notes" className="textarea-field"/>
                 </form>
             </div>
-            <button onClick={handleSubmit} className="action-button">Сохранить</button>
+            <button onClick={handleSubmit} className="action-button"><FormattedMessage id="save"/></button>
             <button onClick={() => {
                 handleDeleteSubmit();
                 browserHistory.back();
-            }} className="action-button">Удалить
+            }} className="action-button"><FormattedMessage id="delete"/>
             </button>
             <button type="button" className="action-button" onClick={() => {
                 browserHistory.back();
             }}
-            >Вернуться
+            ><FormattedMessage id="go_back"/>
             </button>
         </>
     );

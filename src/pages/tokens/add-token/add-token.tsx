@@ -6,6 +6,7 @@ import browserHistory from "../../../components/history-route/browser-history";
 import {postTokenAction} from "../../../store/api-actions/tokens-actions/tokens-actions";
 import {getLocale} from "../../../store/data/selectors";
 import {showFormError} from "../../../utils/show_form_error";
+import {FormattedMessage} from "react-intl";
 
 
 function AddToken(): ReactElement {
@@ -31,21 +32,21 @@ function AddToken(): ReactElement {
     return (
         <>
             <div className="form-container">
-                <h2>Добавление токена</h2>
+                <h2><FormattedMessage id="token_adding"/></h2>
                 <br/>
                 <form>
-                    <label htmlFor="expirationDate">Действителен до</label>
+                    <label htmlFor="expirationDate"><FormattedMessage id="expiration_date"/></label>
                     <input ref={expirationDateRef} type="date" id="expirationDate" name="expirationDate" className="date-picker"/>
 
-                    <label htmlFor="description" className="label">Описание</label>
+                    <label htmlFor="description" className="label"><FormattedMessage id="description"/></label>
                     <textarea ref={descriptionRef} id="description" name="description" className="textarea-field"/>
                 </form>
             </div>
-            <button onClick={handleSubmit} className="action-button">Добавить</button>
+            <button onClick={handleSubmit} className="action-button"><FormattedMessage id="add"/></button>
             <button type="button" className="action-button" onClick={() => {
                 browserHistory.back();
             }}
-            >Вернуться
+            ><FormattedMessage id="go_back"/>
             </button>
         </>
     );

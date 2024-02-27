@@ -6,6 +6,7 @@ import browserHistory from "../../../components/history-route/browser-history";
 import {postDeviceAction} from "../../../store/api-actions/devices-actions/devices-actions";
 import {getLocale} from "../../../store/data/selectors";
 import {showFormError} from "../../../utils/show_form_error";
+import {FormattedMessage} from "react-intl";
 
 
 function AddDevice(): ReactElement {
@@ -31,21 +32,21 @@ function AddDevice(): ReactElement {
     return (
         <>
             <div className="form-container">
-                <h2>Добавление устройства</h2>
+                <h2><FormattedMessage id="device_adding"/></h2>
                 <br/>
                 <form>
-                    <label htmlFor="name">Название</label>
+                    <label htmlFor="name"><FormattedMessage id="title"/></label>
                     <input ref={nameRef} type="text" id="name" name="name" className="input-field"/>
 
-                    <label htmlFor="description" className="label">Описание</label>
+                    <label htmlFor="description" className="label"><FormattedMessage id="description"/></label>
                     <textarea ref={descriptionRef} id="description" name="description" className="textarea-field"/>
                 </form>
             </div>
-            <button onClick={handleSubmit} className="action-button">Добавить</button>
+            <button onClick={handleSubmit} className="action-button"><FormattedMessage id="add"/></button>
             <button type="button" className="action-button" onClick={() => {
                 browserHistory.back();
             }}
-            >Вернуться
+            ><FormattedMessage id="go_back"/>
             </button>
         </>
     );

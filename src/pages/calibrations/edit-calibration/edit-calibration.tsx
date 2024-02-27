@@ -11,6 +11,7 @@ import {
 } from "../../../store/api-actions/calibrations-actions/calibrations-actions";
 import {getLocale} from "../../../store/data/selectors";
 import {showFormError} from "../../../utils/show_form_error";
+import {FormattedMessage} from "react-intl";
 
 
 function EditCalibration(): ReactElement {
@@ -46,28 +47,28 @@ function EditCalibration(): ReactElement {
     return (
         <>
             <div className="form-container">
-                <h2>Редактирование калибровки</h2>
+                <h2><FormattedMessage id="calibration_editing"/></h2>
                 <p>
-                    <span>Id: </span>{calibration.Id}
+                    <span><FormattedMessage id="id"/>: </span>{calibration.Id}
                 </p>
                 <form>
-                    <label htmlFor="name">Название</label>
+                    <label htmlFor="name"><FormattedMessage id="title"/></label>
                     <input defaultValue={calibration.Name} ref={nameRef} type="text" id="name" name="name" className="input-field"/>
 
-                    <label htmlFor="description" className="label">Описание</label>
+                    <label htmlFor="description" className="label"><FormattedMessage id="description"/></label>
                     <textarea defaultValue={calibration.Description} ref={descriptionRef} id="description" name="description" className="textarea-field"/>
                 </form>
             </div>
-            <button onClick={handleSubmit} className="action-button">Сохранить</button>
+            <button onClick={handleSubmit} className="action-button"><FormattedMessage id="save"/></button>
             <button onClick={() => {
                 handleDeleteSubmit();
                 browserHistory.back();
-            }} className="action-button">Удалить
+            }} className="action-button"><FormattedMessage id="delete"/>
             </button>
             <button type="button" className="action-button" onClick={() => {
                 browserHistory.back();
             }}
-            >Вернуться
+            ><FormattedMessage id="go_back"/>
             </button>
         </>
     );

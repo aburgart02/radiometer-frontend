@@ -15,6 +15,7 @@ import {
 } from "../../../store/api-actions/users-action/users-actions";
 import {getLocale} from "../../../store/data/selectors";
 import {showFormError} from "../../../utils/show_form_error";
+import {FormattedMessage} from "react-intl";
 
 
 function EditUser(): ReactElement {
@@ -85,67 +86,67 @@ function EditUser(): ReactElement {
     return (
         <>
             <div className="form-container">
-                <h2>Редактирование пользователя</h2>
+                <h2><FormattedMessage id="user_editing"/></h2>
                 <p>
-                    <span>Id: </span>{user.Id}
+                    <span><FormattedMessage id="id"/>: </span>{user.Id}
                 </p>
 
                 <form>
-                    <label htmlFor="login">Логин</label>
+                    <label htmlFor="login"><FormattedMessage id="login"/></label>
                     <input defaultValue={user.Login} ref={loginRef} type="text" id="login" name="login" className="input-field"/>
 
-                    <label htmlFor="name">Имя</label>
+                    <label htmlFor="name"><FormattedMessage id="name"/></label>
                     <input defaultValue={user.Name} ref={nameRef} type="text" id="name" name="name" className="input-field"/>
 
-                    <label htmlFor="surname">Фамилия</label>
+                    <label htmlFor="surname"><FormattedMessage id="surname"/></label>
                     <input defaultValue={user.Surname} ref={surnameRef} type="text" id="surname" name="surname" className="input-field"/>
 
-                    <label htmlFor="patronymic">Отчество</label>
+                    <label htmlFor="patronymic"><FormattedMessage id="patronymic"/></label>
                     <input defaultValue={user.Patronymic} ref={patronymicRef} type="text" id="patronymic" name="patronymic" className="input-field"/>
 
-                    <label htmlFor="birthdate">Дата рождения</label>
+                    <label htmlFor="birthdate"><FormattedMessage id="birthdate"/></label>
                     <input defaultValue={user.BirthDate && formatDate(user.BirthDate)} ref={birthDateRef} type="date" id="birthdate" name="birthdate" className="date-picker"/>
 
                     <div className="radio-list">
-                        <div>Пол</div>
-                        <label htmlFor="male">Мужской</label>
+                        <div><FormattedMessage id="sex"/></div>
+                        <label htmlFor="male"><FormattedMessage id="male"/></label>
                         <input defaultChecked={user.Sex === 0} ref={maleRef} type="radio" id="male" name="sex"/>
-                        <label htmlFor="female">Женский</label>
+                        <label htmlFor="female"><FormattedMessage id="female"/></label>
                         <input defaultChecked={user.Sex === 1} ref={femaleRef} type="radio" id="female" name="sex"/>
                     </div>
 
                     <div className="radio-list">
-                        <div>Роль</div>
-                        <label htmlFor="researcher">Исследователь</label>
+                        <div><FormattedMessage id="role"/></div>
+                        <label htmlFor="researcher"><FormattedMessage id="researcher"/></label>
                         <input defaultChecked={user.Role === Roles.Researcher} ref={researcherRef} type="radio" id="researcher" name="role"/>
-                        <label htmlFor="admin">Админ</label>
+                        <label htmlFor="admin"><FormattedMessage id="admin"/></label>
                         <input defaultChecked={user.Role === Roles.Admin} ref={adminRef} type="radio" id="admin" name="role"/>
                     </div>
 
                     <div className="checkbox-list">
-                        <label htmlFor="revoked">Заблокирован</label>
+                        <label htmlFor="revoked"><FormattedMessage id="blocked"/></label>
                         <input defaultChecked={user.Revoked} ref={revokedRef} type="checkbox" id="revoked" name="revoked"/>
                     </div>
 
-                    <label htmlFor="notes" className="label">Заметки</label>
+                    <label htmlFor="notes" className="label"><FormattedMessage id="notes"/></label>
                     <textarea defaultValue={user.Notes} ref={notesRef} id="notes" name="notes" className="textarea-field"/>
                 </form>
             </div>
-            <button onClick={handleSubmit} className="action-button">Сохранить</button>
+            <button onClick={handleSubmit} className="action-button"><FormattedMessage id="save"/></button>
             <div className="password-container">
-                <button onClick={handleUpdatePasswordSubmit} className="action-button">Обновить пароль</button>
-                <label htmlFor="password">Пароль</label>
+                <button onClick={handleUpdatePasswordSubmit} className="action-button"><FormattedMessage id="update_password"/></button>
+                <label htmlFor="password"><FormattedMessage id="password"/></label>
                 <input ref={passwordRef} type="text" id="password" name="password" className="password-input-field"/>
             </div>
             <button onClick={() => {
                 handleDeleteSubmit();
                 browserHistory.back();
-            }} className="action-button">Удалить
+            }} className="action-button"><FormattedMessage id="delete"/>
             </button>
             <button type="button" className="action-button" onClick={() => {
                 browserHistory.back();
             }}
-            >Вернуться
+            ><FormattedMessage id="go_back"/>
             </button>
         </>
     );

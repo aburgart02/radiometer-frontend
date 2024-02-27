@@ -11,6 +11,7 @@ import {AppRoutes} from "../../../const/app-routes";
 import browserHistory from "../../../components/history-route/browser-history";
 import {setDeviceId} from "../../../store/data/data";
 import {getDeviceId} from "../../../store/data/selectors";
+import {FormattedMessage} from "react-intl";
 
 const DEVICE_ON_PAGE = 8;
 
@@ -31,6 +32,7 @@ function SelectDevice(): ReactElement {
 
     const handleSelectButtonClick = (id: number) => {
         dispatch(setDeviceId(id));
+        browserHistory.back();
     };
 
     return (
@@ -46,9 +48,9 @@ function SelectDevice(): ReactElement {
             <table>
                 <thead>
                 <tr>
-                    <th>Id</th>
-                    <th>Имя</th>
-                    <th>Описание</th>
+                    <th><FormattedMessage id="id"/></th>
+                    <th><FormattedMessage id="title"/></th>
+                    <th><FormattedMessage id="description"/></th>
                     <th/>
                 </tr>
                 </thead>
@@ -65,21 +67,16 @@ function SelectDevice(): ReactElement {
                             <td>{device.Description}</td>
                             <td>
                                 <button className={deviceId === device.Id ? 'selected-button' : 'unselected-button'} onClick={() => {
-                                    handleSelectButtonClick(device.Id)
+                                    handleSelectButtonClick(device.Id);
                                 }
-                                }>Выбрать</button>
+                                }><FormattedMessage id="select"/></button>
                             </td>
                         </tr>
                     ))}
                 </tbody>
             </table>
             <Pagination handlePreviousButtonClick={handlePreviousButtonClick} handleNextButtonClick={handleNextButtonClick}/>
-            <Link to={AppRoutes.AddDevice} className="action-button">Добавить</Link>
-            <button type="button" className="action-button" onClick={() => {
-                browserHistory.back();
-            }}
-            >Вернуться
-            </button>
+            <Link to={AppRoutes.AddDevice} className="action-button"><FormattedMessage id="add"/></Link>
         </>
     );
 }

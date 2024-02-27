@@ -6,6 +6,7 @@ import {useAppSelector} from "../../../hooks/hooks";
 import browserHistory from "../../../components/history-route/browser-history";
 import {getSex} from "../../../utils/get-sex";
 import {getUsers} from "../../../store/users/selectors";
+import {FormattedMessage} from "react-intl";
 
 function User(): ReactElement {
     const params = useParams();
@@ -16,35 +17,35 @@ function User(): ReactElement {
     return (
         <>
             <div className="detailed-page-container">
-                <h2>Пользователь</h2>
+                <h2><FormattedMessage id="user"/></h2>
                 <p>
-                    <span>Id: </span>{user.Id}
+                    <span><FormattedMessage id="id"/>: </span>{user.Id}
                 </p>
                 <p>
-                    <span>Логин: </span>{user.Login}
+                    <span><FormattedMessage id="login"/>: </span>{user.Login}
                 </p>
                 <p>
-                    <span>Имя: </span>{user.Name}
+                    <span><FormattedMessage id="name"/>: </span>{user.Name}
                 </p>
                 <p>
-                    <span>Фамилия: </span>{user.Surname}
+                    <span><FormattedMessage id="surname"/>: </span>{user.Surname}
                 </p>
                 <p>
-                    <span>Отчество: </span>{user.Patronymic}
+                    <span><FormattedMessage id="patronymic"/>: </span>{user.Patronymic}
                 </p>
                 <p>
-                    <span>Дата рождения: </span>{user.BirthDate}
+                    <span><FormattedMessage id="birthdate"/>: </span>{user.BirthDate}
                 </p>
                 <p>
-                    <span>Пол: </span>{getSex(user.Sex)}
+                    <span><FormattedMessage id="sex"/>: </span>{getSex(user.Sex)}
                 </p>
                 <p>
-                    <span>Роль: </span>{user.Role}
+                    <span><FormattedMessage id="role"/>: </span>{user.Role}
                 </p>
                 <p>
-                    <span>Статус: </span>{user.Revoked ? 'Заблокирован' : 'Не заблокирован'}
+                    <span><FormattedMessage id="status"/>: </span>{user.Revoked ? <FormattedMessage id="blocked"/> : <FormattedMessage id="not_blocked"/>}
                 </p>
-                <span>Заметки: </span>
+                <span><FormattedMessage id="notes"/>: </span>
                 <p>
                     {user.Notes}
                 </p>
@@ -52,7 +53,7 @@ function User(): ReactElement {
             <button type="button" className="action-button" onClick={() => {
                 browserHistory.back();
             }}
-            >Вернуться
+            ><FormattedMessage id="go_back"/>
             </button>
         </>
     );

@@ -6,6 +6,7 @@ import {useAppSelector} from "../../../hooks/hooks";
 import {getPatients} from "../../../store/patients/selectors";
 import browserHistory from "../../../components/history-route/browser-history";
 import {getSex} from "../../../utils/get-sex";
+import {FormattedMessage} from "react-intl";
 
 function Patient(): ReactElement {
     const params = useParams();
@@ -16,26 +17,26 @@ function Patient(): ReactElement {
     return (
         <>
             <div className="detailed-page-container">
-                <h2>Пациент</h2>
+                <h2><FormattedMessage id="patient"/></h2>
                 <p>
-                    <span>Id: </span>{patient.Id}
+                    <span><FormattedMessage id="id"/>: </span>{patient.Id}
                 </p>
                 <p>
-                    <span>Имя: </span>{patient.Name}
+                    <span><FormattedMessage id="name"/>: </span>{patient.Name}
                 </p>
                 <p>
-                    <span>Фамилия: </span>{patient.Surname}
+                    <span><FormattedMessage id="surname"/>: </span>{patient.Surname}
                 </p>
                 <p>
-                    <span>Отчество: </span>{patient.Patronymic}
+                    <span><FormattedMessage id="patronymic"/>: </span>{patient.Patronymic}
                 </p>
                 <p>
-                    <span>Дата рождения: </span>{patient.BirthDate}
+                    <span><FormattedMessage id="birthdate"/>: </span>{patient.BirthDate}
                 </p>
                 <p>
-                    <span>Пол: </span>{getSex(patient.Sex)}
+                    <span><FormattedMessage id="sex"/>: </span>{getSex(patient.Sex)}
                 </p>
-                <span>Заметки: </span>
+                <span><FormattedMessage id="notes"/>: </span>
                 <p>
                     {patient.Notes}
                 </p>
@@ -43,7 +44,7 @@ function Patient(): ReactElement {
             <button type="button" className="action-button" onClick={() => {
                 browserHistory.back();
             }}
-            >Вернуться
+            ><FormattedMessage id="go_back"/>
             </button>
         </>
     );

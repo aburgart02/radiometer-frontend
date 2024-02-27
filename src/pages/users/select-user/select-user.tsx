@@ -14,6 +14,7 @@ import {Link} from "react-router-dom";
 import {getFullName} from "../../../utils/get-full-name";
 import {formatDate} from "../../../utils/format-date";
 import {getUserId} from "../../../store/data/selectors";
+import {FormattedMessage} from "react-intl";
 
 const USERS_ON_PAGE = 8;
 
@@ -34,6 +35,7 @@ function Users(): ReactElement {
 
     const handleSelectButtonClick = (id: number) => {
         dispatch(setUserId(id));
+        browserHistory.back();
     };
 
     return (
@@ -49,11 +51,11 @@ function Users(): ReactElement {
             <table>
                 <thead>
                 <tr>
-                    <th>Id</th>
-                    <th>Имя</th>
-                    <th>Фамилия</th>
-                    <th>Отчество</th>
-                    <th>Дата рождения</th>
+                    <th><FormattedMessage id="id"/></th>
+                    <th><FormattedMessage id="name"/></th>
+                    <th><FormattedMessage id="surname"/></th>
+                    <th><FormattedMessage id="patronymic"/></th>
+                    <th><FormattedMessage id="birthdate"/></th>
                     <th/>
                 </tr>
                 </thead>
@@ -72,21 +74,16 @@ function Users(): ReactElement {
                             <td>{user.BirthDate && formatDate(user.BirthDate)}</td>
                             <td>
                                 <button className={userId === user.Id ? 'selected-button' : 'unselected-button'} onClick={() => {
-                                    handleSelectButtonClick(user.Id)
+                                    handleSelectButtonClick(user.Id);
                                 }
-                                }>Выбрать</button>
+                                }><FormattedMessage id="select"/></button>
                             </td>
                         </tr>
                     ))}
                 </tbody>
             </table>
             <Pagination handlePreviousButtonClick={handlePreviousButtonClick} handleNextButtonClick={handleNextButtonClick}/>
-            <Link to={AppRoutes.AddUser} className="action-button">Добавить</Link>
-            <button type="button" className="action-button" onClick={() => {
-                browserHistory.back();
-            }}
-            >Вернуться
-            </button>
+            <Link to={AppRoutes.AddUser} className="action-button"><FormattedMessage id="add"/></Link>
         </>
     );
 }

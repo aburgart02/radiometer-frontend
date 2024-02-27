@@ -10,6 +10,7 @@ import {getDevices} from "../../../store/devices/selectors";
 import {getUsers} from "../../../store/users/selectors";
 import {getPatients} from "../../../store/patients/selectors";
 import {getFullName} from "../../../utils/get-full-name";
+import {FormattedMessage} from "react-intl";
 
 const MEASUREMENTS_ON_PAGE = 8;
 
@@ -33,12 +34,12 @@ function Measurements(): ReactElement {
             <table>
                 <thead>
                 <tr>
-                    <th>Id</th>
-                    <th>Время</th>
-                    <th>Описание</th>
-                    <th>Прибор</th>
-                    <th>Исследователь</th>
-                    <th>Пациент</th>
+                    <th><FormattedMessage id="id"/></th>
+                    <th><FormattedMessage id="time"/></th>
+                    <th><FormattedMessage id="description"/></th>
+                    <th><FormattedMessage id="device"/></th>
+                    <th><FormattedMessage id="researcher"/></th>
+                    <th><FormattedMessage id="patient"/></th>
                     <th/>
                 </tr>
                 </thead>
@@ -62,14 +63,14 @@ function Measurements(): ReactElement {
                                 getFullName(patients.filter((patient) => patient.Id === measurement.PatientId)[0])
                             }</td>
                             <td>
-                                <li><NavLink to={AppRoutes.Measurement(measurement.Id)}>Подробнее</NavLink></li>
+                                <li><NavLink to={AppRoutes.Measurement(measurement.Id)}><FormattedMessage id="more_detailed"/></NavLink></li>
                             </td>
                         </tr>
                     ))}
                 </tbody>
             </table>
             <Pagination handlePreviousButtonClick={handlePreviousButtonClick} handleNextButtonClick={handleNextButtonClick}/>
-            <Link to={AppRoutes.AddMeasurement} className="action-button">Добавить</Link>
+            <Link to={AppRoutes.AddMeasurement} className="action-button"><FormattedMessage id="add"/></Link>
         </>
     );
 }

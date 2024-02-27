@@ -13,6 +13,7 @@ import {getFullName} from "../../../utils/get-full-name";
 import {Link} from "react-router-dom";
 import {AppRoutes} from "../../../const/app-routes";
 import {showFormError} from "../../../utils/show_form_error";
+import {FormattedMessage} from "react-intl";
 
 
 function AddMeasurement(): ReactElement {
@@ -64,40 +65,40 @@ function AddMeasurement(): ReactElement {
     return (
         <>
             <div className="form-container">
-                <h2>Добавление исследования</h2>
+                <h2><FormattedMessage id="research_adding"/></h2>
                 <br/>
                 <form>
-                    <label htmlFor="date">Дата</label>
+                    <label htmlFor="date"><FormattedMessage id="date"/></label>
                     <input ref={dateRef} type="date" id="birthdate" name="birthdate" className="date-picker"/>
 
-                    <label htmlFor="time">Время</label>
+                    <label htmlFor="time"><FormattedMessage id="time"/></label>
                     <input ref={timeRef} type="time" id="time" name="time" className="date-picker"/>
 
-                    <label htmlFor="description" className="label">Описание</label>
+                    <label htmlFor="description" className="label"><FormattedMessage id="description"/></label>
                     <textarea ref={descriptionRef} id="description" name="description" className="textarea-field"/>
                 </form>
                 <p>
-                    <span>Прибор: </span>{device && device.Name}
-                    <Link to={AppRoutes.SelectDevice} className="action-button">Выбрать прибор</Link>
+                    <span><FormattedMessage id="device"/>: </span>{device && device.Name}
+                    <Link to={AppRoutes.SelectDevice} className="action-button"><FormattedMessage id="select_device"/></Link>
                 </p>
                 <p>
-                    <span>Исследователь: </span>{user && getFullName(user)}
-                    <Link to={AppRoutes.SelectUser} className="action-button">Выбрать исследователя</Link>
+                    <span><FormattedMessage id="researcher"/>: </span>{user && getFullName(user)}
+                    <Link to={AppRoutes.SelectUser} className="action-button"><FormattedMessage id="select_researcher"/></Link>
                 </p>
                 <p>
-                    <span>Пациент: </span>{patient && getFullName(patient)}
-                    <Link to={AppRoutes.SelectPatient} className="action-button">Выбрать пациента</Link>
+                    <span><FormattedMessage id="patient"/>: </span>{patient && getFullName(patient)}
+                    <Link to={AppRoutes.SelectPatient} className="action-button"><FormattedMessage id="select_patient"/></Link>
                 </p>
             </div>
             <div className="file-selection">
                 <input type="file"
                        onChange={uploadFile} />
             </div>
-            <button onClick={handleSubmit} className="action-button">Добавить</button>
+            <button onClick={handleSubmit} className="action-button"><FormattedMessage id="add"/></button>
             <button type="button" className="action-button" onClick={() => {
                 browserHistory.back();
             }}
-            >Вернуться
+            ><FormattedMessage id="go_back"/>
             </button>
         </>
     );

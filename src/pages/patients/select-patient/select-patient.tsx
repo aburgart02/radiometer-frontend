@@ -15,6 +15,7 @@ import {AppRoutes} from "../../../const/app-routes";
 import {Link} from "react-router-dom";
 import {getFullName} from "../../../utils/get-full-name";
 import {getPatientId} from "../../../store/data/selectors";
+import {FormattedMessage} from "react-intl";
 
 const PATIENTS_ON_PAGE = 8;
 
@@ -35,6 +36,7 @@ function SelectPatient(): ReactElement {
 
     const handleSelectButtonClick = (id: number) => {
         dispatch(setPatientId(id));
+        browserHistory.back();
     };
 
     return (
@@ -50,13 +52,13 @@ function SelectPatient(): ReactElement {
             <table>
                 <thead>
                 <tr>
-                    <th>Id</th>
-                    <th>Имя</th>
-                    <th>Фамилия</th>
-                    <th>Отчество</th>
-                    <th>Дата рождения</th>
-                    <th>Пол</th>
-                    <th>Заметки</th>
+                    <th><FormattedMessage id="id"/></th>
+                    <th><FormattedMessage id="name"/></th>
+                    <th><FormattedMessage id="surname"/></th>
+                    <th><FormattedMessage id="patronymic"/></th>
+                    <th><FormattedMessage id="birthdate"/></th>
+                    <th><FormattedMessage id="sex"/></th>
+                    <th><FormattedMessage id="notes"/></th>
                     <th/>
                 </tr>
                 </thead>
@@ -77,21 +79,16 @@ function SelectPatient(): ReactElement {
                             <td>{patient.Notes}</td>
                             <td>
                                 <button className={patientId === patient.Id ? 'selected-button' : 'unselected-button'} onClick={() => {
-                                        handleSelectButtonClick(patient.Id)
+                                        handleSelectButtonClick(patient.Id);
                                     }
-                                }>Выбрать</button>
+                                }><FormattedMessage id="select"/></button>
                             </td>
                         </tr>
                     ))}
                 </tbody>
             </table>
             <Pagination handlePreviousButtonClick={handlePreviousButtonClick} handleNextButtonClick={handleNextButtonClick}/>
-            <Link to={AppRoutes.AddPatient} className="action-button">Добавить</Link>
-            <button type="button" className="action-button" onClick={() => {
-                browserHistory.back();
-            }}
-            >Вернуться
-            </button>
+            <Link to={AppRoutes.AddPatient} className="action-button"><FormattedMessage id="add"/></Link>
         </>
     );
 }

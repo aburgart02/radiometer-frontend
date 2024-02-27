@@ -7,6 +7,7 @@ import Pagination from "../../../components/pagination/pagination";
 import {Link, NavLink} from "react-router-dom";
 import {AppRoutes} from "../../../const/app-routes";
 import {getTokens} from "../../../store/tokens/selectors";
+import {FormattedMessage} from "react-intl";
 
 const TOKENS_ON_PAGE = 8;
 
@@ -27,11 +28,11 @@ function Tokens(): ReactElement {
             <table>
                 <thead>
                 <tr>
-                    <th>Id</th>
-                    <th>Описание</th>
-                    <th>Дата выпуска</th>
-                    <th>Действителен до</th>
-                    <th>Отозван</th>
+                    <th><FormattedMessage id="id"/></th>
+                    <th><FormattedMessage id="description"/></th>
+                    <th><FormattedMessage id="emission_date"/></th>
+                    <th><FormattedMessage id="expiration_date"/></th>
+                    <th><FormattedMessage id="revoked"/></th>
                     <th/>
                 </tr>
                 </thead>
@@ -48,15 +49,15 @@ function Tokens(): ReactElement {
                             <td>{token.ExpirationDate?.replace(/[TZ_]/g, ' ')}</td>
                             <td>{token.Revoked ? 'Да' : 'Нет'}</td>
                             <td>
-                                <li><NavLink to={AppRoutes.Token(token.Id)}>Подробнее</NavLink></li>
-                                <li><NavLink to={AppRoutes.EditToken(token.Id)}>Редактировать</NavLink></li>
+                                <li><NavLink to={AppRoutes.Token(token.Id)}><FormattedMessage id="more_detailed"/></NavLink></li>
+                                <li><NavLink to={AppRoutes.EditToken(token.Id)}><FormattedMessage id="edit"/></NavLink></li>
                             </td>
                         </tr>
                     ))}
                 </tbody>
             </table>
             <Pagination handlePreviousButtonClick={handlePreviousButtonClick} handleNextButtonClick={handleNextButtonClick}/>
-            <Link to={AppRoutes.AddToken} className="action-button">Добавить</Link>
+            <Link to={AppRoutes.AddToken} className="action-button"><FormattedMessage id="add"/></Link>
         </>
     );
 }

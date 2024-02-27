@@ -5,6 +5,7 @@ import {useParams} from "react-router-dom";
 import {useAppSelector} from "../../../hooks/hooks";
 import browserHistory from "../../../components/history-route/browser-history";
 import {getCalibrations} from "../../../store/calibrations/selectors";
+import {FormattedMessage} from "react-intl";
 
 
 function Calibration(): ReactElement {
@@ -28,23 +29,23 @@ function Calibration(): ReactElement {
     return (
         <>
             <div className="detailed-page-container">
-                <h2>Калибровка</h2>
+                <h2><FormattedMessage id="calibration"/></h2>
                 <p>
-                    <span>Id: </span>{calibration.Id}
+                    <span><FormattedMessage id="id"/>: </span>{calibration.Id}
                 </p>
                 <p>
-                    <span>Название: </span>{calibration.Name}
+                    <span><FormattedMessage id="title"/>: </span>{calibration.Name}
                 </p>
-                <span>Описание: </span>
+                <span><FormattedMessage id="description"/>: </span>
                 <p>
                     {calibration.Description}
                 </p>
             </div>
-            <button type="button" className="action-button" onClick={handleDownloadCalibration}>Скачать</button>
+            <button type="button" className="action-button" onClick={handleDownloadCalibration}><FormattedMessage id="download"/></button>
             <button type="button" className="action-button" onClick={() => {
                 browserHistory.back();
             }}
-            >Вернуться
+            ><FormattedMessage id="go_back"/>
             </button>
         </>
     );

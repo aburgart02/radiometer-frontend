@@ -12,6 +12,7 @@ import Pagination from "../../../components/pagination/pagination";
 import {AppRoutes} from "../../../const/app-routes";
 import {getLocale} from "../../../store/data/selectors";
 import {showFormError} from "../../../utils/show_form_error";
+import {FormattedMessage} from "react-intl";
 
 const CALIBRATION_ON_PAGE = 4;
 
@@ -59,19 +60,19 @@ function EditDevice(): ReactElement {
     return (
         <>
             <div className="form-container">
-                <h2>Редактирование устройства</h2>
+                <h2><FormattedMessage id="device_editing"/></h2>
                 <p>
-                    <span>Id: </span>{device.Id}
+                    <span><FormattedMessage id="id"/>: </span>{device.Id}
                 </p>
                 <form>
-                    <label htmlFor="name">Название</label>
+                    <label htmlFor="name"><FormattedMessage id="title"/></label>
                     <input defaultValue={device.Name} ref={nameRef} type="text" id="name" name="name" className="input-field"/>
 
-                    <label htmlFor="description" className="label">Описание</label>
+                    <label htmlFor="description" className="label"><FormattedMessage id="description"/></label>
                     <textarea defaultValue={device.Description} ref={descriptionRef} id="description" name="description" className="textarea-field"/>
                 </form>
                 <p>
-                    <span>Калибровки: </span>
+                    <span><FormattedMessage id="calibrations"/>: </span>
                 </p>
             </div>
             {
@@ -80,10 +81,10 @@ function EditDevice(): ReactElement {
                     <table>
                         <thead>
                         <tr>
-                            <th>Id</th>
-                            <th>Название</th>
-                            <th>Дата</th>
-                            <th>Описание</th>
+                            <th><FormattedMessage id="id"/></th>
+                            <th><FormattedMessage id="title"/></th>
+                            <th><FormattedMessage id="date"/></th>
+                            <th><FormattedMessage id="description"/></th>
                             <th/>
                         </tr>
                         </thead>
@@ -99,8 +100,8 @@ function EditDevice(): ReactElement {
                                     <td>{formatDate(calibration.Date)}</td>
                                     <td>{calibration.Description}</td>
                                     <td>
-                                        <li><NavLink to={AppRoutes.Calibration(calibration.Id)}>Подробнее</NavLink></li>
-                                        <li><NavLink to={AppRoutes.EditCalibration(calibration.Id)}>Редактировать</NavLink></li>
+                                        <li><NavLink to={AppRoutes.Calibration(calibration.Id)}><FormattedMessage id="more_detailed"/></NavLink></li>
+                                        <li><NavLink to={AppRoutes.EditCalibration(calibration.Id)}><FormattedMessage id="edit"/></NavLink></li>
                                     </td>
                                 </tr>
                             ))}
@@ -109,17 +110,17 @@ function EditDevice(): ReactElement {
                     <Pagination handlePreviousButtonClick={handlePreviousButtonClick} handleNextButtonClick={handleNextButtonClick}/>
                 </>
             }
-            <Link to={AppRoutes.AddCalibration(deviceId)} className="action-button">Добавить калибровку</Link>
-            <button onClick={handleSubmit} className="action-button">Сохранить</button>
+            <Link to={AppRoutes.AddCalibration(deviceId)} className="action-button"><FormattedMessage id="add_calibration"/></Link>
+            <button onClick={handleSubmit} className="action-button"><FormattedMessage id="save"/></button>
             <button onClick={() => {
                 handleDeleteSubmit();
                 browserHistory.back();
-            }} className="action-button">Удалить
+            }} className="action-button"><FormattedMessage id="delete"/>
             </button>
             <button type="button" className="action-button" onClick={() => {
                 browserHistory.back();
             }}
-            >Вернуться
+            ><FormattedMessage id="go_back"/>
             </button>
         </>
     );

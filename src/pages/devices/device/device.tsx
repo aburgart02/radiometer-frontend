@@ -9,6 +9,7 @@ import {getCalibrations} from "../../../store/calibrations/selectors";
 import {formatDate} from "../../../utils/format-date";
 import Pagination from "../../../components/pagination/pagination";
 import {AppRoutes} from "../../../const/app-routes";
+import {FormattedMessage} from "react-intl";
 
 const CALIBRATION_ON_PAGE = 4;
 
@@ -32,19 +33,19 @@ function Device(): ReactElement {
     return (
         <>
             <div className="detailed-page-container">
-                <h2>Устройство</h2>
+                <h2><FormattedMessage id="device"/></h2>
                 <p>
-                    <span>Id: </span>{device.Id}
+                    <span><FormattedMessage id="id"/>: </span>{device.Id}
                 </p>
                 <p>
-                    <span>Название: </span>{device.Name}
+                    <span><FormattedMessage id="title"/>: </span>{device.Name}
                 </p>
-                <span>Описание: </span>
+                <span><FormattedMessage id="description"/>: </span>
                 <p>
                     {device.Description}
                 </p>
                 <p>
-                    <span>Калибровки: </span>
+                    <span><FormattedMessage id="calibrations"/>: </span>
                 </p>
             </div>
             {
@@ -53,10 +54,10 @@ function Device(): ReactElement {
                     <table>
                         <thead>
                         <tr>
-                            <th>Id</th>
-                            <th>Название</th>
-                            <th>Дата</th>
-                            <th>Описание</th>
+                            <th><FormattedMessage id="id"/></th>
+                            <th><FormattedMessage id="title"/></th>
+                            <th><FormattedMessage id="date"/></th>
+                            <th><FormattedMessage id="description"/></th>
                             <th/>
                         </tr>
                         </thead>
@@ -84,7 +85,7 @@ function Device(): ReactElement {
             <button type="button" className="action-button" onClick={() => {
                 browserHistory.back();
             }}
-            >Вернуться
+            ><FormattedMessage id="go_back"/>
             </button>
         </>
     );
