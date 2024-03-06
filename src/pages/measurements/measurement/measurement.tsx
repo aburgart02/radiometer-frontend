@@ -25,7 +25,7 @@ function Measurement(): ReactElement {
 
     const handleDownloadCalibration = async () => {
         try {
-            const response = await fetch(`${BACKEND_URL}measurements/${measurementId}`, {
+            const response = await fetch(`${BACKEND_URL}download-measurement/${measurementId}`, {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${token}`,
