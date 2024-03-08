@@ -61,7 +61,7 @@ function SelectDevice(): ReactElement {
                     .sort((a,b) => a.Id - b.Id)
                     .slice((pageNumber - 1) * DEVICE_ON_PAGE, pageNumber * DEVICE_ON_PAGE)
                     .map(device => (
-                        <tr key={crypto.randomUUID()}>
+                        <tr key={device.Id}>
                             <td>{device.Id}</td>
                             <td>{device.Name}</td>
                             <td>{device.Description}</td>

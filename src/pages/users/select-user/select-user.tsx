@@ -66,7 +66,7 @@ function Users(): ReactElement {
                     .sort((a,b) => Number(a.Id) - Number(b.Id))
                     .slice((pageNumber - 1) * USERS_ON_PAGE, pageNumber * USERS_ON_PAGE)
                     .map(user => (
-                        <tr key={crypto.randomUUID()}>
+                        <tr key={user.Id}>
                             <td>{user.Id}</td>
                             <td>{user.Name}</td>
                             <td>{user.Surname}</td>

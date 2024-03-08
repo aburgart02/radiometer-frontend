@@ -94,7 +94,7 @@ function EditDevice(): ReactElement {
                             .sort((a,b) => a.Id - b.Id)
                             .slice((pageNumber - 1) * CALIBRATION_ON_PAGE, pageNumber * CALIBRATION_ON_PAGE)
                             .map(calibration => (
-                                <tr key={crypto.randomUUID()}>
+                                <tr key={calibration.Id}>
                                     <td>{calibration.Id}</td>
                                     <td>{calibration.Name}</td>
                                     <td>{formatDate(calibration.Date)}</td>

@@ -46,7 +46,7 @@ function Patients(): ReactElement {
                     .sort((a,b) => Number(a.Id) - Number(b.Id))
                     .slice((pageNumber - 1) * PATIENTS_ON_PAGE, pageNumber * PATIENTS_ON_PAGE)
                     .map(patient => (
-                        <tr key={crypto.randomUUID()}>
+                        <tr key={patient.Id}>
                             <td>{patient.Id}</td>
                             <td>{patient.Name}</td>
                             <td>{patient.Surname}</td>

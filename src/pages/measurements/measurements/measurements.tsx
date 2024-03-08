@@ -49,7 +49,7 @@ function Measurements(): ReactElement {
                     .sort((a,b) => a.Id - b.Id)
                     .slice((pageNumber - 1) * MEASUREMENTS_ON_PAGE, pageNumber * MEASUREMENTS_ON_PAGE)
                     .map(measurement => (
-                        <tr key={crypto.randomUUID()}>
+                        <tr key={measurement.Id}>
                             <td>{measurement.Id}</td>
                             <td>{measurement.Time.replace(/[TZ_]/g, ' ')}</td>
                             <td>{measurement.Description}</td>

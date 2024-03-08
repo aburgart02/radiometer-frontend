@@ -39,7 +39,7 @@ function Logs(): ReactElement {
                 {logs
                     .slice((pageNumber - 1) * LOGS_ON_PAGE, pageNumber * LOGS_ON_PAGE)
                     .map(log => (
-                        <tr key={crypto.randomUUID()}>
+                        <tr key={log.Time}>
                             <td>{log.Time.replace(/[TZ_]/g, ' ')}</td>
                             <td>{log.Source}</td>
                             <td>{log.Type}</td>

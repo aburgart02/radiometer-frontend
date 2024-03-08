@@ -42,7 +42,7 @@ function Tokens(): ReactElement {
                     .sort((a,b) => Number(a.Id) - Number(b.Id))
                     .slice((pageNumber - 1) * TOKENS_ON_PAGE, pageNumber * TOKENS_ON_PAGE)
                     .map(token => (
-                        <tr key={crypto.randomUUID()}>
+                        <tr key={token.Id}>
                             <td>{token.Id}</td>
                             <td>{token.Description}</td>
                             <td>{token.EmissionDate.replace(/[TZ_]/g, ' ')}</td>
