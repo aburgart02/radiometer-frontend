@@ -4,7 +4,7 @@ services:
   radiometer-frontend:
     image: cr.yandex/crpfcpvoap78esunmram/radiometer-frontend
     ports:
-      - "8081:3000"
+      - "8082:3000"
     environment:
       - HTTPS=true
     volumes:
