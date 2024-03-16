@@ -8,4 +8,5 @@ services:
     environment:
       - HTTPS=true
     volumes:
-      - ./conf.d/https/:/https/
+      - ./conf.d/https/fullchain.pem:/certs/ssl_cert.pem
+      - ./conf.d/https/privkey.pem:/certs/ssl_key.pem
