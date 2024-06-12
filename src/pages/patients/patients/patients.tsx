@@ -1,4 +1,4 @@
-import React, {ReactElement} from "react";
+import React, {ReactElement, useState} from "react";
 import {useAppSelector} from "../../../hooks/hooks";
 import '../../../common-styles/table.css'
 import '../../../common-styles/pagination.css'
@@ -10,10 +10,12 @@ import {AppRoutes} from "../../../const/app-routes";
 import {getSex} from "../../../utils/get-sex";
 import {formatDate} from "../../../utils/format-date";
 import {FormattedMessage} from "react-intl";
+import {getFullName} from "../../../utils/get-full-name";
 
 const PATIENTS_ON_PAGE = 8;
 
 function Patients(): ReactElement {
+    const [patientSearchValue, setPatientSearchValue] = useState('');
     const patients = useAppSelector(getPatients);
     const [pageNumber, setPageNumber] = React.useState(1);
 
@@ -27,6 +29,14 @@ function Patients(): ReactElement {
 
     return (
         <>
+            <div className="search-container">
+                <input
+                    type="text"
+                    placeholder="Введите ФИО пациента"
+                    value={patientSearchValue}
+                    onChange={(e) => setPatientSearchValue(e.target.value)}
+                />
+            </div>
             <table>
                 <thead>
                 <tr>
@@ -42,6 +52,7 @@ function Patients(): ReactElement {
                 </thead>
                 <tbody>
                 {patients
+                    .filter(patient => getFullName(patient).toLowerCase().includes(patientSearchValue.toLowerCase()))
                     .slice()
                     .sort((a,b) => Number(a.Id) - Number(b.Id))
                     .slice((pageNumber - 1) * PATIENTS_ON_PAGE, pageNumber * PATIENTS_ON_PAGE)

@@ -1,4 +1,4 @@
-import React, {ReactElement} from "react";
+import React, {ReactElement, useState} from "react";
 import {useAppSelector} from "../../../hooks/hooks";
 import '../../../common-styles/table.css'
 import '../../../common-styles/pagination.css'
@@ -10,10 +10,12 @@ import {getSex} from "../../../utils/get-sex";
 import {formatDate} from "../../../utils/format-date";
 import {getUsers} from "../../../store/users/selectors";
 import {FormattedMessage} from "react-intl";
+import {getFullName} from "../../../utils/get-full-name";
 
 const USERS_ON_PAGE = 8;
 
 function Users(): ReactElement {
+    const [userSearchValue, setUserSearchValue] = useState('');
     const users = useAppSelector(getUsers);
     const [pageNumber, setPageNumber] = React.useState(1);
 
@@ -27,6 +29,14 @@ function Users(): ReactElement {
 
     return (
         <>
+            <div className="search-container">
+                <input
+                    type="text"
+                    placeholder="Введите ФИО пользователя"
+                    value={userSearchValue}
+                    onChange={(e) => setUserSearchValue(e.target.value)}
+                />
+            </div>
             <table>
                 <thead>
                 <tr>
@@ -45,6 +55,7 @@ function Users(): ReactElement {
                 </thead>
                 <tbody>
                 {users
+                    .filter(user => getFullName(user).toLowerCase().includes(userSearchValue.toLowerCase()))
                     .slice()
                     .sort((a,b) => Number(a.Id) - Number(b.Id))
                     .slice((pageNumber - 1) * USERS_ON_PAGE, pageNumber * USERS_ON_PAGE)

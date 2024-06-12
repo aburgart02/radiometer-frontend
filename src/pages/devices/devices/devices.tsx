@@ -1,4 +1,4 @@
-import React, {ReactElement} from "react";
+import React, {ReactElement, useState} from "react";
 import {useAppSelector} from "../../../hooks/hooks";
 import {getDevices} from "../../../store/devices/selectors";
 import '../../../common-styles/table.css'
@@ -11,6 +11,7 @@ import {FormattedMessage} from "react-intl";
 const DEVICE_ON_PAGE = 8;
 
 function Devices(): ReactElement {
+    const [deviceSearchValue, setDeviceSearchValue] = useState('');
     const devices = useAppSelector(getDevices);
     const [pageNumber, setPageNumber] = React.useState(1);
 
@@ -24,6 +25,14 @@ function Devices(): ReactElement {
 
     return (
         <>
+            <div className="search-container">
+                <input
+                    type="text"
+                    placeholder="Введите название устройства"
+                    value={deviceSearchValue}
+                    onChange={(e) => setDeviceSearchValue(e.target.value)}
+                />
+            </div>
             <table>
                 <thead>
                 <tr>
@@ -35,6 +44,7 @@ function Devices(): ReactElement {
                 </thead>
                 <tbody>
                 {devices
+                    .filter(device => device.Name.toLowerCase().includes(deviceSearchValue.toLowerCase()))
                     .slice()
                     .sort((a,b) => a.Id - b.Id)
                     .slice((pageNumber - 1) * DEVICE_ON_PAGE, pageNumber * DEVICE_ON_PAGE)
